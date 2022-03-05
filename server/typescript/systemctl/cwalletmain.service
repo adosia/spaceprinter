@@ -1,0 +1,21 @@
+[Unit]
+Description=Cardano Wallet Mainnet
+Requires=network.target
+
+[Service]
+Type=simple
+TimeoutStartSec=10s
+Restart=always
+RestartSec=10
+WorkingDirectory=/home/box/.cardanobox/app/cnode/bin/
+ExecStart=/home/box/.cardanobox/app/cnode/bin/cardano-wallet serve \
+      --mainnet /home/box/.cardanobox/app/cnode/mainet/files/byron-genesis.json \
+      --node-socket /home/box/.cardanobox/app/cnode/mainnet/socket/mnode.socket \
+      --database /home/box/.cardanobox/app/cnode/mainnet/walletdb
+LimitNOFILE=500000
+LimitNPROC=500000
+User=box
+Group=box
+
+[Install]
+WantedBy=default.target

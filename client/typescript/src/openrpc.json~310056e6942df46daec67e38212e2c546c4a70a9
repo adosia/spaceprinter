@@ -1,0 +1,374 @@
+{
+  "openrpc": "1.2.6",
+  "info": {
+    "title": "cardanobox",
+    "version": "1.0.0",
+    "description": "Cardano Box: run your own nodes and dapps locally"
+  },
+  "methods": [
+    {
+      "name": "initDevice",
+      "description": "Checks if any nodes need to be ran and updates wallets if any exist",
+      "params": [],
+      "result": {
+        "name": "initDeviceResult",
+        "description": "Returns Cardano and Printer Info",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "cardanoWallet",
+      "description": "Consumes cardano wallet rest API params.",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/restEndpointType"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/restEndpoint"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/restEndpointData"
+        }
+      ],
+      "result": {
+        "name": "cardanoWallet",
+        "description": "Returns query response",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "createCardanoWallet",
+      "description": "Creates seed phrase if one wasn't provided and generates wallet on device",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/walletName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/seedPhrase"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/walletPassPhrase"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/xpubKey"
+        }
+      ],
+      "result": {
+        "name": "createCardanoWalletResult",
+        "description": "Returns wallet info and seed phrase if one was generated",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "startWalletWatch",
+      "description": "watches selected wallet for new TXs",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/walletID"
+        }
+      ],
+      "result": {
+        "name": "startWatchWalletResult",
+        "description": "Stop watching wallet for new TXs",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "stopWalletWatch",
+      "description": "Stops watching wallet for new TXs",
+      "params": [],
+      "result": {
+        "name": "stopWalletWatchResult",
+        "description": "Stops watching wallet for new TXs",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "editConfig",
+      "description": "Edits dapp config",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/configjson"
+        }
+      ],
+      "result": {
+        "name": "editConfigResult",
+        "description": "returns config status",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "sendCmdToPrinter",
+      "description": "sends gcode command to connacted printer.",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/gcode"
+        }
+      ],
+      "result": {
+        "name": "sendCmdToPrinterResult",
+        "description": "Returns printer response",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "downloadFile",
+      "description": "Downlaods 3D file to device for slicing and printing.",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/fileURL"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/fileName"
+        }
+      ],
+      "result": {
+        "name": "downloadFileResult",
+        "description": "Returns download status",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "update",
+      "description": "Updates spaceprinter software.",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/updateType"
+        }
+      ],
+      "result": {
+        "name": "updateResult",
+        "description": "Returns update status",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "cardanoCli",
+      "description": "Updates spaceprinter software.",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/cardanoCliCmd"
+        }
+      ],
+      "result": {
+        "name": "cardanoCliResult",
+        "description": "Returns update status",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "cardanoNode",
+      "description": "Start/stop cardano node mainnet or testnet",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/nodeAction"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/nodeNetwork"
+        }
+      ],
+      "result": {
+        "name": "cardanoNodeResult",
+        "description": "Returns Cardano Node status",
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  ],
+  "components": {
+    "contentDescriptors": {
+      "adaAddress": {
+        "name": "adaAddress",
+        "description": "unique device ada Address",
+        "required": true,
+        "schema": {
+          "title": "adaAddress",
+          "type": "string"
+        }
+      },
+      "seedSize": {
+        "name": "seedSize",
+        "description": "9, 12, 15, 18, 21 or 24 words",
+        "required": true,
+        "schema": {
+          "title": "seedSize",
+          "type": "number",
+          "enum": [
+            0,
+            9,
+            12,
+            15,
+            18,
+            21,
+            24
+          ]
+        }
+      },
+      "seedPhrase": {
+        "name": "seedPhrase",
+        "description": "Seed Phrase used to recover address",
+        "required": true,
+        "schema": {
+          "title": "seedPhrase",
+          "type": "string"
+        }
+      },
+      "walletName": {
+        "name": "walletName",
+        "description": "Unique User wallet name",
+        "required": true,
+        "schema": {
+          "title": "walletName",
+          "type": "string"
+        }
+      },
+      "xpubKey": {
+        "name": "xpubKey",
+        "description": "An extended account public key",
+        "required": true,
+        "schema": {
+          "title": "xpubKey",
+          "type": "string"
+        }
+      },
+      "walletPassPhrase": {
+        "name": "walletPassPhrase",
+        "description": "Secret Passphrase for wallet to unlock for TXs",
+        "required": true,
+        "schema": {
+          "title": "walletPassPhrase",
+          "type": "string"
+        }
+      },
+      "walletID": {
+        "name": "walletID",
+        "description": "Wallet ID",
+        "required": true,
+        "schema": {
+          "title": "walletID",
+          "type": "string"
+        }
+      },
+      "restEndpointType": {
+        "name": "restEndpointType",
+        "description": "Ocotoprint REST type of callGET or POST",
+        "required": true,
+        "schema": {
+          "title": "restEndpointType",
+          "type": "string"
+        }
+      },
+      "restEndpoint": {
+        "name": "restEndpoint",
+        "description": "Ocotoprint REST API endpoint",
+        "required": true,
+        "schema": {
+          "title": "restEndpoint",
+          "type": "string"
+        }
+      },
+      "restEndpointData": {
+        "name": "restEndpointData",
+        "description": "Ocotoprint API endpoint data to pass for POST",
+        "required": true,
+        "schema": {
+          "title": "restEndpointData",
+          "type": "object"
+        }
+      },
+      "configjson": {
+        "name": "configjson",
+        "description": "json string of config",
+        "required": true,
+        "schema": {
+          "title": "configjson",
+          "type": "string"
+        }
+      },
+      "fileURL": {
+        "name": "fileURL",
+        "description": "location of file to download",
+        "required": true,
+        "schema": {
+          "title": "fileURL",
+          "type": "string"
+        }
+      },
+      "fileName": {
+        "name": "fileName",
+        "description": "name of file for saving or whatever else.",
+        "required": true,
+        "schema": {
+          "title": "fileName",
+          "type": "string"
+        }
+      },
+      "gcode": {
+        "name": "gcode",
+        "description": "name of file for saving or whatever else. ",
+        "required": true,
+        "schema": {
+          "title": "gcode",
+          "type": "string"
+        }
+      },
+      "updateType": {
+        "name": "updateType",
+        "description": "Update type: full, incremental.",
+        "required": true,
+        "schema": {
+          "title": "updateType",
+          "type": "string"
+        }
+      },
+      "cardanoCliCmd": {
+        "name": "cardanoCliCmd",
+        "description": "commands to pass to cardano cli",
+        "required": true,
+        "schema": {
+          "title": "cardanoCliCmd",
+          "type": "string"
+        }
+      },
+      "nodeAction": {
+        "name": "nodeAction",
+        "description": "Start or Stop cardano node",
+        "required": true,
+        "schema": {
+          "title": "nodeAction",
+          "type": "string"
+        }
+      },
+      "nodeNetwork": {
+        "name": "nodeNetwork",
+        "description": "Start cardano node mainnet or testnet",
+        "required": true,
+        "schema": {
+          "title": "nodeNetwork",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

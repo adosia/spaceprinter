@@ -1,0 +1,22 @@
+[Unit]
+Description=Cardano Node Testnet
+Requires=network.target
+
+[Service]
+Type=simple
+TimeoutStartSec=10s
+Restart=always
+RestartSec=10
+WorkingDirectory=/home/box/.cardanobox/app/cnode/bin/
+ExecStart=/home/box/.cardanobox/app/cnode/bin/cardano-node run \
+      --database-path /home/box/.cardanobox/app/cnode/testnet/db/ \
+      --socket-path /home/box/.cardanobox/app/cnode/testnet/socket/tnode.socket \
+      --config /home/box/.cardanobox/app/cnode/testnet/files/testnet-config.json \
+      --topology /home/box/.cardanobox/app/cnode/testnet/files/testnet-topology.json
+LimitNOFILE=500000
+LimitNPROC=500000
+User=box
+Group=box
+
+[Install]
+WantedBy=default.target

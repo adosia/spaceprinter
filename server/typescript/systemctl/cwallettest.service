@@ -1,0 +1,21 @@
+[Unit]
+Description=Cardano Wallet Testnet
+Requires=network.target
+
+[Service]
+Type=simple
+TimeoutStartSec=10s
+Restart=always
+RestartSec=10
+WorkingDirectory=/home/box/.cardanobox/app/cnode/bin/
+ExecStart=/home/box/.cardanobox/app/cnode/bin/cardano-wallet serve \
+      --testnet /home/box/.cardanobox/app/cnode/testnet/files/testnet-byron-genesis.json \
+      --node-socket /home/box/.cardanobox/app/cnode/testnet/socket/tnode.socket \
+      --database /home/box/.cardanobox/app/cnode/testnet/walletdb
+LimitNOFILE=500000
+LimitNPROC=500000
+User=box
+Group=box
+
+[Install]
+WantedBy=default.target

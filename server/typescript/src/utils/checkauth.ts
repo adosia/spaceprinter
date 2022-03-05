@@ -1,0 +1,25 @@
+import jwt from "jsonwebtoken";
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
+
+export const checkJWT = async (token: string) => {
+  // console.log(token);
+  const db: any = await open({
+    filename: './db/cb.db',
+    driver: sqlite3.Database
+  });
+  const getUserSQL: string = 'SELECT accountPassword FROM Account';
+  return new Promise(async (resolve,reject) =>{
+    try {
+      const getAccHash: any = await db.get(getUserSQL);
+      // console.log(getAccHash.accountPassword);
+      db.close();
+      const checkToken: any = jwt.verify(token, getAccHash.accountPassword);
+      // console.log(checkToken);
+      resolve(checkToken);
+    } catch ( error ) {
+      // console.log( error );
+      resolve(error);
+    };
+  });
+};

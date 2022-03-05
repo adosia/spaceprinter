@@ -1,0 +1,5 @@
+box ALL=NOPASSWD:/bin/systemctl * cardanobox.service
+box ALL=NOPASSWD:/bin/systemctl * cnodetest.service
+box ALL=NOPASSWD:/bin/systemctl * cnodemain.service
+box ALL=NOPASSWD:/bin/systemctl * cwalletmain.service
+box ALL=NOPASSWD:/bin/systemctl * cwallettest.service
