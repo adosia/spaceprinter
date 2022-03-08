@@ -29,6 +29,9 @@
         {
           "$ref": "#/components/contentDescriptors/password"
           
+        },
+        {
+          "$ref": "#/components/contentDescriptors/accountType"
         }
       ],
       "result": {
@@ -50,6 +53,9 @@
         {
           "$ref": "#/components/contentDescriptors/password"
           
+        },
+        {
+          "$ref": "#/components/contentDescriptors/accountType"
         }
       ],
       "result": {
@@ -67,119 +73,6 @@
       "result": {
         "name": "resetUserRes",
         "description": "Returns query response",
-        "schema": {
-          "type": "string"
-        }
-      }
-    },
-    {
-      "name": "cardanoWallet",
-      "description" : "Consumes cardano wallet rest API params.",
-      "params" : [
-        {
-          "$ref": "#/components/contentDescriptors/jwToken"
-          
-        },
-        {
-          "$ref": "#/components/contentDescriptors/restEndpointType"
-          
-        },
-        {
-          "$ref": "#/components/contentDescriptors/restEndpoint"
-          
-        },
-        {
-          "$ref": "#/components/contentDescriptors/restEndpointData"
-          
-        }
-      ],
-      "result": {
-        "name": "cardanoWalletRes",
-        "description": "Returns query response",
-        "schema": {
-          "type": "string"
-        }
-      }
-    },
-    {
-      "name": "createCardanoWallet",
-      "description" : "Creates seed phrase if one wasn't provided and generates wallet on device",
-      "params" : [
-        {
-          "$ref": "#/components/contentDescriptors/jwToken"
-          
-        },
-        {
-          "$ref": "#/components/contentDescriptors/walletName"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/seedPhrase"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/walletPassPhrase"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/xpubKey"
-        }
-      ],
-      "result": {
-        "name": "createCardanoWalletResult",
-        "description": "Returns wallet info and seed phrase if one was generated",
-        "schema": {
-          "type": "string"
-        }
-      }
-    },
-    {
-      "name": "genCBWallet",
-      "description" : "Creates cardanobox wallet",
-      "params" : [
-        {
-          "$ref": "#/components/contentDescriptors/jwToken"
-          
-        },
-        {
-          "$ref": "#/components/contentDescriptors/walletName"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/seedPhrase"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/walletPassPhrase"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/walletType"
-        }
-      ],
-      "result": {
-        "name": "genCBWalletResult",
-        "description": "Returns wallet info and seed phrase if one was generated",
-        "schema": {
-          "type": "string"
-        }
-      }
-    },
-    {
-      "name": "genCBWalletAccount",
-      "description" : "Creates a new account on same seed and creates a new address for it.",
-      "params" : [
-        {
-          "$ref": "#/components/contentDescriptors/jwToken"
-          
-        },
-        {
-          "$ref": "#/components/contentDescriptors/walletID"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/accountName"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/walletPassPhrase"
-        }
-      ],
-      "result": {
-        "name": "genCBWalletAccountResult",
-        "description": "Returns generated address",
         "schema": {
           "type": "string"
         }
@@ -358,49 +251,6 @@
           "type": "string"
         }
       }
-    },
-    {
-      "name": "cardanoCli",
-      "description" : "Updates spaceprinter software.",
-      "params" : [
-        {
-          "$ref": "#/components/contentDescriptors/jwToken"
-          
-        },
-        {
-          "$ref": "#/components/contentDescriptors/cardanoCliCmd" 
-        }
-      ],
-      "result": {
-        "name": "cardanoCliResult",
-        "description": "Returns update status",
-        "schema": {
-          "type": "string"
-        }
-      }
-    },
-    {
-      "name": "cardanoNode",
-      "description" : "Start/stop cardano node mainnet or testnet",
-      "params" : [
-        {
-          "$ref": "#/components/contentDescriptors/jwToken"
-          
-        },
-        {
-          "$ref": "#/components/contentDescriptors/nodeAction" 
-        },
-        {
-          "$ref": "#/components/contentDescriptors/nodeNetwork"
-        }
-      ],
-      "result": {
-        "name": "cardanoNodeResult",
-        "description": "Returns Cardano Node status",
-        "schema": {
-          "type": "string"
-        }
-      }
     }
   ],
   "components": {
@@ -430,6 +280,16 @@
         "schema": {
           "title": "jwToken",
           "type": "string"
+        }
+      },
+      "accountType": {
+        "name": "accountType",
+        "description": "Taccount type specifies if account lives on Cardano Box localy or Adosia node access",
+        "required": true,
+        "schema": {
+          "title": "accountType",
+          "type": "string",
+          "enum": [ "cardanobox", "remote" ]
         }
       },
       "adaAddress": {
