@@ -7,36 +7,11 @@ const initDevice: InitDevice = async () => {
   const network: string = config.network;
   const autoStartNode: boolean = config.autoStartNode;
 
-  autoStartNode == true && await startCardanoNode( network );
-  startSlicer();
+  autoStartNode == true && await startSlicer();;
+  
   // await startCardanoWallet( network );
   return("ok");
 };
-
-const startCardanoWallet = async ( network: string ) => {
-  console.log(`Starting Cardano Wallet on: ${network}`);
-  const cmdWalletMainnet: string = `sudo systemctl start cwalletmain.service`;
-  const cmdWalletTestnet: string = `sudo systemctl start cwallettest.service`;
-  try{
-    network == "testnet" ? exec( cmdWalletTestnet, { "encoding":"utf8" } ) : exec( cmdWalletMainnet, { "encoding":"utf8" } );
-  }catch( error ){
-    console.log( error );
-    return( error );
-  };
-};
-
-const startCardanoNode = async( network: string ) => {
-  console.log(`Starting Cardano Node on: ${network}`);
-  const cmdStartMainnet: string = "sudo systemctl start cnodemain.service";
-  const cmdStartTestnet: string = "sudo systemctl start cnodetest.service";
-  try{
-    network == "testnet" ? exec( cmdStartTestnet, { "encoding":"utf8" } ) : exec( cmdStartMainnet, { "encoding":"utf8" } );
-  }catch( error ){
-    console.log( error )
-    return( error );
-  };
-};
-
 const startSlicer = async(  ) => {
   console.log(`Starting gs server for slicer`);
   const cmdStartSlicer: string = "sudo systemctl start grid-apps.service";

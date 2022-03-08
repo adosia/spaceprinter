@@ -26,16 +26,16 @@ const update: Update = ( jwToken, updateType ) => {
 const getFull = async() => {
   let mirror;
   try{
-    const mirror1: string = "curl https://link.us1.storjshare.io/s/jwg7i752jbvia76pxhjgboqcmnfa/cardanobox/cardanoboxInstall.tgz?download -o cardanoboxInstall.tgz  && mv cardanoboxInstall.tgz /home/box/.cardanobox/updates/";
-    const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jwg7i752jbvia76pxhjgboqcmnfa/cardanobox/cardanoboxInstall.tgz?download");
+    const mirror1: string = "curl https://link.us1.storjshare.io/s/jwsuf2mh3ke4ipt2cadpp64js6lq/spaceprinter/spaceprinterInstall.tgz?download=1 -o spaceprinterInstall.tgz  && mv spaceprinterInstall.tgz /home/printer/.spaceprinter/updates/";
+    const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jwsuf2mh3ke4ipt2cadpp64js6lq/spaceprinter/spaceprinterInstall.tgz?download=1");
     // console.log(mirror1res)
-    const mirror2: string = "curl -O https://cardanobox.bakon.dev/app/cardanoboxInstall.tgz && mv cardanoboxInstall.tgz /home/box/.cardanobox/updates/";
-    const mirror2res: any = await checkMirror("https://cardanobox.bakon.dev/app/cardanoboxInstall.tgz");
+    const mirror2: string = "curl -O https://spaceprinter.bakon.dev/app/spaceprinterInstall.tgz && mv spaceprinterInstall.tgz /home/printer/.spaceprinter/updates/";
+    const mirror2res: any = await checkMirror("https://spaceprinter.bakon.dev/app/spaceprinterInstall.tgz");
     // console.log(mirror2res);
     mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
     console.log( mirror );
-    const command2: string = "rm -rf /home/box/.cardanobox/app/* && tar -xvzf /home/box/.cardanobox/updates/cardanoboxInstall.tgz -C /home/box/.cardanobox/app/";
-    const command3: string = "sudo systemctl restart cardanobox.service";
+    const command2: string = "rm -rf /home/printer/.spaceprinter/app/* && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterInstall.tgz -C /home/printer/.spaceprinter/app/";
+    const command3: string = "sudo systemctl restart spaceprinter.service";
     console.log(await exec( mirror , { "encoding":"utf8" } ));
     console.log(await exec( command2 , { "encoding":"utf8" } ));
     console.log(setTimeout(()=>{ exec( command3, { "encoding":"utf8" }), 3000 }));
@@ -49,16 +49,16 @@ const getFull = async() => {
 const getUpdate = async() => {
   let mirror;
   try{
-    const mirror1: string = "curl https://link.us1.storjshare.io/s/juzpqv53xv7ni3qthpdj2tzckacq/cardanobox/cardanoboxUpdate.tgz?download -o cardanoboxUpdate.tgz && mv cardanoboxUpdate.tgz /home/box/.cardanobox/updates/";
-    const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/juzpqv53xv7ni3qthpdj2tzckacq/cardanobox/cardanoboxUpdate.tgz?download");
+    const mirror1: string = "curl https://link.us1.storjshare.io/s/jul3nrrwumstjejenvltb6xr2wxa/spaceprinter/spaceprinterUpdate.tgz?download=1 -o spaceprinterUpdate.tgz && mv spaceprinterUpdate.tgz /home/printer/.spaceprinter/updates/";
+    const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jul3nrrwumstjejenvltb6xr2wxa/spaceprinter/spaceprinterUpdate.tgz?download=1");
     // console.log(mirror1res);
-    const mirror2: string = "curl -O https://cardanobox.bakon.dev/app/cardanoboxUpdate.tgz && mv cardanoboxUpdate.tgz /home/box/.cardanobox/updates/";
-    const mirror2res: any = await checkMirror("https://cardanobox.bakon.dev/app/cardanoboxUpdate.tgz");
+    const mirror2: string = "curl -O https://spaceprinter.bakon.dev/app/spaceprinterUpdate.tgz && mv spaceprinterUpdate.tgz /home/printer/.spaceprinter/updates/";
+    const mirror2res: any = await checkMirror("https://spaceprinter.bakon.dev/app/spaceprinterUpdate.tgz");
     // console.log(mirror2res);
     mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
     console.log( mirror );
-    const command2: string = "rm /home/box/.cardanobox/app/cardanobox && tar -xvzf /home/box/.cardanobox/updates/cardanoboxUpdate.tgz -C /home/box/.cardanobox/app/";
-    const command3: string = "sudo systemctl restart cardanobox.service";
+    const command2: string = "rm /home/printer/.spaceprinter/app/spaceprinter && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterUpdate.tgz -C /home/printer/.cardanobox/app/";
+    const command3: string = "sudo systemctl restart spaceprinter.service";
     console.log(await exec( mirror , { "encoding":"utf8" } ));
     console.log(await exec( command2, { "encoding":"utf8" } ));
     console.log(setTimeout(()=>{ exec( command3, { "encoding":"utf8" }), 3000 }));
@@ -72,15 +72,15 @@ const getUpdate = async() => {
 const updateUI = async() => {
   let mirror;
   try{
-    const mirror1: string = "curl https://link.us1.storjshare.io/s/jxkhlltdcbuvjpqoi6af2orvquxq/cardanobox/cardanoboxui.tgz?download -o cardanoboxui.tgz && mv cardanoboxui.tgz /home/box/.cardanobox/updates/";
+    const mirror1: string = "curl https://link.us1.storjshare.io/s/juyp4i5zlp2v6j4oaurn2jyrz4kq/spaceprinter/spaceprinterui.tgz?download=1 -o spaceprinterui.tgz && mv spaceprinterui.tgz /home/printer/.spaceprinter/updates/";
     const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jxkhlltdcbuvjpqoi6af2orvquxq/cardanobox/cardanoboxui.tgz?download");
     // console.log(mirror1res);
-    const mirror2: string = "curl -O https://cardanobox.bakon.dev/app/cardanoboxui.tgz && mv cardanoboxui.tgz /home/box/.cardanobox/updates/";
-    const mirror2res: any = await checkMirror("https://cardanobox.bakon.dev/app/cardanoboxui.tgz");
+    const mirror2: string = "curl -O https://spaceprinter.bakon.dev/app/spaceprinterui.tgz && mv spaceprinterui.tgz /home/printer/.spaceprinter/updates/";
+    const mirror2res: any = await checkMirror("https://spaceprinter.bakon.dev/app/spaceprinterui.tgz");
     // console.log(mirror2res);
     mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
     console.log( mirror );
-    const command2: string = "rm -rf /home/box/.cardanobox/www/* && tar -xvzf /home/box/.cardanobox/updates/cardanoboxui.tgz -C /home/box/.cardanobox/www/";
+    const command2: string = "rm -rf /home/printer/.spaceprinter/www/* && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterui.tgz -C /home/printer/.spaceprinter/www/";
     console.log(await exec( mirror , { "encoding":"utf8" } ));
     console.log(await exec( command2 , { "encoding":"utf8" } ));
     return("ok");

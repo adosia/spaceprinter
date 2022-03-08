@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS Account
     id INTEGER PRIMARY KEY autoincrement,
     accountName CHAR(50) NOT NULL UNIQUE,
     accountPassword CHAR(256) NOT NULL,
+    accountType CHAR(50) NOT NULL,
     timeCreated TEXT NOT NULL
 );
 
@@ -38,5 +39,5 @@ CREATE TABLE IF NOT EXISTS Config
     baud TEXT NOT NULL,
     network TEXT NOT NULL,
     testNetMagic TEXT NOT NULL,
-    autoStartNode TEXT NOT NULL
+    autoStartSlicer TEXT NOT NULL
 );

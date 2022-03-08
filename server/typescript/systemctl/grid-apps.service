@@ -7,12 +7,12 @@ Type=simple
 TimeoutStartSec=10s
 Restart=always
 RestartSec=10
-WorkingDirectory=/home/box/.cardanobox/grid-apps
+WorkingDirectory=/home/printer/.spaceprinter/grid-apps
 ExecStart=gs-app-server
 LimitNOFILE=500000
 LimitNPROC=500000
-User=box
-Group=box
+User=printer
+Group=printer
 
 [Install]
 WantedBy=default.target
