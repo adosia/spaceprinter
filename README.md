@@ -1,65 +1,40 @@
-**Image is based on openSuse Tumbleweed**
-
-**However setting it all up manually should work on any ARM64 based SBC**
+**Image is based on Ubuntu 21.10 **
 
 **How this works**
 <blockquote>
-Currently Cardano Box API is written in TypeScript using NodeJs for the backend and React for the frontend. 
+Spaceprinter API is written in TypeScript using NodeJs for the backend and React for the frontend. 
 
 It utilizes https://open-rpc.org/ to generate and spec out the JSON-RPC 2.0 based back end api 
 and front end client.
 
-And uses Oura(https://github.com/txpipe/oura) to sync wallet data.
-  
-This project currently relies on running a full passive node(Correct my terminology here).
-You can choose if you want to run a Mainnet or Testnet node, only one node can run at a time at this point.
-  
+And uses Oura(https://github.com/txpipe/oura) to sync printer wallet data.
 </blockquote>
 
 **Whats What**
 <blockquote>
-  
-**Server directory** containes the backend source code the JSON-RPC 2.0<br/>
-**Client directory** containes a reactjs client with auto compelte and everyting for the above api used in the UI.<br/>
+**Server directory** containes the backend api source code the JSON-RPC 2.0<br/>
+**Client directory** containes a reactjs client with auto compelte and everyting for the above api.<br/>
 </blockquote>
 
-**Easiest method to run this is:**
+**Using the image**
 <blockquote>
-Download the Raspberry Pi4b image provided at this link, unzip it and burn it:
+Currently space printer is supported on all Raspberry PI3 and above. You can atually burn the image onto a SD Card or USB Drive and switch it on the go between different Raspberry Pis.
 
-https://link.us1.storjshare.io/s/ju5agibgktop7jmkjfd5uj5g54qq/cardanobox/cardanobox_rpi4b.zip?download.
+
+Few things to keep in mind. Using certain Raspberry Pi's come with certian restrictions outlined below:
   
-Using a SD card is not recommended because they're slow and yucky and just not fun at all. However I can not stop you from this self destructive endeavour, just warn you.
+**SD Cards**: Even though this image is supported on SD Cards and using certain Raspberry Pi models will give you no choice but to use a SD Card. I am not a SD Card fan, they're not too reliable and painfully slow but get the job done more than most of the time. However as long as youn save your printer seed phrases do to decentralization and data being stored on the Cardano network recovering from a crashed SD card or system in general is rather painless.
   
-Now that you've been warned, to boot from USB you need to set your Raspberry Pi4b up to actually boot from USB, especially for this new version of Cardano Box and you will need an SD card for that, but don't worry it's pretty straight forward.
-
-<blockquote>
-  <strong>Setting up Rasberry Pi4b to boot from USB</strong>
-  <br/>
-  1)Download and install Raspberry Pi Imager from https://www.raspberrypi.org/software/.<br/>
-  2)Insert a SD card (which will be erased)<br/>
-  3)Start Raspberry Pi Imager<br/>
-  4)Click on CHOOSE OS<br/>
-  5)Click on Misc utility images<br/>
-  7)Click on Bootloader<br/>
-  8)Click on USB boot (it will still fallback to SD card if USB boot is not possible)<br/>
-  9)Click on CHOOSE STORAGE and select your µSD card<br/>
-  10)Click on WRITE and confirm with Yes
+**Slicer**: SpacePrinter has capability to run Kiri:Moto Slicer locally, but it won't let you set it up unless you're using a device with 4Gb or more.
   
-  Once the write is finished, you can plug the µSD card into your device and power it up, to flash the new firmware.
-
-  Warning: Do not power off the device before the end of the firmware update!
-  If you have a serial console, you can view the progress, otherwise just give it a minute or ten. If you drink beer at the same pace I do, finishing one beer means it finished flashing.
-</blockquote>  
-
-You can SSH into the device the **username** is: `box` **password** is: `cardanobox`
-
-To access the web UI, plug your device to your network and open up your web browser(prefered chrome). 
-Navigate to `http://cardanobox/`.
-
+**Raspberry Pi 3A+**: This is a great little 512Ram Quad Corce devvice wtih build in WiFi, SD Card port and 1xUSB2.0 port. Using this device you will need to setup a file with your WiFi credentials describe int he instructions and you can only use an SD card do to it only hacing one USB port which use going to be use to plug into your 3D printer.
   
-Currently, it is recommended to run the updater right after first login. If further instructions are needed they will be provided.
+**Raspberry Pi 3B+**: This is by far my favorite model and I still have one I bought 5 years ago. These come with 1Gb Ram, Quad 64Bit core, 4 USB ports and ethernet port. Due to the fact that you can plug this one up to your network directly it makes it somewhat easier to do first time setup after burning and running your image.
+
+**Raspberry Pi 4B+** Much like the 3B+ any range from 1Gb to 8Gb of these will work these are excellent SBCs.
 </blockquote>
 
-WiFi instructions will be provided soon, if you know what you're doing just ssh into the beast and away you go :).
+
+
+
 
