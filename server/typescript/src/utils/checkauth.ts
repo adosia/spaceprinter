@@ -8,7 +8,7 @@ export const checkJWT = async (token: string) => {
     filename: './db/cb.db',
     driver: sqlite3.Database
   });
-  const getUserSQL: string = 'SELECT accountPassword FROM Account';
+  const getUserSQL: string = 'SELECT password FROM Account';
   return new Promise(async (resolve,reject) =>{
     try {
       const getAccHash: any = await db.get(getUserSQL);

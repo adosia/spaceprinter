@@ -1,19 +1,30 @@
+import { GenPrinterWallet } from "../generated-typings";
 import { mnemonicToEntropy, generateMnemonic, validateMnemonic } from 'bip39';
 import { genSeedPhrase, validateSeedPhrase, entropyToRoot, genAccountKeyPrv, genAccountKeyPub, genStakeKey, genUTXOKey, genBaseAddr, genEnterpriseAddr, genPointerAddr, genRewardAddr } from "../utils/wallet";
 import { getConfig } from "../utils/config";
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import { encrypt, decrypt } from "../utils/crypt";
+import { checkJWT } from "../utils/checkauth";
 
-const genPrinterWallet = async ( db: any, walletName: string, seedPhrase: string, walletPassPhrase: string, walletType: string) => {
+const genPrinterWallet: GenPrinterWallet = async ( jwToken, walletName, seedPhrase, walletPassPhrase, walletType ) => {
   console.log("Creating Printer Wallet");
+  return new Promise( async (resolve, reject) => {
+    const checkToken: any = await checkJWT(jwToken);
+    if( checkToken.name ) return resolve("authError");
+    const config: any = await getConfig();
+    const network: string = config.network;
 
-  const config: any = await getConfig();
-  const network: string = config.network;
-
-  const newWallet: any = await createWallet( db, network, walletName, seedPhrase, walletPassPhrase, walletType);
-  console.log( newWallet );
-  return( newWallet );
+    // open the database
+    const db = await open({
+      filename: './db/cb.db',
+      driver: sqlite3.Database
+    });
+    
+    const newWallet: any = await createWallet( db, network, walletName, seedPhrase, walletPassPhrase, walletType);
+    console.log( newWallet );
+    return( newWallet );
+  })
 };
 
 const createWallet = async ( db: any, network: string, walletName: string, seedPhrase: any, walletPassPhrase: string, walletType: string ) => {

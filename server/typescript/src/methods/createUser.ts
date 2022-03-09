@@ -19,9 +19,9 @@ const newUser = async ( userName: string, password: string, accountType: string 
   const passEncrypt: any = await bcrypt.hash( password, 10 );
   const timecreated: any  = Math.floor(Date.now() / 1000);
   const insertUserSQL: string = `INSERT INTO Account ( userName, password, accountType, timeCreated ) VALUES (?, ?, ?, ?)`;
-  const getUserSQL: string = 'SELECT accountName FROM Account';
+  const getUserSQL: string = 'SELECT userName FROM Account WHERE userName=? AND accountType=?';
   try{
-    const checkAccountRes: any = await db.get(getUserSQL);
+    const checkAccountRes: any = await db.get( getUserSQL, [ userName, accountType ] );
     // console.log(typeof checkAccountRes);
     
     if(typeof checkAccountRes !== "undefined") db.close();
