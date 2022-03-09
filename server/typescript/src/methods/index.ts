@@ -2,6 +2,7 @@ import initDevice from "./initDevice";
 import createUser from "./createUser";
 import loginUser from "./loginUser";
 import resetUser from "./resetUser";
+import genPrinterWallet from "./genPrinterWallet";
 import getCBWallets from "./getCBWallets";
 import delCBWallet from "./delCBWallet";
 import genGruntTX from "./genGruntTX";
@@ -15,6 +16,7 @@ const methods = {
   createUser,
   loginUser,
   resetUser,
+  genPrinterWallet,
   getCBWallets,
   delCBWallet,
   genGruntTX,

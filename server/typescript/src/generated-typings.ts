@@ -2,9 +2,12 @@ export type UserName = string;
 export type Password = string;
 export type AccountType = "cardanobox" | "remote";
 export type JwToken = string;
+export type WalletName = string;
+export type SeedPhrase = string;
+export type WalletPassPhrase = string;
+export type WalletType = "general" | "printer";
 export type WalletID = string;
 export type AccountName = string;
-export type WalletPassPhrase = string;
 export type AddressName = string;
 export type Utxos = string;
 export type Assets = string;
@@ -24,11 +27,12 @@ export type StringDoaGddGA = string;
  * Generated! Represents an alias to any of the provided schemas
  *
  */
-export type AnyOfUserNamePasswordAccountTypeUserNamePasswordAccountTypeJwTokenWalletIDJwTokenWalletIDAccountNameJwTokenWalletIDWalletPassPhraseAddressNameUtxosAssetsMetadataOutputAddressOutputValueChangeAddressTxTTLJwTokenConfigjsonJwTokenGcodeJwTokenFileURLFileNameJwTokenUpdateTypeStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGA = UserName | Password | AccountType | JwToken | WalletID | AccountName | WalletPassPhrase | AddressName | Utxos | Assets | Metadata | OutputAddress | OutputValue | ChangeAddress | TxTTL | Configjson | Gcode | FileURL | FileName | UpdateType | StringDoaGddGA;
+export type AnyOfUserNamePasswordAccountTypeUserNamePasswordAccountTypeJwTokenWalletNameSeedPhraseWalletPassPhraseWalletTypeJwTokenWalletIDJwTokenWalletIDAccountNameJwTokenWalletIDWalletPassPhraseAddressNameUtxosAssetsMetadataOutputAddressOutputValueChangeAddressTxTTLJwTokenConfigjsonJwTokenGcodeJwTokenFileURLFileNameJwTokenUpdateTypeStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGA = UserName | Password | AccountType | JwToken | WalletName | SeedPhrase | WalletPassPhrase | WalletType | WalletID | AccountName | AddressName | Utxos | Assets | Metadata | OutputAddress | OutputValue | ChangeAddress | TxTTL | Configjson | Gcode | FileURL | FileName | UpdateType | StringDoaGddGA;
 export type InitDevice = () => Promise<StringDoaGddGA>;
 export type CreateUser = (userName: UserName, password: Password, accountType: AccountType) => Promise<StringDoaGddGA>;
 export type LoginUser = (userName: UserName, password: Password, accountType: AccountType) => Promise<StringDoaGddGA>;
 export type ResetUser = () => Promise<StringDoaGddGA>;
+export type GenPrinterWallet = (jwToken: JwToken, walletName: WalletName, seedPhrase: SeedPhrase, walletPassPhrase: WalletPassPhrase, walletType: WalletType) => Promise<StringDoaGddGA>;
 export type GetCBWallets = (jwToken: JwToken, walletID: WalletID) => Promise<StringDoaGddGA>;
 export type DelCBWallet = (jwToken: JwToken, walletID: WalletID, accountName: AccountName) => Promise<StringDoaGddGA>;
 export type GenGruntTX = (jwToken: JwToken, walletID: WalletID, walletPassPhrase: WalletPassPhrase, addressName: AddressName, utxos: Utxos, assets: Assets, metadata: Metadata, outputAddress: OutputAddress, outputValue: OutputValue, changeAddress: ChangeAddress, txTTL: TxTTL) => Promise<StringDoaGddGA>;

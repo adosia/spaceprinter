@@ -4,27 +4,27 @@ import { open } from 'sqlite';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const loginUser: LoginUser = async(userName, password) => {
-  const loginRes: any = await login( userName, password );
+const loginUser: LoginUser = async( userName, password, accountType ) => {
+  const loginRes: any = await login( userName, password, accountType );
   return( loginRes );
 };
 
-const login = async (userName: string, password: string ) => {
+const login = async (userName: string, password: string, accountType: string ) => {
     const db: any = await open({
         filename: './db/cb.db',
         driver: sqlite3.Database
     });
 
-    const getUserSQL: string = 'SELECT * FROM Account';
+    const getUserSQL: string = 'SELECT * FROM Account WHERE userName=? AND accountType=?';
     try{
-        const checkAccountRes: any = await db.get(getUserSQL);
+        const checkAccountRes: any = await db.get( getUserSQL, [ userName, accountType ]);
         // console.log(checkAccountRes);
 
         if(typeof checkAccountRes == "undefined") db.close();
         if(typeof checkAccountRes == "undefined") return("noAccount");
 
         // console.log(checkAccountRes.accountPassword);
-        const passCheck: any = await bcrypt.compare(password, checkAccountRes.accountPassword);
+        const passCheck: any = await bcrypt.compare(password, checkAccountRes.password);
         
         if( passCheck == false ) db.close();
         if( passCheck == false ) return("authError");
@@ -32,7 +32,7 @@ const login = async (userName: string, password: string ) => {
         const token = jwt.sign(
             {
               accountName: userName,
-            }, checkAccountRes.accountPassword);
+            }, checkAccountRes.password);
 
         db.close();
         return({ token });

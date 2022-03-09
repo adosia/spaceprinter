@@ -8,6 +8,7 @@ export const methodMapping: MethodMapping = {
   createUser: methods.createUser,
   loginUser: methods.loginUser,
   resetUser: methods.resetUser,
+  genPrinterWallet: methods.genPrinterWallet,
   getCBWallets: methods.getCBWallets,
   delCBWallet: methods.delCBWallet,
   genGruntTX: methods.genGruntTX,
