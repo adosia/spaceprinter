@@ -23,7 +23,7 @@ const genPrinterWallet: GenPrinterWallet = async ( jwToken, walletName, seedPhra
     
     const newWallet: any = await createWallet( db, network, walletName, seedPhrase, walletPassPhrase, walletType);
     console.log( newWallet );
-    return( newWallet );
+    resolve(newWallet);
   })
 };
 
@@ -76,7 +76,7 @@ const createWallet = async ( db: any, network: string, walletName: string, seedP
 
     const SQLSaveWallet = `INSERT INTO Wallets                 ( walletID, walletName, walletType, walletRootKey, timeCreated ) VALUES (?, ?, ?, ?, ?)`;
     const SQLSaveWalletRes: any = await db.run( SQLSaveWallet, [ walletID, walletName, walletType, rootKeyEncrypted, timecreated ] );
-    // console.log(SQLSaveWalletRes);
+    console.log(SQLSaveWalletRes);
 
     empty == true ? res = {"seed": seedPhrase} : res = "ok";
 

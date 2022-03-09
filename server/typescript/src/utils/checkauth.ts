@@ -14,7 +14,7 @@ export const checkJWT = async (token: string) => {
       const getAccHash: any = await db.get(getUserSQL);
       // console.log(getAccHash.accountPassword);
       db.close();
-      const checkToken: any = jwt.verify(token, getAccHash.accountPassword);
+      const checkToken: any = jwt.verify(token, getAccHash.password);
       // console.log(checkToken);
       resolve(checkToken);
     } catch ( error ) {

@@ -57,7 +57,7 @@ const getUpdate = async() => {
     // console.log(mirror2res);
     mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
     console.log( mirror );
-    const command2: string = "rm /home/printer/.spaceprinter/app/spaceprinter && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterUpdate.tgz -C /home/printer/.cardanobox/app/";
+    const command2: string = "rm /home/printer/.spaceprinter/app/spaceprinter && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterUpdate.tgz -C /home/printer/.spaceprinter/app/";
     const command3: string = "sudo systemctl restart spaceprinter.service";
     console.log(await exec( mirror , { "encoding":"utf8" } ));
     console.log(await exec( command2, { "encoding":"utf8" } ));
