@@ -75,6 +75,34 @@
       }
     },
     {
+      "name": "genPrinterWallet",
+      "description": "Creates Space Printer wallet",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/walletName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/seedPhrase"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/walletPassPhrase"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/walletType"
+        }
+      ],
+      "result": {
+        "name": "genPrinterWalletResult",
+        "description": "Returns wallet info and seed phrase if one was generated",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
       "name": "getCBWallets",
       "description": "querries cardanobox db for wallets",
       "params": [
@@ -402,33 +430,6 @@
           "type": "string"
         }
       },
-      "restEndpointType": {
-        "name": "restEndpointType",
-        "description": "Ocotoprint REST type of callGET or POST",
-        "required": true,
-        "schema": {
-          "title": "restEndpointType",
-          "type": "string"
-        }
-      },
-      "restEndpoint": {
-        "name": "restEndpoint",
-        "description": "Ocotoprint REST API endpoint",
-        "required": true,
-        "schema": {
-          "title": "restEndpoint",
-          "type": "string"
-        }
-      },
-      "restEndpointData": {
-        "name": "restEndpointData",
-        "description": "Ocotoprint API endpoint data to pass for POST",
-        "required": true,
-        "schema": {
-          "title": "restEndpointData",
-          "type": "object"
-        }
-      },
       "configjson": {
         "name": "configjson",
         "description": "json string of config",
@@ -477,33 +478,6 @@
             "update",
             "ui"
           ]
-        }
-      },
-      "cardanoCliCmd": {
-        "name": "cardanoCliCmd",
-        "description": "commands to pass to cardano cli",
-        "required": true,
-        "schema": {
-          "title": "cardanoCliCmd",
-          "type": "string"
-        }
-      },
-      "nodeAction": {
-        "name": "nodeAction",
-        "description": "Start or Stop cardano node",
-        "required": true,
-        "schema": {
-          "title": "nodeAction",
-          "type": "string"
-        }
-      },
-      "nodeNetwork": {
-        "name": "nodeNetwork",
-        "description": "Start cardano node mainnet or testnet",
-        "required": true,
-        "schema": {
-          "title": "nodeNetwork",
-          "type": "string"
         }
       },
       "txix": {

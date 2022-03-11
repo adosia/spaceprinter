@@ -2,12 +2,15 @@ import { GetCBWallets } from "../generated-typings";
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import { checkJWT } from "../utils/checkauth";
+import { getConfig } from "../utils/config";
 
-const getCBWallets: GetCBWallets = ( jwToken, walletID) => {
+const getCBWallets: GetCBWallets = ( jwToken, walletID ) => {
   return new Promise( async( resolve, reject ) => {
     const checkToken: any = await checkJWT(jwToken);
     if( checkToken.name ) return resolve("authError");
-    
+    const config: any = await getConfig();
+    const network: string = config.network;  
+
     // open the database
     const db = await open({
       filename: './db/cb.db',
@@ -15,7 +18,7 @@ const getCBWallets: GetCBWallets = ( jwToken, walletID) => {
     });
 
     if( walletID == "" ) resolve(queryAllWallets( db ));
-    if( walletID != "" ) resolve(queryWalletAccounts( db, walletID ));
+    if( walletID != "" ) resolve(queryWalletAccounts( db, walletID, network ));
   });
 };
 
@@ -32,10 +35,10 @@ const queryAllWallets = async ( db: any ) => {
   };
 };
 
-const queryWalletAccounts = async ( db: any, walletID: string ) => {
+const queryWalletAccounts = async ( db: any, walletID: string, network: string ) => {
   try{
-    const SQL: string = 'SELECT * FROM WalletAccounts WHERE walletID = ?';
-    const walletAccountsRes: any = await db.all( SQL, [ walletID ] );
+    const SQL: string = 'SELECT * FROM WalletAccounts WHERE walletID = ? AND network = ?';
+    const walletAccountsRes: any = await db.all( SQL, [ walletID, network ] );
     console.log( walletAccountsRes );
     db.close();
     return( walletAccountsRes );
