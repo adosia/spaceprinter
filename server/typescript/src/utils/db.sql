@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS WalletAccounts
     enterpriseAddr TEXT NOT NULL UNIQUE,
     pointerAddr TEXT NOT NULL UNIQUE,
     rewardAddr TEXT NOT NULL UNIQUE,
+    network TEXT NOT NULL,
     timeCreated TEXT NOT NULL
 );
 

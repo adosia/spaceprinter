@@ -73,7 +73,7 @@ const updateUI = async() => {
   let mirror;
   try{
     const mirror1: string = "curl https://link.us1.storjshare.io/s/juyp4i5zlp2v6j4oaurn2jyrz4kq/spaceprinter/spaceprinterui.tgz?download=1 -o spaceprinterui.tgz && mv spaceprinterui.tgz /home/printer/.spaceprinter/updates/";
-    const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jxkhlltdcbuvjpqoi6af2orvquxq/cardanobox/cardanoboxui.tgz?download");
+    const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/juyp4i5zlp2v6j4oaurn2jyrz4kq/spaceprinter/spaceprinterui.tgz?download=1");
     // console.log(mirror1res);
     const mirror2: string = "curl -O https://spaceprinter.bakon.dev/app/spaceprinterui.tgz && mv spaceprinterui.tgz /home/printer/.spaceprinter/updates/";
     const mirror2res: any = await checkMirror("https://spaceprinter.bakon.dev/app/spaceprinterui.tgz");

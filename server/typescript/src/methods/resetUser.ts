@@ -16,11 +16,11 @@ const resetUser: ResetUser = () => {
 const resetDB = async ( db: any ) => {
   const sqlResetAccounts: string = "DELETE FROM Account";
   const sqlResetWallets: string = "DELETE FROM Wallets";
-  const sqlResetAddresses: string = "DELETE FROM WalletsAddresses";
+  const sqlResetWalletAccounts: string = "DELETE FROM WalletAccounts";
   try{
     await db.run( sqlResetAccounts );
     await db.run( sqlResetWallets );
-    await db.run( sqlResetAddresses );
+    await db.run( sqlResetWalletAccounts );
 
     db.close();
 
