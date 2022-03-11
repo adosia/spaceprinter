@@ -18,8 +18,10 @@ And uses Oura(https://github.com/txpipe/oura) to sync printer wallet data.
 
 **Using the image**
 <blockquote>
-Currently space printer is supported on all Raspberry PI3 and above. You can atually burn the image onto a SD Card or USB Drive and switch it on the go between different Raspberry Pis.
 
+[paceprinter_rpi-beta-v.01.img](https://link.us1.storjshare.io/s/jvnlbmbbkbduopvn2lxt2ylmghra/spaceprinter/spaceprinter_rpi-beta-v.01.img?download=1)
+  
+Currently space printer is supported on all Raspberry PI3 and above. You can atually burn the image onto a SD Card or USB Drive and switch it on the go between different Raspberry Pis.
 
 Few things to keep in mind. Using certain Raspberry Pi's come with certian restrictions outlined below:
   
