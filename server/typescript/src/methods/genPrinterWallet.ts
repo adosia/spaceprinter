@@ -85,6 +85,7 @@ const createWallet = async ( db: any, network: string, walletName: string, seedP
     db.close();
     return(res);
   }catch(error){
+    db.close();
     console.log(error);
     return(error);
   };
@@ -124,15 +125,13 @@ const genPrinterWalletAccount = async ( db: any, walletID: any, accountName: str
     const checkAccName: any = await db.get( SqlCheckAccName, [ walletID, accountName ] );
     console.log(accountName);
     console.log(typeof checkAccName);
-    if(typeof checkAccName == "object" ){
-      db.close(); 
+    if(typeof checkAccName == "object" ){ 
       return("Printer account exists");
     }
 
     const SQLSaveAccount = `INSERT INTO WalletAccounts           ( walletID, accountName, accountIndex, accountKeyPrv, baseAddr, enterpriseAddr, pointerAddr, rewardAddr, network, timeCreated ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )`;
     const SQLSaveAccountRes: any = await db.run( SQLSaveAccount, [ walletID, accountName, accIndex, accKeyEncrypted, baseAddr.to_address().to_bech32(), enterpriseAddr.to_address().to_bech32(), pointerAddr.to_address().to_bech32(), rewardAddr.to_address().to_bech32(), network, time ] );
     // console.log(SQLSaveAddressRes);
-    db.close();
     return("ok");
   
   }catch( error ){

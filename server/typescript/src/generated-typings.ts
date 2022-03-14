@@ -1,6 +1,6 @@
 export type UserName = string;
 export type Password = string;
-export type AccountType = "cardanobox" | "remote";
+export type SessionType = "cardanobox" | "remote" | "blockfrost";
 export type JwToken = string;
 export type WalletName = string;
 export type SeedPhrase = string;
@@ -27,10 +27,10 @@ export type StringDoaGddGA = string;
  * Generated! Represents an alias to any of the provided schemas
  *
  */
-export type AnyOfUserNamePasswordAccountTypeUserNamePasswordAccountTypeJwTokenWalletNameSeedPhraseWalletPassPhraseWalletTypeJwTokenWalletIDJwTokenWalletIDAccountNameJwTokenWalletIDWalletPassPhraseAddressNameUtxosAssetsMetadataOutputAddressOutputValueChangeAddressTxTTLJwTokenConfigjsonJwTokenGcodeJwTokenFileURLFileNameJwTokenUpdateTypeStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGA = UserName | Password | AccountType | JwToken | WalletName | SeedPhrase | WalletPassPhrase | WalletType | WalletID | AccountName | AddressName | Utxos | Assets | Metadata | OutputAddress | OutputValue | ChangeAddress | TxTTL | Configjson | Gcode | FileURL | FileName | UpdateType | StringDoaGddGA;
+export type AnyOfUserNamePasswordSessionTypeUserNamePasswordSessionTypeJwTokenWalletNameSeedPhraseWalletPassPhraseWalletTypeJwTokenWalletIDJwTokenWalletIDAccountNameJwTokenWalletIDWalletPassPhraseAddressNameUtxosAssetsMetadataOutputAddressOutputValueChangeAddressTxTTLJwTokenConfigjsonJwTokenGcodeJwTokenFileURLFileNameJwTokenUpdateTypeStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGA = UserName | Password | SessionType | JwToken | WalletName | SeedPhrase | WalletPassPhrase | WalletType | WalletID | AccountName | AddressName | Utxos | Assets | Metadata | OutputAddress | OutputValue | ChangeAddress | TxTTL | Configjson | Gcode | FileURL | FileName | UpdateType | StringDoaGddGA;
 export type InitDevice = () => Promise<StringDoaGddGA>;
-export type CreateUser = (userName: UserName, password: Password, accountType: AccountType) => Promise<StringDoaGddGA>;
-export type LoginUser = (userName: UserName, password: Password, accountType: AccountType) => Promise<StringDoaGddGA>;
+export type CreateUser = (userName: UserName, password: Password, sessionType: SessionType) => Promise<StringDoaGddGA>;
+export type LoginUser = (userName: UserName, password: Password, sessionType: SessionType) => Promise<StringDoaGddGA>;
 export type ResetUser = () => Promise<StringDoaGddGA>;
 export type GenPrinterWallet = (jwToken: JwToken, walletName: WalletName, seedPhrase: SeedPhrase, walletPassPhrase: WalletPassPhrase, walletType: WalletType) => Promise<StringDoaGddGA>;
 export type GetCBWallets = (jwToken: JwToken, walletID: WalletID) => Promise<StringDoaGddGA>;

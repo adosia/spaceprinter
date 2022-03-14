@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS Account
     id INTEGER PRIMARY KEY autoincrement,
     userName CHAR(50) NOT NULL UNIQUE,
     password CHAR(256) NOT NULL,
-    accountType CHAR(50) NOT NULL,
+    accountType CHAR(50),
+    sessionType CHAR(50) NOT NULL,
     timeCreated TEXT NOT NULL
 );
 
@@ -35,10 +36,12 @@ CREATE TABLE IF NOT EXISTS WalletAccounts
 CREATE TABLE IF NOT EXISTS Config
 (
     id INTEGER PRIMARY KEY autoincrement,
-    rootDir TEXT NOT NULL UNIQUE,
-    serial  TEXT NOT NULL,
-    baud TEXT NOT NULL,
-    network TEXT NOT NULL,
-    testNetMagic TEXT NOT NULL,
-    autoStartSlicer TEXT NOT NULL
+    rootDir TEXT,
+    serial  TEXT,
+    baud TEXT,
+    network TEXT,
+    testNetMagic TEXT,
+    autoStartSlicer TEXT,
+    blockfrostApiKey CHAR(100)
 );
+ // insert into Config (rootDir, serial, baud, network, testNetMagic, autoStartSlicer,) values ("/home/printer/.spaceprinter/", "/dev/ttyUSB0", "115200", "testnet", "--testnet-magic 1097911063", "0")

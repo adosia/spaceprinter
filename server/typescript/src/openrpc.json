@@ -29,7 +29,7 @@
           "$ref": "#/components/contentDescriptors/password"
         },
         {
-          "$ref": "#/components/contentDescriptors/accountType"
+          "$ref": "#/components/contentDescriptors/sessionType"
         }
       ],
       "result": {
@@ -51,7 +51,7 @@
           "$ref": "#/components/contentDescriptors/password"
         },
         {
-          "$ref": "#/components/contentDescriptors/accountType"
+          "$ref": "#/components/contentDescriptors/sessionType"
         }
       ],
       "result": {
@@ -300,14 +300,24 @@
       },
       "accountType": {
         "name": "accountType",
-        "description": "Taccount type specifies if account lives on Cardano Box localy or Adosia node access",
+        "description": "Not used for anyhting yet",
         "required": true,
         "schema": {
           "title": "accountType",
+          "type": "string"
+        }
+      },
+      "sessionType": {
+        "name": "sessionType",
+        "description": "Not used for anyhting yet",
+        "required": true,
+        "schema": {
+          "title": "sessionType",
           "type": "string",
           "enum": [
             "cardanobox",
-            "remote"
+            "remote",
+            "blockfrost"
           ]
         }
       },

@@ -4,23 +4,23 @@ import { open } from 'sqlite';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const loginUser: LoginUser = async( userName, password, accountType ) => {
+const loginUser: LoginUser = async( userName, password, sessionType ) => {
   if(userName == "") return({"error": "blank"});
   if(password == "") return({"error": "blank"});
 
-  const loginRes: any = await login( userName, password, accountType );
+  const loginRes: any = await login( userName, password, sessionType );
   return( loginRes );
 };
 
-const login = async (userName: string, password: string, accountType: string ) => {
+const login = async (userName: string, password: string, sessionType: string ) => {
   const db: any = await open({
     filename: './db/cb.db',
     driver: sqlite3.Database
   });
 
-  const getUserSQL: string = 'SELECT * FROM Account WHERE userName=? AND accountType=?';
+  const getUserSQL: string = 'SELECT * FROM Account WHERE userName=? AND sessionType=?';
   try{
-    const checkAccountRes: any = await db.get( getUserSQL, [ userName, accountType ]);
+    const checkAccountRes: any = await db.get( getUserSQL, [ userName, sessionType ]);
     // console.log(checkAccountRes);
 
     if(typeof checkAccountRes == "undefined") db.close();
