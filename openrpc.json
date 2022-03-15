@@ -24,14 +24,13 @@
       "params" : [
         {
           "$ref": "#/components/contentDescriptors/userName"
-          
         },
         {
           "$ref": "#/components/contentDescriptors/password"
           
         },
         {
-          "$ref": "#/components/contentDescriptors/accountType"
+          "$ref": "#/components/contentDescriptors/sessionType"
         }
       ],
       "result": {
@@ -48,14 +47,13 @@
       "params" : [
         {
           "$ref": "#/components/contentDescriptors/userName"
-          
         },
         {
           "$ref": "#/components/contentDescriptors/password"
           
         },
         {
-          "$ref": "#/components/contentDescriptors/accountType"
+          "$ref": "#/components/contentDescriptors/sessionType"
         }
       ],
       "result": {
@@ -86,6 +84,12 @@
           "$ref": "#/components/contentDescriptors/jwToken"
         },
         {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
+        },
+        {
           "$ref": "#/components/contentDescriptors/walletName"
         },
         {
@@ -112,7 +116,12 @@
       "params":[
         {
           "$ref": "#/components/contentDescriptors/jwToken"
-          
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/walletID"
@@ -133,6 +142,12 @@
         {
           "$ref": "#/components/contentDescriptors/jwToken"
           
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/walletID"
@@ -156,6 +171,12 @@
         {
           "$ref": "#/components/contentDescriptors/jwToken"
           
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/walletID"
@@ -202,7 +223,12 @@
       "params" : [
         {
           "$ref": "#/components/contentDescriptors/jwToken"
-          
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/configjson"
@@ -222,7 +248,12 @@
       "params" : [
         {
           "$ref": "#/components/contentDescriptors/jwToken"
-          
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/gcode"
@@ -243,7 +274,12 @@
       "params" : [
         {
           "$ref": "#/components/contentDescriptors/jwToken"
-          
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/fileURL" 
@@ -266,7 +302,12 @@
       "params" : [
         {
           "$ref": "#/components/contentDescriptors/jwToken"
-          
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/updateType" 
@@ -312,12 +353,21 @@
       },
       "accountType": {
         "name": "accountType",
-        "description": "Taccount type specifies if account lives on Cardano Box localy or Adosia node access",
+        "description": "Not used for anyhting yet",
         "required": true,
         "schema": {
           "title": "accountType",
+          "type": "string"
+        }
+      },
+      "sessionType": {
+        "name": "sessionType",
+        "description": "Not used for anyhting yet",
+        "required": true,
+        "schema": {
+          "title": "sessionType",
           "type": "string",
-          "enum": [ "cardanobox", "remote" ]
+          "enum": [ "cardanobox", "remote", "blockfrost"]
         }
       },
       "adaAddress": {

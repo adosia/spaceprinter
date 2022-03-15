@@ -82,6 +82,12 @@
           "$ref": "#/components/contentDescriptors/jwToken"
         },
         {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
+        },
+        {
           "$ref": "#/components/contentDescriptors/walletName"
         },
         {
@@ -110,6 +116,12 @@
           "$ref": "#/components/contentDescriptors/jwToken"
         },
         {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
+        },
+        {
           "$ref": "#/components/contentDescriptors/walletID"
         }
       ],
@@ -127,6 +139,12 @@
       "params": [
         {
           "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/walletID"
@@ -149,6 +167,12 @@
       "params": [
         {
           "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/walletID"
@@ -197,6 +221,12 @@
           "$ref": "#/components/contentDescriptors/jwToken"
         },
         {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
+        },
+        {
           "$ref": "#/components/contentDescriptors/configjson"
         }
       ],
@@ -216,6 +246,12 @@
           "$ref": "#/components/contentDescriptors/jwToken"
         },
         {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
+        },
+        {
           "$ref": "#/components/contentDescriptors/gcode"
         }
       ],
@@ -233,6 +269,12 @@
       "params": [
         {
           "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/fileURL"
@@ -255,6 +297,12 @@
       "params": [
         {
           "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/updateType"

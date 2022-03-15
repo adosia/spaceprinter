@@ -8,10 +8,10 @@ export const checkJWT = async (token: string) => {
     filename: './db/cb.db',
     driver: sqlite3.Database
   });
-  const getUserSQL: string = 'SELECT password FROM Account';
+  const getUserSQL: string = 'SELECT password FROM Account WHERE userName=? AND sessionType=?';
   return new Promise(async (resolve,reject) =>{
     try {
-      const getAccHash: any = await db.get(getUserSQL);
+      const getAccHash: any = await db.get( getUserSQL, [] );
       // console.log(getAccHash.accountPassword);
       db.close();
       const checkToken: any = jwt.verify(token, getAccHash.password);

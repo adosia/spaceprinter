@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS Account
 (
     id INTEGER PRIMARY KEY autoincrement,
-    userName CHAR(50) NOT NULL UNIQUE,
+    userName CHAR(50) NOT NULL,
     password CHAR(256) NOT NULL,
     accountType CHAR(50),
-    sessionType CHAR(50) NOT NULL,
+    sessionType CHAR(50) NOT NULL UNIQUE,
     timeCreated TEXT NOT NULL
 );
 
