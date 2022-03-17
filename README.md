@@ -51,9 +51,8 @@ Few things to keep in mind. Using certain Raspberry Pi's come with certian restr
 **Raspberry Pi 4B+** Much like the 3B+ any range from 1Gb to 8Gb of these will work these are excellent SBCs.
 </blockquote>
 
+ **SSH Instructions**
 <blockquote>
-  **SSH Instructions**
-  
   **SSH Credentials**
   username: printer
   password: spaceprinter
@@ -67,9 +66,8 @@ Few things to keep in mind. Using certain Raspberry Pi's come with certian restr
   2) setup your WiFi if you need to (instructions coming soon)
 </blockquote>
 
+**Using Space Printer**
 <blockquote>
-  **Using Space Printer**
-  
   Keep in mind the Space Printer dapp is still in very early Development Beta stages.
   
   Once you have your Raspberry Pi running with the Space Printer firmware and connected to your network. You should be able to open up any web browser    and type in `spaceprinter` in the address box and it should bring up the Space Printer UI.
