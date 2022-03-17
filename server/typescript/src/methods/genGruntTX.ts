@@ -7,9 +7,9 @@ import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import CardanoWasm = require('@emurgo/cardano-serialization-lib-nodejs')
 
-const genGruntTX: GenGruntTX = (jwToken, walletID, walletPass, addressName, utxos, assets, metadata, outputAddress, outputValue, changeAddress, txTTL) => {
+const genGruntTX: GenGruntTX = (jwToken, userName, sessionType, walletID, walletPass, addressName, utxos, assets, metadata, outputAddress, outputValue, changeAddress, txTTL) => {
   return new Promise( async (resolve, reject) => {
-    const checkToken: any = await checkJWT(jwToken);
+    const checkToken: any = await checkJWT(jwToken, userName, sessionType);
     if( checkToken.name ) return resolve("authError");
 
     // open the database

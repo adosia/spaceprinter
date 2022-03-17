@@ -3,9 +3,9 @@ import { curly  } from 'node-libcurl';
 import { checkJWT } from "../utils/checkauth";
 const exec = require('child_process').execSync;
 
-const sendCmdToPrinter: SendCmdToPrinter = ( jwToken, gcode ) => {
+const sendCmdToPrinter: SendCmdToPrinter = ( jwToken, userName, sessionType, gcode ) => {
   return new Promise( async ( resolve, reject ) => {
-    const checkToken: any = await checkJWT(jwToken);
+    const checkToken: any = await checkJWT(jwToken, userName, sessionType);
     if( checkToken.name ) return resolve("authError");
 
     console.log(`Sending Command: ${gcode}`);

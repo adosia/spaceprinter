@@ -2,9 +2,9 @@ import { Update } from "../generated-typings";
 const exec = require('child_process').execSync;
 import { checkJWT } from "../utils/checkauth";
 
-const update: Update = ( jwToken, updateType ) => {
+const update: Update = ( jwToken, userName, sessionType, updateType ) => {
   return new Promise( async (resolve, reject) => {
-    const checkToken: any = await checkJWT(jwToken);
+    const checkToken: any = await checkJWT(jwToken, userName, sessionType);
     if( checkToken.name ) return resolve("authError");
 
     if (updateType === "full" ){
@@ -29,8 +29,8 @@ const getFull = async() => {
     const mirror1: string = "curl https://link.us1.storjshare.io/s/jwsuf2mh3ke4ipt2cadpp64js6lq/spaceprinter/spaceprinterInstall.tgz?download=1 -o spaceprinterInstall.tgz  && mv spaceprinterInstall.tgz /home/printer/.spaceprinter/updates/";
     const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jwsuf2mh3ke4ipt2cadpp64js6lq/spaceprinter/spaceprinterInstall.tgz?download=1");
     // console.log(mirror1res)
-    const mirror2: string = "curl -O https://spaceprinter.bakon.dev/app/spaceprinterInstall.tgz && mv spaceprinterInstall.tgz /home/printer/.spaceprinter/updates/";
-    const mirror2res: any = await checkMirror("https://spaceprinter.bakon.dev/app/spaceprinterInstall.tgz");
+    const mirror2: string = "curl https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterInstall.tgz?raw=true -o spaceprinterInstall.tgz && mv spaceprinterInstall.tgz /home/printer/.spaceprinter/updates/";
+    const mirror2res: any = await checkMirror("https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterInstall.tgz?raw=true");
     // console.log(mirror2res);
     mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
     console.log( mirror );
@@ -52,8 +52,8 @@ const getUpdate = async() => {
     const mirror1: string = "curl https://link.us1.storjshare.io/s/jul3nrrwumstjejenvltb6xr2wxa/spaceprinter/spaceprinterUpdate.tgz?download=1 -o spaceprinterUpdate.tgz && mv spaceprinterUpdate.tgz /home/printer/.spaceprinter/updates/";
     const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jul3nrrwumstjejenvltb6xr2wxa/spaceprinter/spaceprinterUpdate.tgz?download=1");
     // console.log(mirror1res);
-    const mirror2: string = "curl -O https://spaceprinter.bakon.dev/app/spaceprinterUpdate.tgz && mv spaceprinterUpdate.tgz /home/printer/.spaceprinter/updates/";
-    const mirror2res: any = await checkMirror("https://spaceprinter.bakon.dev/app/spaceprinterUpdate.tgz");
+    const mirror2: string = "curl https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterUpdate.tgz?raw=true -o spaceprinterUpdate.tgz && mv spaceprinterUpdate.tgz /home/printer/.spaceprinter/updates/";
+    const mirror2res: any = await checkMirror(" https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterUpdate.tgz?raw=true");
     // console.log(mirror2res);
     mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
     console.log( mirror );
@@ -75,8 +75,8 @@ const updateUI = async() => {
     const mirror1: string = "curl https://link.us1.storjshare.io/s/juyp4i5zlp2v6j4oaurn2jyrz4kq/spaceprinter/spaceprinterui.tgz?download=1 -o spaceprinterui.tgz && mv spaceprinterui.tgz /home/printer/.spaceprinter/updates/";
     const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/juyp4i5zlp2v6j4oaurn2jyrz4kq/spaceprinter/spaceprinterui.tgz?download=1");
     // console.log(mirror1res);
-    const mirror2: string = "curl -O https://spaceprinter.bakon.dev/app/spaceprinterui.tgz && mv spaceprinterui.tgz /home/printer/.spaceprinter/updates/";
-    const mirror2res: any = await checkMirror("https://spaceprinter.bakon.dev/app/spaceprinterui.tgz");
+    const mirror2: string = "curl https://github.com/adosia/spaceprinterui/blob/main/updates/spaceprinterui.tgz?raw=true -o spaceprinterui.tgz && mv spaceprinterui.tgz /home/printer/.spaceprinter/updates/";
+    const mirror2res: any = await checkMirror("https://github.com/adosia/spaceprinterui/blob/main/updates/spaceprinterui.tgz?raw=true");
     // console.log(mirror2res);
     mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
     console.log( mirror );

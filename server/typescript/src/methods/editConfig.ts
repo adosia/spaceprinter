@@ -4,9 +4,9 @@ import { getConfig } from "../utils/config";
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 
-const editConfig: EditConfig = (jwToken, configjson) => {
+const editConfig: EditConfig = (jwToken, userName, sessionType, configjson) => {
   return new Promise( async(resolve, reject) =>{
-    const checkToken: any = await checkJWT(jwToken);
+    const checkToken: any = await checkJWT(jwToken, userName, sessionType);
     if( checkToken.name ) return resolve("authError");
 
     if(configjson === ""){

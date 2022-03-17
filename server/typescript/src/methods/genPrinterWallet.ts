@@ -7,10 +7,10 @@ import { open } from 'sqlite';
 import { encrypt, decrypt } from "../utils/crypt";
 import { checkJWT } from "../utils/checkauth";
 
-const genPrinterWallet: GenPrinterWallet = async ( jwToken, walletName, seedPhrase, walletPassPhrase, walletType ) => {
+const genPrinterWallet: GenPrinterWallet = async ( jwToken, userName, sessionType, walletName, seedPhrase, walletPassPhrase, walletType ) => {
   console.log("Creating Printer Wallet");
   return new Promise( async (resolve, reject) => {
-    const checkToken: any = await checkJWT(jwToken);
+    const checkToken: any = await checkJWT(jwToken, userName, sessionType);
     if( checkToken.name ) return resolve("authError");
     const config: any = await getConfig();
     const network: string = config.network;
