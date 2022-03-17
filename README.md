@@ -62,8 +62,9 @@ Few things to keep in mind. Using certain Raspberry Pi's come with certian restr
   Once you burn the image on to a medium of your choice, first boot up will take longer. Due to expanding into the full size of your medium.
   And running some first time scripts. The first bootup time will also depend on the Raspberry Pi that you use.
   
-  #1 I would recommend SSH into the device and changing the password with the `passwd` command.
-  #2 setup your WiFi if you need to (instructions coming soon)
+  1) I would recommend SSH into the device and changing the password with the `passwd` command.
+  
+  2) setup your WiFi if you need to (instructions coming soon)
 </blockquote>
 
 <blockquote>
