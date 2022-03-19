@@ -43,26 +43,26 @@ export async function start() {
   
   wss.on('connection',  async ( ws: any ) => {
     console.log("connected");
-    ws.send(JSON.stringify({jsonrpc: '2.0', method: 'websocket', params: ["Websocket Connected"]}))
+    ws.send(JSON.stringify({jsonrpc: '2.0', method: 'websocket', result: ["Websocket Connected"]}))
 
     myPort.on('open', ( ) => {
       console.log('port open. Data rate: ' + myPort.baudRate);
-      ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', params: ['serial open. Data rate: ' + myPort.baudRate]}))
+      ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', result: ['serial open. Data rate: ' + myPort.baudRate]}))
     });
 
     myPort.on('error', ( err: any ) => {
       console.log('Error: ', err.message)
-      ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', params: [ err.message ]}))
+      ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', error: [ err.message ]}))
     });
 
     parser.on('data', ( data: any ) => {
       console.log(data);
-      ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', params: [data]}))
+      ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', result: [data]}))
     });
 
     myPort.on('close', ( ) => {
       console.log('port closed.');
-      ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', params: ["Port Connection Closed"]}));
+      ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', result: ["Port Connection Closed"]}));
     });
 
     ws.on('message', ( data: any ) => {
