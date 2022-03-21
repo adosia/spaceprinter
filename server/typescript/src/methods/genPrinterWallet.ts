@@ -22,7 +22,7 @@ const genPrinterWallet: GenPrinterWallet = async ( jwToken, userName, sessionTyp
     });
     
     const newWallet: any = await createWallet( db, network, walletName, seedPhrase, walletPassPhrase, walletType);
-    console.log( newWallet );
+    // console.log( newWallet );
     resolve(newWallet);
   })
 };
@@ -76,7 +76,7 @@ const createWallet = async ( db: any, network: string, walletName: string, seedP
 
     const SQLSaveWallet = `INSERT INTO Wallets                 ( walletID, walletName, walletType, walletRootKey, timeCreated ) VALUES (?, ?, ?, ?, ?)`;
     const SQLSaveWalletRes: any = await db.run( SQLSaveWallet, [ walletID, walletName, walletType, rootKeyEncrypted, timecreated ] );
-    console.log(SQLSaveWalletRes);
+    // console.log(SQLSaveWalletRes);
 
     await genPrinterWalletAccount( db, walletID, walletName, walletPassPhrase, network, rootKey );
 
@@ -107,7 +107,7 @@ const genPrinterWalletAccount = async ( db: any, walletID: any, accountName: str
     // console.log("utxo key " + utxoKey.to_public().to_bech32());
 
     const stakeKey = await genStakeKey( accountKeyPrv, 0 );
-    console.log("stake key: " + stakeKey.to_public().to_bech32());
+    // console.log("stake key: " + stakeKey.to_public().to_bech32());
 
     const baseAddr = await genBaseAddr( net,  utxoKey.to_public(), stakeKey.to_public() );
     // console.log(baseAddr.to_address().to_bech32());
@@ -119,7 +119,7 @@ const genPrinterWalletAccount = async ( db: any, walletID: any, accountName: str
     // console.log(pointerAddr.to_address().to_bech32());
 
     const rewardAddr = await genRewardAddr( net, stakeKey.to_public() ); 
-    console.log(rewardAddr.to_address().to_bech32());
+    // console.log(rewardAddr.to_address().to_bech32());
     
     const SqlCheckAccName: any = 'SELECT accountName FROM WalletAccounts WHERE walletID=? AND accountName=? ';
     const checkAccName: any = await db.get( SqlCheckAccName, [ walletID, accountName ] );
