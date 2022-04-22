@@ -1,9 +1,13 @@
 ![spaceprinter_logo_V1](https://user-images.githubusercontent.com/50184793/158988554-897dfbab-ad58-4957-a183-4a2e8d72c6e9.png)
 
 
+https://user-images.githubusercontent.com/50184793/164717304-7a8a715a-32f5-421d-8d89-21dfd255afb6.mp4
+
+
 **How this works**
 <blockquote>
-**Image is based on Ubuntu 21.10 **
+**Image is based on Ubuntu 22.04**
+
   
 Space Printer "API" is a backend written in TypeScript using NodeJs. This backend connects the UI with the firmware and communicates 
 with the cadano blockchain in one of two ways. 
