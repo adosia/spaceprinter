@@ -320,6 +320,25 @@
           "type": "string"
         }
       }
+    },
+    {
+      "name": "changeDeviceName",
+      "description" : "Changes devices hostname and updates it.",
+      "params" : [
+        {
+          "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/hostname"
+        }
+      ],
+      "result": {
+        "name": "changeDeviceNameResult",
+        "description": "Returns updated hostname status",
+        "schema": {
+          "type": "string"
+        }
+      }
     }
   ],
   "components": {
@@ -605,6 +624,15 @@
         "required": true,
         "schema": {
           "title": "metadata",
+          "type": "string"
+        }
+      },
+      "hostname": {
+        "name": "hostname",
+        "description": "device hostname ",
+        "required": true,
+        "schema": {
+          "title": "hostname",
           "type": "string"
         }
       }
