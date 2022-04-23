@@ -9,9 +9,9 @@ const initDevice: InitDevice = async () => {
 
   autoStartNode == true && await startSlicer();;
   
-  // await startCardanoWallet( network );
   return("ok");
 };
+
 const startSlicer = async(  ) => {
   console.log(`Starting gs server for slicer`);
   const cmdStartSlicer: string = "sudo systemctl start grid-apps.service";

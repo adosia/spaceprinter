@@ -1,2 +1,0 @@
-printer ALL=NOPASSWD:/bin/systemctl * spaceprinter.service
-printer ALL=NOPASSWD:/bin/systemctl * grid-apps.service

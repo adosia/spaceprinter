@@ -10,6 +10,7 @@ import editConfig from "./editConfig";
 import sendCmdToPrinter from "./sendCmdToPrinter";
 import downloadFile from "./downloadFile";
 import update from "./update";
+import changeDeviceName from "./changeDeviceName";
 
 const methods = {
   initDevice,
@@ -24,6 +25,7 @@ const methods = {
   sendCmdToPrinter,
   downloadFile,
   update,
+  changeDeviceName,
 };
 
 export default methods;

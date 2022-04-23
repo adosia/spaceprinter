@@ -16,6 +16,7 @@ export const methodMapping: MethodMapping = {
   sendCmdToPrinter: methods.sendCmdToPrinter,
   downloadFile: methods.downloadFile,
   update: methods.update,
+  changeDeviceName: methods.changeDeviceName,
 };
 
 export default methodMapping;
