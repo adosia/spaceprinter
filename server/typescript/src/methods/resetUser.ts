@@ -1,6 +1,7 @@
 import { ResetUser } from "../generated-typings";
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
+const execAwait = require('child_process').execSync;
 
 const resetUser: ResetUser = () => {
   return new Promise( async (resolve, reject) => {
@@ -17,11 +18,13 @@ const resetDB = async ( db: any ) => {
   const sqlResetAccounts: string = "DELETE FROM Account";
   const sqlResetWallets: string = "DELETE FROM Wallets";
   const sqlResetWalletAccounts: string = "DELETE FROM WalletAccounts";
+  const resetHostnameCMD: string = "sudo hostnamectl set-hostname spaceprinter";
+
   try{
     await db.run( sqlResetAccounts );
     await db.run( sqlResetWallets );
     await db.run( sqlResetWalletAccounts );
-
+    await execAwait( resetHostnameCMD, { "encoding":"utf8" } );
     db.close();
 
     return("ok");

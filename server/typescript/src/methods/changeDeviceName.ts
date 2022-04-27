@@ -29,7 +29,6 @@ const changeName = async ( newHostname: string ) => {
     console.log( error )
     return( error );
   };
-
 };
 
 export default changeDeviceName;

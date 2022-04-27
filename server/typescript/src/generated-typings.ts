@@ -22,13 +22,16 @@ export type FileURL = string;
 export type FileName = string;
 export type UpdateType = "full" | "update" | "ui";
 export type Hostname = string;
+export type WifiAction = string;
+export type Ssid = string;
+export type SsidPass = string;
 export type StringDoaGddGA = string;
 /**
  *
  * Generated! Represents an alias to any of the provided schemas
  *
  */
-export type AnyOfUserNamePasswordSessionTypeUserNamePasswordSessionTypeJwTokenUserNameSessionTypeWalletNameSeedPhraseWalletPassPhraseWalletTypeJwTokenUserNameSessionTypeWalletIDJwTokenUserNameSessionTypeWalletIDAccountNameJwTokenUserNameSessionTypeWalletIDWalletPassPhraseAddressNameUtxosAssetsMetadataOutputAddressOutputValueChangeAddressTxTTLJwTokenUserNameSessionTypeConfigjsonJwTokenUserNameSessionTypeGcodeJwTokenUserNameSessionTypeFileURLFileNameJwTokenUserNameSessionTypeUpdateTypeJwTokenUserNameSessionTypeHostnameStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGA = UserName | Password | SessionType | JwToken | WalletName | SeedPhrase | WalletPassPhrase | WalletType | WalletID | AccountName | AddressName | Utxos | Assets | Metadata | OutputAddress | OutputValue | ChangeAddress | TxTTL | Configjson | Gcode | FileURL | FileName | UpdateType | Hostname | StringDoaGddGA;
+export type AnyOfUserNamePasswordSessionTypeUserNamePasswordSessionTypeJwTokenUserNameSessionTypeWalletNameSeedPhraseWalletPassPhraseWalletTypeJwTokenUserNameSessionTypeWalletIDJwTokenUserNameSessionTypeWalletIDAccountNameJwTokenUserNameSessionTypeWalletIDWalletPassPhraseAddressNameUtxosAssetsMetadataOutputAddressOutputValueChangeAddressTxTTLJwTokenUserNameSessionTypeConfigjsonJwTokenUserNameSessionTypeGcodeJwTokenUserNameSessionTypeFileURLFileNameJwTokenUserNameSessionTypeUpdateTypeJwTokenUserNameSessionTypeHostnameJwTokenUserNameSessionTypeWifiActionSsidSsidPassStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGAStringDoaGddGA = UserName | Password | SessionType | JwToken | WalletName | SeedPhrase | WalletPassPhrase | WalletType | WalletID | AccountName | AddressName | Utxos | Assets | Metadata | OutputAddress | OutputValue | ChangeAddress | TxTTL | Configjson | Gcode | FileURL | FileName | UpdateType | Hostname | WifiAction | Ssid | SsidPass | StringDoaGddGA;
 export type InitDevice = () => Promise<StringDoaGddGA>;
 export type CreateUser = (userName: UserName, password: Password, sessionType: SessionType) => Promise<StringDoaGddGA>;
 export type LoginUser = (userName: UserName, password: Password, sessionType: SessionType) => Promise<StringDoaGddGA>;
@@ -42,3 +45,4 @@ export type SendCmdToPrinter = (jwToken: JwToken, userName: UserName, sessionTyp
 export type DownloadFile = (jwToken: JwToken, userName: UserName, sessionType: SessionType, fileURL: FileURL, fileName: FileName) => Promise<StringDoaGddGA>;
 export type Update = (jwToken: JwToken, userName: UserName, sessionType: SessionType, updateType: UpdateType) => Promise<StringDoaGddGA>;
 export type ChangeDeviceName = (jwToken: JwToken, userName: UserName, sessionType: SessionType, hostname: Hostname) => Promise<StringDoaGddGA>;
+export type ManageWifi = (jwToken: JwToken, userName: UserName, sessionType: SessionType, wifiAction: WifiAction, ssid: Ssid, ssidPass: SsidPass) => Promise<StringDoaGddGA>;

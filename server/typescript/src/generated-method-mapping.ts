@@ -17,6 +17,7 @@ export const methodMapping: MethodMapping = {
   downloadFile: methods.downloadFile,
   update: methods.update,
   changeDeviceName: methods.changeDeviceName,
+  manageWifi: methods.manageWifi,
 };
 
 export default methodMapping;

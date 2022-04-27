@@ -340,6 +340,37 @@
           "type": "string"
         }
       }
+    },
+    {
+      "name": "manageWifi",
+      "description": "Changes devices hostname and updates it.",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/wifiAction"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/ssid"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/ssidPass"
+        }
+      ],
+      "result": {
+        "name": "manageWifiResult",
+        "description": "Returns action results for wifi",
+        "schema": {
+          "type": "string"
+        }
+      }
     }
   ],
   "components": {
@@ -659,6 +690,33 @@
         "required": true,
         "schema": {
           "title": "hostname",
+          "type": "string"
+        }
+      },
+      "wifiAction": {
+        "name": "wifiAction",
+        "description": "scan/connect/disconnect",
+        "required": true,
+        "schema": {
+          "title": "wifiAction",
+          "type": "string"
+        }
+      },
+      "ssid": {
+        "name": "ssid",
+        "description": "Name of SSID connecting to.",
+        "required": true,
+        "schema": {
+          "title": "ssid",
+          "type": "string"
+        }
+      },
+      "ssidPass": {
+        "name": "ssidPass",
+        "description": "Password of ssid attemtion conneciton to.",
+        "required": true,
+        "schema": {
+          "title": "ssidPass",
           "type": "string"
         }
       }

@@ -11,6 +11,7 @@ import sendCmdToPrinter from "./sendCmdToPrinter";
 import downloadFile from "./downloadFile";
 import update from "./update";
 import changeDeviceName from "./changeDeviceName";
+import manageWifi from "./manageWifi";
 
 const methods = {
   initDevice,
@@ -26,6 +27,7 @@ const methods = {
   downloadFile,
   update,
   changeDeviceName,
+  manageWifi,
 };
 
 export default methods;
