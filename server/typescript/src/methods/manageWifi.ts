@@ -11,7 +11,6 @@ const manageWifi: ManageWifi = (jwToken, userName, sessionType, wifiAction, ssid
     wifiAction === "connect"    && await resolve( connectWifi( ssid, ssidPass ) );
     wifiAction === "disconnect" && await resolve( disconnectWifi( ssid ) );
     wifiAction === "status"     && await resolve( statusWifi() );
-
   });
 };
 
@@ -50,7 +49,7 @@ const statusWifi = async ( ) => {
   };
 };
 
-const disconnectWifi = async ( ssid: string ) => {;
+const disconnectWifi = async ( ssid: string ) => {
   console.log("Disconnect from: " + ssid);
   const cmdDiconnect: string = `sudo nmcli con down ${ssid}`;
   const cmdRemove:    string = `sudo nmcli con del ${ssid}`;
@@ -64,4 +63,5 @@ const disconnectWifi = async ( ssid: string ) => {;
     return( error );
   };
 };
+
 export default manageWifi;

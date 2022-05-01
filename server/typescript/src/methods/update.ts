@@ -36,8 +36,10 @@ const getFull = async() => {
     console.log( mirror );
     const command2: string = "rm -rf /home/printer/.spaceprinter/app/* && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterInstall.tgz -C /home/printer/.spaceprinter/app/";
     const command3: string = "sudo systemctl restart spaceprinter.service";
+    const command4: string = "rm -rf ~/snap/chromium/common/chromium/";
     console.log(await exec( mirror , { "encoding":"utf8" } ));
     console.log(await exec( command2 , { "encoding":"utf8" } ));
+    console.log(await exec( command4, { "encoding":"utf8" } ));
     console.log(setTimeout(()=>{ exec( command3, { "encoding":"utf8" }), 3000 }));
     return("ok");
   }catch(error){
@@ -59,8 +61,10 @@ const getUpdate = async() => {
     console.log( mirror );
     const command2: string = "rm /home/printer/.spaceprinter/app/spaceprinter && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterUpdate.tgz -C /home/printer/.spaceprinter/app/";
     const command3: string = "sudo systemctl restart spaceprinter.service";
+    const command4: string = "rm -rf ~/snap/chromium/common/chromium/";
     console.log(await exec( mirror , { "encoding":"utf8" } ));
     console.log(await exec( command2, { "encoding":"utf8" } ));
+    console.log(await exec( command4, { "encoding":"utf8" } ));
     console.log(setTimeout(()=>{ exec( command3, { "encoding":"utf8" }), 3000 }));
     return("ok");
   }catch(error){
