@@ -1,6 +1,12 @@
 ![spaceprinter_logo_V1](https://user-images.githubusercontent.com/50184793/158988554-897dfbab-ad58-4957-a183-4a2e8d72c6e9.png)
 
 <details>
+  <summary><b>V0.4-Beta</b></summary>
+  
+  https://user-images.githubusercontent.com/50184793/166247007-f657d637-3cbf-43fd-ac30-6d4dede80348.mp4
+</details>
+
+<details>
   <summary><b>Intro Video</b></summary>
 
   https://user-images.githubusercontent.com/50184793/166168050-70cbcd21-9bfd-4ed2-b2a3-8588f3fef16b.mp4
