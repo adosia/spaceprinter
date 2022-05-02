@@ -3,12 +3,19 @@
 <details>
   <summary><b>Intro Video</b></summary>
 
-https://user-images.githubusercontent.com/50184793/166168050-70cbcd21-9bfd-4ed2-b2a3-8588f3fef16b.mp4
+  https://user-images.githubusercontent.com/50184793/166168050-70cbcd21-9bfd-4ed2-b2a3-8588f3fef16b.mp4
+</details>
+ 
+<details>
+  <summary><b>Burning Space Printer Image</b></summary>
+  
+https://user-images.githubusercontent.com/50184793/166245597-8fbeb16f-7113-405d-8104-c5a7038e3a95.mp4
 </details>
 
 <details>
   <summary><b>Headless Setup</b></summary>
-
+  
+  https://user-images.githubusercontent.com/50184793/166245424-285ea610-026c-4916-adad-ae24238b94da.mp4
 </details>
 
 <details>
