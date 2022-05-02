@@ -3,11 +3,13 @@
 <details>
   <summary><b>Release Videos</b></summary>
   
+  
   <details>
     <summary>V0.4-Beta</summary>
     
-    https://user-images.githubusercontent.com/50184793/166247007-f657d637-3cbf-43fd-ac30-6d4dede80348.mp4
+https://user-images.githubusercontent.com/50184793/166256355-32b32606-ce2a-4cf3-9340-5bb910eec5b9.mp4
   </details>
+  
 </details>
 
 <details>
