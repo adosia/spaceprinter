@@ -33,11 +33,12 @@ https://user-images.githubusercontent.com/50184793/166245597-8fbeb16f-7113-405d-
 <details>
   <summary><b>Setting up Printer</b></summary>
 
+https://user-images.githubusercontent.com/50184793/166266598-8e4d21e6-84c6-4fc6-af91-cee692597f3d.mp4
 </details>
 
 <details>
   <summary><b>Selecting Print Jobs</b></summary>
-
+  Coming soon.
 </details>
 
 <hr />
