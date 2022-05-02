@@ -1,15 +1,24 @@
 ![spaceprinter_logo_V1](https://user-images.githubusercontent.com/50184793/158988554-897dfbab-ad58-4957-a183-4a2e8d72c6e9.png)
 
 <details>
-  <summary><b>Videos</b></summary>
-  <br />
-  <i>Intro Video</i>
-  <br />
-  <i>Headless Setup</i>
-  <br />
-  <i>Setting up Printer</i>
-  <br />
-  <i>Selecting Print Jobs</i>
+  <summary><b>Intro Video</b></summary>
+
+https://user-images.githubusercontent.com/50184793/166168050-70cbcd21-9bfd-4ed2-b2a3-8588f3fef16b.mp4
+</details>
+
+<details>
+  <summary><b>Headless Setup</b></summary>
+
+</details>
+
+<details>
+  <summary><b>Setting up Printer</b></summary>
+
+</details>
+
+<details>
+  <summary><b>Selecting Print Jobs</b></summary>
+
 </details>
 
 <hr />
