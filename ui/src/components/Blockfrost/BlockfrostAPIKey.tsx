@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, TextField} from "@material-ui/core";
 import useDarkMode from "use-dark-mode";
 import { blockfrostApi } from "../../api/SpacePrinterApis";
@@ -18,14 +18,25 @@ export const BlockfrostAPIKey: React.FC = ( ) => {
   };
 
   const checkKey = async () => {
-    const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
-    const jwToken: any = sessionStorage.getItem("jwtoken");
 
-    const getBFKeyRes: any = SpacePrinterHttp.editConfig( jwToken, userName, sessionType, "bfAPi" );
-    getBFKeyRes !== "" &&  localStorage.setItem("blockfrostApi", getBFKeyRes);
-    
+    const bfKey: any = sessionStorage.getItem("blockfrostApi");
+
+    if( bfKey == undefined ){
+      const userName: any = sessionStorage.getItem("userName");
+      const sessionType: any = sessionStorage.getItem("sessionType");
+      const jwToken: any = sessionStorage.getItem("jwtoken");
+  
+      const getBFKeyRes: any = await SpacePrinterHttp.editConfig( "", "", sessionType, "bfAPi" );
+      console.log(getBFKeyRes);
+      getBFKeyRes.blockfrostApiKey !== "" && localStorage.setItem("blockfrostApi", getBFKeyRes.blockfrostApiKey);
+      getBFKeyRes.blockfrostApiKey !== "" && setBlockfrostApiKey(getBFKeyRes.blockfrostApiKey);
+    } 
   };
+
+  useEffect(
+    ()=>{
+      checkKey()
+  },[]);
 
   return(
     <>

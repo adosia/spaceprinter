@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core"; //tslint:disable-line
-import { SpacePrinterHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp, OgmiosWS } from "../../api/SpacePrinterApis";
+import { useHistory } from "react-router-dom";
 
-type walletProps = {
-  jwToken: string,
-  queryWallets: any
-}
-
-const RecoverSeed: React.FC<walletProps> = ( { jwToken, queryWallets } ) => {
+export const RecoverSeed: React.FC = () => {
   const [ walletName, setWalletName ] = useState<string>("");
   const [ passPhrase, setPassPhrase ] = useState<string>("");
   const [ seedPhrase, setSeedPhrase ] = useState<string | "">("");
-  const [ walletType, setWalletType ] = useState<any>("general")
+  const [ walletType, setWalletType ] = useState<any>("printer")
   const [ open, setOpen ] = useState<boolean>(false)
   const [ status, setStatus ] = useState("");
-  
+  const history = useHistory();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -27,12 +24,12 @@ const RecoverSeed: React.FC<walletProps> = ( { jwToken, queryWallets } ) => {
   };
 
   const submitSeed = async () => {
+    const jwToken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");    
+    const sessionType: any = sessionStorage.getItem("sessionType");
     const result: any = await SpacePrinterHttp.genPrinterWallet( jwToken, userName, sessionType, walletName, seedPhrase, passPhrase, walletType );
     console.log( result );
-    result.error ? setStatus( result.error ) : setStatus( result );
-    queryWallets();    
+    result.error ? setStatus( result.error ) : setStatus( result );   
   };
 
   return (
@@ -103,5 +100,3 @@ const RecoverSeed: React.FC<walletProps> = ( { jwToken, queryWallets } ) => {
     </>
   );
 };
-
-export default RecoverSeed;

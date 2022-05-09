@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core";
-import { SpacePrinterHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import useDarkMode from "use-dark-mode";
-import CreateWallet from "./CreateWallet";
-import RecoverSeed from "./RecoverSeed";
-import WalletInfo from "./WalletInfo";
+import { WalletAccounts } from "./WalletAccounts";
 import { useHistory } from "react-router-dom";
 
 const Wallets: React.FC = () => {
@@ -13,19 +11,17 @@ const Wallets: React.FC = () => {
       width: '100%',
     },
     container: {
-      maxHeight: 600,
+      maxHeight: 400,
     },
     button:{
-      background: "#930006",
-      color: "#FFFFFF"
+      background: "#930006"
     }
   });
   const columns: any[] = [
-    { id: "walletName", label: 'Wallet Name', minWidth: 170 },
-    { id: "walletType", label: 'Wallet Type', minWidth: 170 },
-    { id: "accounts", label: 'Accounts', minWidth: 170 },
-    { id: "created", label: 'Created', minWidth: 170 },
-    { minWidth: 200 },
+    { id: "walletName", label: 'Wallet Name', minWidth: 100 },
+    { id: "walletType", label: 'Wallet Type', minWidth: 100 },
+    { id: "created", label: 'Created', minWidth: 100 },
+    { minWidth:100 },
   ];
 
   const classes = useStyles();
@@ -92,7 +88,7 @@ const Wallets: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ margin: 10 }}>
+    <>
       {
         <Paper className={classes.root}>
         <TableContainer className={classes.container}>
@@ -122,13 +118,11 @@ const Wallets: React.FC = () => {
                     { row.walletType }
                   </TableCell>
                   <TableCell align="left">
-                    
-                  </TableCell>
-                  <TableCell align="left">
-                    { row.timeCreated }
+                    { new Date(row.timeCreated*1000).toLocaleTimeString("en-US")} | { new Date(row.timeCreated*1000).toLocaleDateString("en-US") }
                   </TableCell>
                   <TableCell align="right">
-                    <Button color="secondary" >Open</Button> || <Button className={classes.button}>Delete</Button>
+                    <WalletAccounts walletInfo={row} /> |
+                    | <Button  className={classes.button} onClick={ ()=>{ delWallet( row.walletID )}} >Delete</Button>
                   </TableCell>
                 </TableRow>
                     );
@@ -147,7 +141,7 @@ const Wallets: React.FC = () => {
             />
         </Paper>
       }
-    </div>
+    </>
   );
 };
 

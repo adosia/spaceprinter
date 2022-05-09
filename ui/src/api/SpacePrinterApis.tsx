@@ -26,6 +26,14 @@ export const OgmiosWS = new W3CWebSocket(
    'ws://cardanobox.local:4200'
 );
 
+OgmiosWS.onopen = () => {
+  console.log("connection open")
+};
+
+OgmiosWS.onerror = function() {
+  console.log('Connection Error');
+};
+
 export const CardanoBoxHttp = new cardanoboxclient({
     transport: {
         type: "http",

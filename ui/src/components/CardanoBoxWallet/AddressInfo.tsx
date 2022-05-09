@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { SpacePrinterHttp, SpacePrinterWS, CardanoBoxHttp} from "../../api/SpacePrinterApis";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import { hex2a } from "../../utils/hextools";
 import { getAssetInfo } from "../Blockfrost/BlockfrostAsset";
+import { parseOgmiosUtxos } from "./UTXOtools";
 import { STLDialog } from "./STLDialog";
-import { genTx } from "./GenTX";
 
 type walletProps = {
+  jwToken: string
   address: any
 }
 
-const AddressInfo: React.FC<walletProps> = ( { address  } ) => {
+const AddressInfo: React.FC<walletProps> = ( {jwToken, address  } ) => {
   const [ open, setOpen ] = useState( false );
   const [ status, setStatus ] = useState("Loading...");
-  const [ assets, setAssets ]:any = useState();
+  const [ parsedUtxos, setParsedUtxos ]:any = useState();
+  const [ assets, setAssets ]: any = useState();
   const darkMode = useDarkMode();
 
   const handleClickOpen = async () => {
@@ -26,77 +27,15 @@ const AddressInfo: React.FC<walletProps> = ( { address  } ) => {
   };
   
   const getAddressInfo = async () => {
-    const sessionType: any = sessionStorage.getItem("sessionType");
-    const userName: any = sessionStorage.getItem( 'userName' );
-    const rjwtoken: any = sessionStorage.getItem("rjwtoken");
-    const cbjwtoken: any  = sessionStorage.getItem("cbjwtoken");
-
-
-  };
-
-  const getAssetMeta = async ( asset: string ) => {
-    const res: any = await getAssetInfo(asset);
-    console.log( res );
-    return(
-       res.onchain_metadata.files && res.onchain_metadata.files.constructor == Array ? <>Yes <br/></> : <>No <br/></> 
-    );
-  };
-
-  const buildTX = async () => {
-    const jwtoken: any = sessionStorage.getItem("jwtoken");
-    console.log( "building TX" );
-    // jwToken: string, walletID: string, walletPass: string, addressName: string, utxos: string, assets:string, metadata: string, outputAddress: string, outputValue: string, changeAddress: string, txTTL: number
-    const walletID = "qalxwnxgf4s97t";
-    const walletPass = "bakon1983";
-    const addressName = "addr";
-    const outputAddress = "addr_test1qraezw6lcjtsm5hvzzcz336k9nyg0qsakkjycf8xev0hsadggghv2wfeaa0y6ame620h76vk4hnr7t9dy2ycprhyr2ds6vezcn";
-    const outputValue = "5000000";
-    const changeAddress = "addr_test1qzsuzrz8v7nrleyc8uvg946dzyr99608xdw5nk64l98fss06qc7n0m9a2l0rxvmgeunvkqm2zzqq8zl3yn5jwqm3t44qqudqtt";
-    const txTTL = 91694786
-
-    const utxos = JSON.stringify(
-      [
-        {
-          txix: "12a822f7dca0cedbc5f91d03b7b948f0a63af9ddcc77e53bc9d2a3716d235b61", // TXIX
-          txIndex: 0, // txIndex number
-          inputValue: "6000000000"// inputValue lovelace string
-        }
-      ]
-    )
-
-    const assets = JSON.stringify(
-      [
-        // {
-          //txix: "3666ccda1124849380b7a166806313a4c412de328d59d2c06863e8a03d0db4ec",
-          //txIndex: 0,
-          //policyID: "752d5585c4fe5981919bf31502fec4e5e1fa131d9c57623025e6e24a",   // policyID
-          //assetName: "43617264616e6f426f78",  // assetName
-          //assetAmount: "1" // assetAmount
-        //}
-      ]
-    )
-
-    const metadata = JSON.stringify(
-      [
-        {
-          label: "420",  // label
-          metadata:{
-            sendfrom: "cardano box!!!!",
-            msg: "Testing auto change calculation"
-          }  // metadata stringified object
-        }
-      ]
-    )
-
-    console.log(utxos);
-
-    const genTXRes: any = await genTx( jwtoken, walletID, walletPass, addressName, utxos, assets, metadata, outputAddress, outputValue, changeAddress, txTTL );
-    console.log( genTXRes );
+    const praseUtxoRes: any = await parseOgmiosUtxos(address);
+    console.log(praseUtxoRes);
+    // const nftSearchRes: any = await CardanoBoxHttp.nftSearch( jwToken, "1", "1" );
+    // console.log(nftSearchRes);
+    setTimeout( () => {setParsedUtxos(praseUtxoRes) }, 3000) ;
   };
 
   useEffect( ()=>{
      getAddressInfo();
-     
   },[])
 
   return (
@@ -116,6 +55,9 @@ const AddressInfo: React.FC<walletProps> = ( { address  } ) => {
         </DialogTitle>
         <DialogContent>
           <div>
+            {
+              parsedUtxos && console.log(parsedUtxos)
+            }
             {
               assets && 
               <div>
@@ -152,19 +94,16 @@ const AddressInfo: React.FC<walletProps> = ( { address  } ) => {
                     </>
                     
                   }
-                  
                 </div>
               )
               :
               <>LOADING...</>
-            
             }
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
-          <Button onClick={()=>getAddressInfo()}>Refresh</Button>
-          <Button onClick={()=>buildTX()}>Build TX</Button>
+        <Button onClick={handleClose}>Close</Button>
+        <Button onClick={()=>getAddressInfo()}>Refresh</Button>
         </DialogActions>
       </Dialog>
     </>

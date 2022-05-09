@@ -85,9 +85,6 @@ export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metad
       });
     };
 
-
-
-
     await JSON.parse( outputs ).map ( async ( output: any ) => {
       let dataHash: any; 
       let hasDatum: any = 0;

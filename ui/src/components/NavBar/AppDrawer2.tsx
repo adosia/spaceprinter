@@ -17,9 +17,11 @@ import cbheader from "../../assets/spaceprinter_logo_V1.png";
 import cbicon from "../../assets/sp_icon_logo_V1.png";
 import LogoutBtn from "../LogoutBtn/LogoutBtn";
 import { SettingsMenu } from "./SettingsMenu";
+import { PrinterMenu } from "./PrinterMenu";
+import { NewWalletPopup } from "../CardanoBoxWallet/NewWalletPopup";
+
 
 const drawerWidth = 240;
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -73,7 +75,7 @@ const ResponsiveDrawer:React.FC<DrawerProps> = ({ window, pageName }) => {
   const theme = darkMode.value ? darkTheme : lightTheme;
   const history = useHistory();
   const [ sessionType, setSessionType ] = useState(sessionStorage.getItem("sessionType"))
-  const [ version, setVersion ] = useState("BETA V.03");
+  const [ version, setVersion ] = useState("v0.4-beta");
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -91,21 +93,9 @@ const ResponsiveDrawer:React.FC<DrawerProps> = ({ window, pageName }) => {
             <ListItemIcon><img src={cbicon} height="40" /></ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem onClick={()=>history.push("/CBWalletPage")} button>
+          <ListItem button>
             <ListItemIcon><img src={cbicon} height="40" /></ListItemIcon>
-            <ListItemText primary="Printer Wallet" />
-          </ListItem>
-          <ListItem onClick={()=>history.push("/PrinterPage")} button>
-            <ListItemIcon><img src={cbicon} height="40" /></ListItemIcon>
-            <ListItemText primary="Printer" />
-          </ListItem>
-          <ListItem onClick={()=>history.push("/SlicerPage")} button>
-            <ListItemIcon><img src={cbicon} height="40" /></ListItemIcon>
-            <ListItemText primary="Slicer(Experimental)" />
-          </ListItem>
-          <ListItem onClick={()=>history.push("/AdosiaMarketPlacePage")} button>
-            <ListItemIcon><img src={cbicon} height="40" /></ListItemIcon>
-            <ListItemText primary="Adosia Market" />
+            <PrinterMenu />
           </ListItem>
           <ListItem button>
             <ListItemIcon><img src={cbicon} height="40" /></ListItemIcon>
@@ -148,6 +138,7 @@ const ResponsiveDrawer:React.FC<DrawerProps> = ({ window, pageName }) => {
           <Typography variant="h6" noWrap>
             {pageName}
           </Typography>
+          {pageName === "WALLETTZZZ" && <><NewWalletPopup /><Button color="primary" style={{position: "absolute", right: 15}}>REFRESH</Button></>}
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

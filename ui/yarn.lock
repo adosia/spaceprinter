@@ -1199,7 +1199,7 @@
   "resolved" "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.5.tgz"
   "version" "0.7.5"
 
-"@emotion/react@^11.0.0-rc.0", "@emotion/react@^11.4.1", "@emotion/react@^11.5.0", "@emotion/react@^11.8.2":
+"@emotion/react@^11.0.0-rc.0", "@emotion/react@^11.4.1", "@emotion/react@^11.5.0", "@emotion/react@^11.9.0":
   "integrity" "sha512-lBVSF5d0ceKtfKCDQJveNAtkC7ayxpVlgOohLgXqRwqWr9bOf4TZAFFyIcNngnV6xK6X4x2ZeXq7vliHkoVkxQ=="
   "resolved" "https://registry.npmjs.org/@emotion/react/-/react-11.9.0.tgz"
   "version" "11.9.0"
@@ -1603,10 +1603,10 @@
     "prop-types" "^15.7.2"
     "react-is" "^16.8.0 || ^17.0.0"
 
-"@mui/base@5.0.0-alpha.77":
-  "integrity" "sha512-Zqm3qlczGViD3lJSYo8ZnQLHJ3PwGYftbDfVuh2Rq5OD88F7H6oDILlqknzty59NDkeSVO2qlymYmHOY1nLodg=="
-  "resolved" "https://registry.npmjs.org/@mui/base/-/base-5.0.0-alpha.77.tgz"
-  "version" "5.0.0-alpha.77"
+"@mui/base@5.0.0-alpha.79":
+  "integrity" "sha512-/lZLF027BkiEjM8MIYoeS/FEhTKf+41ePU9SOijMGrCin1Y0Igucw+IHa1fF8HXD7wDbFKqHuso3J1jMG8wyNw=="
+  "resolved" "https://registry.npmjs.org/@mui/base/-/base-5.0.0-alpha.79.tgz"
+  "version" "5.0.0-alpha.79"
   dependencies:
     "@babel/runtime" "^7.17.2"
     "@emotion/is-prop-valid" "^1.1.2"
@@ -1617,14 +1617,14 @@
     "prop-types" "^15.7.2"
     "react-is" "^17.0.2"
 
-"@mui/material@^5.2.8", "@mui/material@^5.6.2":
-  "integrity" "sha512-bwMvroBrMgUTwUh/BcjhtcJwEw9uH4chV3+ZSj6RckOJtMj8U4yEeD7S4NgHE8Ioj5eObKFzHpih/cTD1sDRpg=="
-  "resolved" "https://registry.npmjs.org/@mui/material/-/material-5.6.2.tgz"
-  "version" "5.6.2"
+"@mui/material@^5.2.8", "@mui/material@^5.6.4":
+  "integrity" "sha512-7TD+u/SExZK2a55w6reX56oPk37gKr/M/XGt156X+m0d9LhzOsW864nkErIX/H8oSkX/6kCimxu1FDsO+gjiVw=="
+  "resolved" "https://registry.npmjs.org/@mui/material/-/material-5.6.4.tgz"
+  "version" "5.6.4"
   dependencies:
     "@babel/runtime" "^7.17.2"
-    "@mui/base" "5.0.0-alpha.77"
-    "@mui/system" "^5.6.2"
+    "@mui/base" "5.0.0-alpha.79"
+    "@mui/system" "^5.6.4"
     "@mui/types" "^7.1.3"
     "@mui/utils" "^5.6.1"
     "@types/react-transition-group" "^4.4.4"
@@ -1653,10 +1653,10 @@
     "@emotion/cache" "^11.7.1"
     "prop-types" "^15.7.2"
 
-"@mui/system@^5.2.8", "@mui/system@^5.6.2":
-  "integrity" "sha512-Wg9TRbvavSwEYk6UdpnoDx+CqJfaAN7AzlmwEx7DtGmx0snFVBST8FVb1Ev1vXosxEnq6/fe7ZDRobFVewvEPQ=="
-  "resolved" "https://registry.npmjs.org/@mui/system/-/system-5.6.2.tgz"
-  "version" "5.6.2"
+"@mui/system@^5.2.8", "@mui/system@^5.6.4":
+  "integrity" "sha512-7rsWED1wMFMePySJobsBerFZNu7ga580QSi3Zd6sJR8nVj12qD3yIdfvxA70/PxJ/805KbIT0GX7edKI+hpyhA=="
+  "resolved" "https://registry.npmjs.org/@mui/system/-/system-5.6.4.tgz"
+  "version" "5.6.4"
   dependencies:
     "@babel/runtime" "^7.17.2"
     "@mui/private-theming" "^5.6.2"
@@ -1672,7 +1672,7 @@
   "resolved" "https://registry.npmjs.org/@mui/types/-/types-7.1.3.tgz"
   "version" "7.1.3"
 
-"@mui/utils@^5.6.0", "@mui/utils@^5.6.1":
+"@mui/utils@^5.6.1":
   "integrity" "sha512-CPrzrkiBusCZBLWu0Sg5MJvR3fKJyK3gKecLVX012LULyqg2U64Oz04BKhfkbtBrPBbSQxM+DWW9B1c9hmV9nQ=="
   "resolved" "https://registry.npmjs.org/@mui/utils/-/utils-5.6.1.tgz"
   "version" "5.6.1"
@@ -1683,12 +1683,12 @@
     "prop-types" "^15.7.2"
     "react-is" "^17.0.2"
 
-"@mui/x-data-grid@^5.9.0":
-  "integrity" "sha512-RTRGtj5N/Y6Oe41mhcdQM93PtDves2wwMPfabRlstvCSB3m6608JikepeP7txDMV50x7yEYDHgDVSY3cQul0xQ=="
-  "resolved" "https://registry.npmjs.org/@mui/x-data-grid/-/x-data-grid-5.9.0.tgz"
-  "version" "5.9.0"
+"@mui/x-data-grid@^5.10.0":
+  "integrity" "sha512-+NELUtA+6RAVFHR8sGrSxtJC8+3NQMLflYBm816DXjQvPA8vvCPI50SPKCUYUpBuepQtTBQWcty0Tdm9tjzInA=="
+  "resolved" "https://registry.npmjs.org/@mui/x-data-grid/-/x-data-grid-5.10.0.tgz"
+  "version" "5.10.0"
   dependencies:
-    "@mui/utils" "^5.6.0"
+    "@mui/utils" "^5.6.1"
     "clsx" "^1.1.1"
     "prop-types" "^15.8.1"
     "reselect" "^4.1.5"
@@ -3247,9 +3247,9 @@
   "resolved" "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001332.tgz"
   "version" "1.0.30001332"
 
-"cardanoboxclient@file:../../cardanobox/cardanoboxapi/client/typescript/cardanoboxclient-1.0.0.tgz":
+"cardanoboxclient@file:../../../cardanobox/cardanoboxapi/client/typescript/cardanoboxclient-1.0.0.tgz":
   "integrity" "sha512-8varum56bxN2aDYXvv/Js5k+dRxMZZ45mIaDhU7lKME4Pawithi7o1+Eyjy/9aeDT+6CIR93TVxzNCqPjblb4w=="
-  "resolved" "file:../../cardanobox/cardanoboxapi/client/typescript/cardanoboxclient-1.0.0.tgz"
+  "resolved" "file:../../../cardanobox/cardanoboxapi/client/typescript/cardanoboxclient-1.0.0.tgz"
   "version" "1.0.0"
   dependencies:
     "@open-rpc/client-js" "1.7.1"
@@ -8540,9 +8540,9 @@
   "resolved" "https://registry.npmjs.org/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz"
   "version" "1.4.8"
 
-"spaceprinterclient@file:../spaceprinterapi/client/typescript/spaceprinterclient-1.0.0.tgz":
-  "integrity" "sha512-wPrq+BGvxWmDOwqRw0bNQQ5mbhyQ4LdpkEPoliU7zqXHBCJGH6fo1i1RvnaTETWsGDRY2KH6XWzkhFwv7wkJBQ=="
-  "resolved" "file:../spaceprinterapi/client/typescript/spaceprinterclient-1.0.0.tgz"
+"spaceprinterclient@file:../client/typescript/spaceprinterclient-1.0.0.tgz":
+  "integrity" "sha512-mtnDxVXAqddk4h4uRq49+0vdZdnYI6FLqqkTojNry3ssfqKywg1eb4fi0YAGIykXcdHx+2syWbQp/yUiwp8jDw=="
+  "resolved" "file:../client/typescript/spaceprinterclient-1.0.0.tgz"
   "version" "1.0.0"
   dependencies:
     "@open-rpc/client-js" "1.7.1"

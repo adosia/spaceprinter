@@ -18,12 +18,14 @@ const resetDB = async ( db: any ) => {
   const sqlResetAccounts: string = "DELETE FROM Account";
   const sqlResetWallets: string = "DELETE FROM Wallets";
   const sqlResetWalletAccounts: string = "DELETE FROM WalletAccounts";
+  const sqlResetBlockFrost: string = "UPDATE Config SET blockfrostApiKey=? WHERE id=1"
   const resetHostnameCMD: string = "sudo hostnamectl set-hostname spaceprinter";
 
   try{
     await db.run( sqlResetAccounts );
     await db.run( sqlResetWallets );
     await db.run( sqlResetWalletAccounts );
+    await db.run( sqlResetBlockFrost, "" );
     await execAwait( resetHostnameCMD, { "encoding":"utf8" } );
     db.close();
 

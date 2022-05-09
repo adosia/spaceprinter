@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp, OgmiosWS } from "../../api/SpacePrinterApis";
 import { makeStyles, Button, ButtonBase, DialogTitle, Dialog, DialogContent, Typography, TextField, Tooltip } from '@material-ui/core';
 
 export const ChangeDeviceName = () => {

@@ -169,19 +169,13 @@
           "$ref": "#/components/contentDescriptors/jwToken"
         },
         {
-          "$ref": "#/components/contentDescriptors/userName"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/sessionType"
-        },
-        {
           "$ref": "#/components/contentDescriptors/walletID"
         },
         {
           "$ref": "#/components/contentDescriptors/walletPassPhrase"
         },
         {
-          "$ref": "#/components/contentDescriptors/addressName"
+          "$ref": "#/components/contentDescriptors/accountName"
         },
         {
           "$ref": "#/components/contentDescriptors/utxos"
@@ -193,10 +187,7 @@
           "$ref": "#/components/contentDescriptors/metadata"
         },
         {
-          "$ref": "#/components/contentDescriptors/outputAddress"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/outputValue"
+          "$ref": "#/components/contentDescriptors/outputs"
         },
         {
           "$ref": "#/components/contentDescriptors/changeAddress"
@@ -663,6 +654,15 @@
         "required": true,
         "schema": {
           "title": "utxos",
+          "type": "string"
+        }
+      },
+      "outputs": {
+        "name": "outputs",
+        "description": "Stringified array output addresses and values and datum info. [{ outputAddress: string, outputValue: string, datums: [{ datumType: byte|int, datumValue: string, byteType: hex|utf8 }] }] ",
+        "required": true,
+        "schema": {
+          "title": "outputs",
           "type": "string"
         }
       },

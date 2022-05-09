@@ -33,6 +33,13 @@ export const Updates: React.FC = () => {
   return (
     <>
       <div style={{ border: `1px dashed ${darkMode.value ? "#fff" : "#000"}`, borderRadius: 5, padding: 5, margin: 15, overflow: "hidden", justifyContent: "center", alignItems: "center", textAlign: "left" }}>
+        <strong>v0.4-beta</strong>:<br/>
+        -Working CSL(Cardano Serialization Library) transaction builder imported from Cardano Box. Allows for creating TXs to interact with Smart Contracts.<br />
+        -Headless setup through editing hlConfig.json that's on the device space printer image has been burned to.<br />
+        -Auto detect for external DSI or HDMI monitor. Monitor/Screen has to be attached before powering on device.<br />
+        <br /><br />
+      </div>
+      <div style={{ border: `1px dashed ${darkMode.value ? "#fff" : "#000"}`, borderRadius: 5, padding: 5, margin: 15, overflow: "hidden", justifyContent: "center", alignItems: "center", textAlign: "left" }}>
         <strong>BETA V.03</strong>:<br/>
           New Settings Menu.<br />
           Give device a unique name for easier managment.<br />
