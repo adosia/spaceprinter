@@ -58,17 +58,16 @@ export const ParseBlockfrostUtxos = async ( address: string ) => {
       // asset.unit !== "lovelace" && console.log(asset)
       asset.unit !== "lovelace" && (utxoAsset = { 
                         "assets": { ...utxoAsset.assets,
-                          [`${asset.unit.slice(0,56)}.${asset.unit.slice(56)}`]: asset.quantity
-                        }
+                          [`${asset.unit.slice(0,56)}.${asset.unit.slice(56)}`]: Number(asset.quantity)
+                        },
+                        "coins": utxo.amount[0].unit === "lovelace" && Number(utxo.amount[0].quantity)
                       }
                     );
       //row.utxo[1].value.assets
       asset.unit !== "lovelace" && utxoAssets.splice(0, 0, {});
       asset.unit !== "lovelace" && utxoAssets.splice(1, 0, { "value": utxoAsset });
-      asset.unit !== "lovelace" && utxos.push({ "meta": await getAssetInfo( asset.unit ), "asset": `${asset.unit.slice(0,56)}.${asset.unit.slice(56)}.${utxo.tx_hash}${utxo.tx_index}`, "assetAmount": asset.quantity, "TxId": utxo.tx_hash, "txIndex": utxo.tx_index, "utxo": utxoAssets });
+      asset.unit !== "lovelace" && utxos.push({ "meta": await getAssetInfo( asset.unit ), "asset": `${asset.unit.slice(0,56)}.${asset.unit.slice(56)}.${utxo.tx_hash}${utxo.tx_index}`, "assetAmount": Number(asset.quantity), "TxId": utxo.tx_hash, "txIndex": utxo.tx_index, "utxo": utxoAssets });
     });
-
-    // console.log(utxo.amount);
     await utxo.amount.map( async ( asset: any ) => {
       // asset.unit !== "lovelace" && console.log(asset)
       ( utxoNaset = { 
@@ -82,12 +81,9 @@ export const ParseBlockfrostUtxos = async ( address: string ) => {
       utxoNasets.splice(1, 0, { "value": utxoAsset });
 
     });
-    utxos.push({ "TxId": utxo.tx_hash, "txIndex": utxo.tx_index, "datum": utxo.data_hash, "assets":utxoNasets[1].value.assets, "loveLace": utxo.amount[0].quantity });
+    utxos.push({ "TxId": utxo.tx_hash, "txIndex": utxo.tx_index, "datum": utxo.data_hash, "assets": utxoNasets[1].value.assets ? utxoNasets[1].value.assets : {}, "loveLace": utxo.amount[0].quantity });
   });
   utxos.push( lovelaceTotal );
   console.log( utxos );
   return(utxos);
-  // utxoAssets.splice(0, 0, {});
-  // utxoAssets.splice(1, 0, { "value": utxoAsset } );
-  // console.log(utxoAssets)
 };

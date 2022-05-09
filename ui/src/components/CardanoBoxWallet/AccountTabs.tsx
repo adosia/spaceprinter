@@ -101,10 +101,10 @@ export const AccountTabs: React.FC< AccountTabsProps> = ({ jwToken, address, acc
   const getAddressInfo = async () => {
     
     const praseUtxoRes: any = await parseOgmiosUtxos(address)
-    // const parseUtxoBFRes: any = await ParseBlockfrostUtxos(address);
+    const parseUtxoBFRes: any = await ParseBlockfrostUtxos(address);
 
     setTimeout( () => { 
-      setParsedUtxos(praseUtxoRes);
+      setParsedUtxos(parseUtxoBFRes);
     }, 3000) ;
     // console.log(praseUtxoRes);
     // const nftSearchRes: any = await CardanoBoxHttp.nftSearch( jwToken, "1", "1" );

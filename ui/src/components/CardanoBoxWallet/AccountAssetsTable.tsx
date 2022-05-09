@@ -48,6 +48,7 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
   };
 
   const handleSelected = async ( event: React.ChangeEvent<HTMLInputElement>, TxId: string, txIndex:any, inputValue: any, assets: any, outputAsset: any ) => {
+    console.log(inputValue);
     const policyID: string = outputAsset.split(".")[0];
     const assetName: string = outputAsset.split(".")[1];
     // console.log(event.target.name)
