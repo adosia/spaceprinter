@@ -225,21 +225,19 @@ export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metad
     );
 
     const txHex = await Buffer.from(transaction.to_bytes()).toString("hex");
-    
+    const txBytes = await  Buffer.from(transaction.to_bytes());
     const fee: any = await txBuilder.get_fee_if_set().to_str();
-    console.log( fee );
-    
 
+    
     return(
-        {
-          cborHex: txHex,
-          fee
-        }
+      {
+        cborHex: txHex,
+        txBytes,
+        fee
+      }
     );
   }catch(error){
     console.log( error );
     return( error );
   };
 };
-
-.197533

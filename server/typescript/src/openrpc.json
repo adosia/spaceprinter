@@ -169,6 +169,12 @@
           "$ref": "#/components/contentDescriptors/jwToken"
         },
         {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
+        },
+        {
           "$ref": "#/components/contentDescriptors/walletID"
         },
         {

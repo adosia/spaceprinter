@@ -38,6 +38,7 @@
     "jsonwebtoken": "^8.5.1",
     "node-libcurl": "^2.3.3",
     "npm": "^8.3.0",
+    "passwd-linux": "https://github.com/bakon11/passwd-linux/raw/v2.0/passwd-linux-2.0.0.tgz",
     "serialport": "^9.2.8",
     "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2"
