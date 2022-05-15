@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react";
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp, OgmiosWS } from "../../api/SpacePrinterApis";
+import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp, OgmiosWS, blockfrostApi } from "../../api/SpacePrinterApis";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
-import { genTx } from "./GenTX";
 import  star  from "../../assets/sticker.webp";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -12,7 +11,7 @@ type SendTXProps = {
   getAddressInfo: any,
 }
 
-export const SendTX: React.FC<SendTXProps> = ({ jwToken, txResult, getAddressInfo }) => {
+export const SendTXOgmios: React.FC<SendTXProps> = ({ jwToken, txResult, getAddressInfo }) => {
   const [ status, setStatus ] = useState("Loading...");
   const darkMode = useDarkMode();
   const [ fee, setFee ] = useState();
@@ -43,25 +42,20 @@ export const SendTX: React.FC<SendTXProps> = ({ jwToken, txResult, getAddressInf
   }
 
   const sendTX = async () => {
-    /*
     const submit = txResult.cborHex;
-    
     wsp("SubmitTx", { submit });
-    
     OgmiosWS.onmessage =  async ( e: any ) => {
       const res: any = JSON.parse(e.data)
       console.log(res)
       res.result && res.result.SubmitSuccess && setTxid(res.result.SubmitSuccess.txId)
       res.result && res.result.SubmitSuccess && StartNodePoll()
-      
     };
-    */
   };
-
+  
   const getMempoolStatus = async () => {
-    // const queryTipResult: any = await CardanoBoxHttp.cardanoNode( jwToken, "", "");
-    // const result = JSON.parse(queryTipResult);
-    // setMempool(result);
+    const queryTipResult: any = await CardanoBoxHttp.cardanoNode( jwToken, "", "");
+    const result = JSON.parse(queryTipResult);
+    setMempool(result);
   };
 
   const StartNodePoll: any = async () => {
@@ -78,7 +72,7 @@ export const SendTX: React.FC<SendTXProps> = ({ jwToken, txResult, getAddressInf
 
   return (
     <>
-      <Button onClick={handleOpen}>Send</Button>
+      <Button onClick={handleOpen}>Send Using Ogmios</Button>
       <Dialog
         open={open}
         onClose={handleClose}

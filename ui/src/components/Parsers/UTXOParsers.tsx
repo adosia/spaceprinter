@@ -108,13 +108,13 @@ export const ParseBlockfrostUtxos: React.FC = () => {
 
   const parseUtxos = async ( ) => {
     const address: string = `addr_test1wrxf5ul7h3sf095u8a6fsh2y9sm8lfjj26s4x9gk4mm0wvqkxf5hp`;
-    const blockfrostres: any = await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/addresses/${address}/utxos`, "GET");
+    const blockfrostres: any = await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/addresses/${address}/utxos`, "GET", "");
     // console.log(blockfrostres);
     blockfrostres.map( (utxo: any) =>{
       // console.log(utxo.amount)
       utxo.amount.map(async (unit: any)=>{
         // console.log(unit)
-        let data: any = unit.unit !== "lovelace" && await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/assets/${unit.unit}`, "GET");
+        let data: any = unit.unit !== "lovelace" && await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/assets/${unit.unit}`, "GET", "");
         unit.unit !== "lovelace" && setJobs( (jobs: any) => [...jobs,  {utxo, data} ]) ;
       })
     }); 

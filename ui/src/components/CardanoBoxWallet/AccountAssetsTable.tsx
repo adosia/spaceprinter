@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, FormControlLabel, Checkbox, TextField } from '@material-ui/core/';
+import { makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, FormControlLabel, Checkbox, TextField } from '@material-ui/core/'; //tslint:disable-line
 import { a2hex, hex2a } from "../../utils/hextools";
 import { STLDialog } from "./STLDialog";
 

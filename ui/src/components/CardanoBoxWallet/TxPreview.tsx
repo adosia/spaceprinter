@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, Paper, TableContainer,  FormControlLabel, Button } from '@material-ui/core/';
+import { makeStyles, Paper, TableContainer, FormControlLabel, Button } from '@material-ui/core/'; //tslint:disable-line
 import { DataGrid, GridRowModel } from '@mui/x-data-grid';
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp, OgmiosWS } from "../../api/SpacePrinterApis";
+import { SpacePrinterHttp } from "../../api/SpacePrinterApis";
 import { a2hex, hex2a } from "../../utils/hextools";
 import { STLDialog } from "./STLDialog";
-import { SendTX } from "./SendTX";
+import { SendTXOgmios } from "./SendTXOgmios";
+import { SendTXBlockFrost } from "./SendTXBlockFrost";
 
 type TxPreviewProps = {
   jwToken: any,
@@ -58,23 +59,31 @@ export const TxPreview: React.FC<TxPreviewProps> = ({ jwToken, walletID, account
 
     // assets deprecated
     const assets: any = [];
-                      
-    const genTxResult: any = await SpacePrinterHttp.genGruntTX(
+    const jwToken: any = sessionStorage.getItem("jwtoken");
+    const userName: any = sessionStorage.getItem("userName");
+    const sessionType: any = sessionStorage.getItem("sessionType");
+
+    try{
+      const genTxResult: any = await SpacePrinterHttp.genGruntTX(
         jwToken,
+        userName,
+        sessionType,
         walletID,
         walletPassword,
         accountName,
         JSON.stringify(utxos), // [{ txix: string, txIndex: number, inputValue: string }]
-        JSON.stringify(assets), // [{ policyID: string, assetName: string, assetAmount: string }]
+        JSON.stringify(assets), // deprecated
         JSON.stringify(metadata), // [{ label: string, metadata: stringified object }]
         JSON.stringify(outputs), // [{ outputAddress: string, outputValue: string, datums: [{ "datumType": "byte"|"int", datumValue: string, "byteType": "hex"|"utf8" }] }]
         address, // where unused assets or lovelace from UTXO should go to
         91694786
-    );
-    console.log(genTxResult);
-    setTxResult(genTxResult);
-    // setOpenSendTx(true);
-    
+      );
+      console.log(genTxResult);
+      setTxResult(genTxResult);
+      // setOpenSendTx(true);
+    }catch(error){
+      console.log(error);
+    };
   };
 
   useEffect(() => {
@@ -129,8 +138,16 @@ export const TxPreview: React.FC<TxPreviewProps> = ({ jwToken, walletID, account
     </Paper>
     {
       txResult && txResult.cborHex ? 
-        <div style={{padding: 10, margin: 10}}>
-          <SendTX jwToken={jwToken} txResult={txResult} getAddressInfo={getAddressInfo} /><br />
+        <div style={{padding: 10, margin: 10, height: 30}}>
+          
+          {
+            
+            sessionStorage.getItem("sessionType") == "blockfrost" ?
+              <><SendTXBlockFrost jwToken={jwToken} txResult={txResult} getAddressInfo={getAddressInfo} /><br /></>
+              :
+              <><SendTXOgmios jwToken={jwToken} txResult={txResult} getAddressInfo={getAddressInfo} /><br /></>
+            
+          }
           Tx Fee: { txResult.fee } lovelace<br />
         </div>
       :

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, FormControlLabel, Checkbox } from '@material-ui/core/';
+import { makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, FormControlLabel, Checkbox } from '@material-ui/core/'; //tslint:disable-line
 import { DecodeDatum } from "./DecodeDatum";
 
 type AccountUTXOsTableProps = {

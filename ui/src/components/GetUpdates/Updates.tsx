@@ -33,6 +33,14 @@ export const Updates: React.FC = () => {
   return (
     <>
       <div style={{ border: `1px dashed ${darkMode.value ? "#fff" : "#000"}`, borderRadius: 5, padding: 5, margin: 15, overflow: "hidden", justifyContent: "center", alignItems: "center", textAlign: "left" }}>
+        <strong>v0.5-beta</strong>:<br/>
+        -Cardano Box wallet ported with full blockfrost support.<br />
+        -ReWorked menus(Need input)
+        -Several bugs and errors now have try/catch blocks to prevent memory or hangups when function errors.
+
+        <br /><br />
+      </div>
+      <div style={{ border: `1px dashed ${darkMode.value ? "#fff" : "#000"}`, borderRadius: 5, padding: 5, margin: 15, overflow: "hidden", justifyContent: "center", alignItems: "center", textAlign: "left" }}>
         <strong>v0.4-beta</strong>:<br/>
         -Working CSL(Cardano Serialization Library) transaction builder imported from Cardano Box. Allows for creating TXs to interact with Smart Contracts.<br />
         -Headless setup through editing hlConfig.json that's on the device space printer image has been burned to.<br />

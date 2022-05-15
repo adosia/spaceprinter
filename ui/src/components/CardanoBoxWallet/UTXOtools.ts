@@ -5,7 +5,7 @@ export const parseOgmiosUtxos = async ( address: string ) => {
   const cbjwtoken: any = sessionStorage.getItem("cbjwtoken")
   let lovelaceTotal = 0;
   let utxos: any = [];
-  address = "addr_test1qzsuzrz8v7nrleyc8uvg946dzyr99608xdw5nk64l98fss06qc7n0m9a2l0rxvmgeunvkqm2zzqq8zl3yn5jwqm3t44qqudqtt"
+ //  address = "addr_test1qzsuzrz8v7nrleyc8uvg946dzyr99608xdw5nk64l98fss06qc7n0m9a2l0rxvmgeunvkqm2zzqq8zl3yn5jwqm3t44qqudqtt"
   try{
     OgmiosWS.send(JSON.stringify({
       type: "jsonwsp/request",
@@ -41,11 +41,11 @@ export const parseOgmiosUtxos = async ( address: string ) => {
 
 // Blockfrost UTXO Asset Parser
 export const ParseBlockfrostUtxos = async ( address: string ) => {
-  address = "addr_test1qzsuzrz8v7nrleyc8uvg946dzyr99608xdw5nk64l98fss06qc7n0m9a2l0rxvmgeunvkqm2zzqq8zl3yn5jwqm3t44qqudqtt"
+  // address = "addr_test1qzsuzrz8v7nrleyc8uvg946dzyr99608xdw5nk64l98fss06qc7n0m9a2l0rxvmgeunvkqm2zzqq8zl3yn5jwqm3t44qqudqtt"
   // console.log(address)
   let lovelaceTotal: number = 0;
   let utxos: any = [];
-  const blockfrostres: any = await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/addresses/${address}/utxos`, "GET");
+  const blockfrostres: any = await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/addresses/${address}/utxos`, "GET", "");
   console.log( blockfrostres );
   await blockfrostres.map( async ( utxo: any ) => {
     let utxoAsset: any = [];

@@ -12,7 +12,7 @@ export const BlockfrostAPIKey: React.FC = ( ) => {
 
   const setKey = async () => {
     localStorage.setItem("blockfrostApi", blockfrostApiKey);
-    const checkHealth: any = await blockfrostApi("https://cardano-testnet.blockfrost.io/api/v0/health", "GET");
+    const checkHealth: any = await blockfrostApi("https://cardano-testnet.blockfrost.io/api/v0/health", "GET", "");
     setStatus("saved");
     console.log(checkHealth);
   };

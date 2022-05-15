@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SpacePrinterHttp, SpacePrinterWS, CardanoBoxHttp} from "../../api/SpacePrinterApis";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, makeStyles, Theme, TextField  } from "@material-ui/core";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, makeStyles, Theme, TextField  } from "@material-ui/core"; //tslint:disable-line
 import { hex2a } from "../../utils/hextools";
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';

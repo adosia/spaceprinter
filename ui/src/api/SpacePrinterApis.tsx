@@ -27,12 +27,22 @@ export const OgmiosWS = new W3CWebSocket(
 );
 
 OgmiosWS.onopen = () => {
-  console.log("connection open")
+  console.log("Ogmios connection open")
 };
 
 OgmiosWS.onerror = function() {
-  console.log('Connection Error');
+  console.log('Ogmios Connection Error');
 };
+
+export const wsp = (methodname: any, args: any) => {
+  OgmiosWS.send(JSON.stringify({
+    type: "jsonwsp/request",
+    version: "1.0",
+    servicename: "ogmios",
+    methodname,
+    args
+  }));
+}
 
 export const CardanoBoxHttp = new cardanoboxclient({
     transport: {
@@ -42,15 +52,30 @@ export const CardanoBoxHttp = new cardanoboxclient({
     },
 });
 
-export const blockfrostApi = async ( uri: string, method: string ) => {
-  // console.log(asset);
-  const  blockfrostApi: any = localStorage.getItem("blockfrostApi");
-  const settings = {
-    method: method,
-    headers: {
-      'project_id': blockfrostApi
+export const blockfrostApi = async ( uri: string, method: string, content: any ) => {
+  console.log(JSON.stringify(content));
+  let settings:any = {};
+  const blockfrostApi: any = localStorage.getItem("blockfrostApi"); 
+
+  let tx = Buffer.from(content, 'hex');
+
+  method == "POST" ?
+    settings = {
+      method: method,
+      body: tx,
+      headers: {
+        "project_id": blockfrostApi,
+        "Content-Type": "application/cbor",
+      }
     }
-  };
+    :
+    settings = {
+      method: method,
+      headers: {
+        "project_id": blockfrostApi,
+      }
+    };
+
   try {
     const fetchResponse: any = await fetch(uri, settings);
     const data: any = await fetchResponse.json();
