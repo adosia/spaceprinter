@@ -3,6 +3,11 @@
 <details>
   <summary><b>Release Videos</b></summary>
   
+  <details>
+    <summary>V0.5-Beta</summary>
+    
+https://user-images.githubusercontent.com/50184793/168614253-6e0efcce-10d7-43b8-96c6-c5ffbbb51bf7.mp4
+  </details>
   
   <details>
     <summary>V0.4-Beta</summary>
