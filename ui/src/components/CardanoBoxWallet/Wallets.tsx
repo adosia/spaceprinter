@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Button, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core";
+import { Button, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core"; //tslint:disable-line
 import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import useDarkMode from "use-dark-mode";
 import { WalletAccounts } from "./WalletAccounts";
 import { useHistory } from "react-router-dom";
+import { DelWalletPopup } from "./DelWalletPopup";
 
 const Wallets: React.FC = () => {
   const useStyles = makeStyles({
@@ -55,19 +56,6 @@ const Wallets: React.FC = () => {
     };
   };
 
-  const delWallet: any  = async ( walletID: string ) => {
-    const jwToken: any = sessionStorage.getItem("jwtoken");
-    const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
-    try{
-      const delRes: string = await SpacePrinterHttp.delCBWallet( jwToken, userName, sessionType, walletID, "" );
-      console.log(delRes);
-      queryWallets();
-    }catch( error ){
-      console.log(error)
-    }
-  };
-
   const StartWallet: any = async () => {
     queryWallets();
     const refreshWalletTimer: any = setInterval(() => {
@@ -110,7 +98,7 @@ const Wallets: React.FC = () => {
               {wallets.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any) => {
                 console.log(row)
                 return(
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.walletId}>
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.walletID}>
                   <TableCell component="th" scope="row">
                     { row.walletName }
                   </TableCell>
@@ -121,8 +109,7 @@ const Wallets: React.FC = () => {
                     { new Date(row.timeCreated*1000).toLocaleTimeString("en-US")} | { new Date(row.timeCreated*1000).toLocaleDateString("en-US") }
                   </TableCell>
                   <TableCell align="right">
-                    <WalletAccounts walletInfo={row} /> |
-                    | <Button  className={classes.button} onClick={ ()=>{ delWallet( row.walletID )}} >Delete</Button>
+                    <WalletAccounts walletInfo={row} /> || <DelWalletPopup walletID={row.walletID} queryWallets={queryWallets} />
                   </TableCell>
                 </TableRow>
                     );

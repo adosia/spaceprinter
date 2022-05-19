@@ -28,7 +28,7 @@ export const GetUpdates: React.FC = () => {
   const [ updateAPIState, setUpdateAPIState ]  = useState("");
   const [ updateUIstate, setUpdateUIstate ] = useState("");
   const [ updateStatus, setUpdateStatus ] = useState("");
-  const [ checked, setChecked ] = useState(true);
+  const [ checked, setChecked ] = useState(false);
   const [ open, setOpen ] = useState(false)
   const jwToken: any = sessionStorage.getItem("jwtoken");
   const history = useHistory();
@@ -82,6 +82,7 @@ export const GetUpdates: React.FC = () => {
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(checked)
     setChecked(event.target.checked);
   };
 
@@ -117,7 +118,15 @@ export const GetUpdates: React.FC = () => {
             <br />
             Press refresh on your broswer after the update in the login screen to make sure all UI changes took.
             <br />
-            {<Button variant="outlined" onClick={()=>resetDefault()} >{ installButtonTxt && installButtonTxt }</Button>}
+            {
+              <Button 
+                variant="outlined" 
+                onClick={()=>resetDefault()}
+                disabled={ checked == true ? false : true  }
+              >
+                  { installButtonTxt && installButtonTxt }
+              </Button>
+          }
             <Checkbox
             checked={checked}
             onChange={handleChange}

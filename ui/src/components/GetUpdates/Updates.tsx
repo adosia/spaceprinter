@@ -33,11 +33,18 @@ export const Updates: React.FC = () => {
   return (
     <>
       <div style={{ border: `1px dashed ${darkMode.value ? "#fff" : "#000"}`, borderRadius: 5, padding: 5, margin: 15, overflow: "hidden", justifyContent: "center", alignItems: "center", textAlign: "left" }}>
+        <strong>v0.5.1-beta</strong>:<br/>
+        -UI Fixes and enhancements.<br />
+        -Wallet Fixes for properly selecting UTXOs and Assets and creating outputs.<br/>
+        -Need to check confirm cehckbox for default restore.<br />
+        -Popup confirmation when deleting wallet.
+        <br /><br />
+      </div>
+      <div style={{ border: `1px dashed ${darkMode.value ? "#fff" : "#000"}`, borderRadius: 5, padding: 5, margin: 15, overflow: "hidden", justifyContent: "center", alignItems: "center", textAlign: "left" }}>
         <strong>v0.5-beta</strong>:<br/>
         -Cardano Box wallet ported with full blockfrost support.<br />
         -ReWorked menus(Need input)
         -Several bugs and errors now have try/catch blocks to prevent memory or hangups when function errors.
-
         <br /><br />
       </div>
       <div style={{ border: `1px dashed ${darkMode.value ? "#fff" : "#000"}`, borderRadius: 5, padding: 5, margin: 15, overflow: "hidden", justifyContent: "center", alignItems: "center", textAlign: "left" }}>

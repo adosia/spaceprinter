@@ -48,16 +48,20 @@ export const AccountUTXOsTable: React.FC<AccountUTXOsTableProps> = ({ rows, utxo
     setUtxocheck({ ...utxoCheck, [event.target.name]: event.target.checked });
 
     if( event.target.checked == false ){
-      setUtxos(utxos.filter((utxo: any ) => 
-          utxo.id !== TxId+txIndex
-      ));
-      Object.entries(assets).map( async ( asset: any )=> {
-        setOutputs(outputs.filter((output: any ) => 
-          output.outputAsset !== asset[0]+"."+TxId+txIndex
-        ));
-        setAssetcheck({ ...assetCheck, [asset[0]+TxId+txIndex]: event.target.checked })
-      });
+      setUtxos(utxos.filter(( utxo: any ) => utxo.id !== TxId+txIndex ));
+      utxos.length == 0 && setOutputs([]);
+      await Object.entries(assets).map( async ( asset: any )=> {
+        console.log(asset)
+        outputs = outputs.filter((output: any ) => output.outputAsset !== asset[0]+"."+TxId+txIndex );
+        setOutputs(outputs);
 
+        assetCheck = { ...assetCheck, [asset[0]+"."+TxId+txIndex]: event.target.checked };
+        setAssetcheck(assetCheck);
+        console.log(asset[0]+"."+TxId+txIndex);
+      });
+      console.log(utxos);
+      console.log(assetCheck);
+      console.log(outputs);
     };
     
     if ( event.target.checked == true ){

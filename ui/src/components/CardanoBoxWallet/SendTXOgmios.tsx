@@ -6,12 +6,11 @@ import  star  from "../../assets/sticker.webp";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 type SendTXProps = {
-  jwToken: any,
   txResult: any,
   getAddressInfo: any,
 }
 
-export const SendTXOgmios: React.FC<SendTXProps> = ({ jwToken, txResult, getAddressInfo }) => {
+export const SendTXOgmios: React.FC<SendTXProps> = ({ txResult, getAddressInfo }) => {
   const [ status, setStatus ] = useState("Loading...");
   const darkMode = useDarkMode();
   const [ fee, setFee ] = useState();
@@ -53,6 +52,7 @@ export const SendTXOgmios: React.FC<SendTXProps> = ({ jwToken, txResult, getAddr
   };
   
   const getMempoolStatus = async () => {
+    const jwToken: any = sessionStorage.getItem("cbjwtoken");
     const queryTipResult: any = await CardanoBoxHttp.cardanoNode( jwToken, "", "");
     const result = JSON.parse(queryTipResult);
     setMempool(result);
@@ -95,7 +95,13 @@ export const SendTXOgmios: React.FC<SendTXProps> = ({ jwToken, txResult, getAddr
               :
               txid && mempool && mempool.cardano.node.metrics.txsInMempool.int.val === 0 && 
               <div>
-                <img src={star} height="400" />
+                <div>
+                  <img src={star} height="400" />
+                </div>
+                <div>
+                  View TX on https://cardanoscan.io/ <br/>
+                  <a href={`https://testnet.cardanoscan.io/transaction/${txid}`} target="_blank">{txid}</a>
+                </div>
               </div>
             }
           </div>

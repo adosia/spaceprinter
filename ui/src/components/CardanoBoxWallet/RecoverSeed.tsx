@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core"; //tslint:disable-line
+import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Tooltip } from "@material-ui/core"; //tslint:disable-line
 import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp, OgmiosWS } from "../../api/SpacePrinterApis";
 import { useHistory } from "react-router-dom";
 
@@ -7,7 +7,7 @@ export const RecoverSeed: React.FC = () => {
   const [ walletName, setWalletName ] = useState<string>("");
   const [ passPhrase, setPassPhrase ] = useState<string>("");
   const [ seedPhrase, setSeedPhrase ] = useState<string | "">("");
-  const [ walletType, setWalletType ] = useState<any>("printer")
+  const [ walletType, setWalletType ] = useState<any>("")
   const [ open, setOpen ] = useState<boolean>(false)
   const [ status, setStatus ] = useState("");
   const history = useHistory();
@@ -30,6 +30,10 @@ export const RecoverSeed: React.FC = () => {
     const result: any = await SpacePrinterHttp.genPrinterWallet( jwToken, userName, sessionType, walletName, seedPhrase, passPhrase, walletType );
     console.log( result );
     result.error ? setStatus( result.error ) : setStatus( result );   
+  };
+
+  const handleSelectWalletType = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setWalletType((event.target as HTMLInputElement).value);
   };
 
   return (
@@ -88,6 +92,26 @@ export const RecoverSeed: React.FC = () => {
               />
             </div>
             {status && status}
+            <div>
+              <FormControl>
+                <FormLabel id="demo-controlled-radio-buttons-group">Wallet Type</FormLabel>
+                <RadioGroup
+                  aria-labelledby="demo-controlled-radio-buttons-group"
+                  name="controlled-radio-buttons-group"
+                  value={walletType}
+                  onChange={handleSelectWalletType}
+                  row
+                >
+                  <Tooltip title="Recover Spaceprinter Wallet: This wallet requires you to provide a UUID as the wallet name and the same recovery phrase you wrote down when first creating and registering you printer." placement="top">
+                    <FormControlLabel value="printer" control={<Radio />} label="Printer" />
+                  </Tooltip>
+                  <Tooltip title="Recover General Wallet: You can recover any wallet you want. Recovering Daedalus or Yorio wallets is not recommended." placement="top">
+                    <FormControlLabel value="general" control={<Radio />} label="General" />
+                  </Tooltip>
+                </RadioGroup>
+              </FormControl>
+             
+            </div>
             <div>
               <Button variant="outlined" onClick={()=>submitSeed()}>Submit</Button> 
             </div>

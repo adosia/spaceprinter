@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import {MuiThemeProvider, CssBaseline, makeStyles, createStyles, Theme, TextField, Button } from "@material-ui/core"; //tslint:disable-line
+import {MuiThemeProvider, CssBaseline, makeStyles, createStyles, Theme, TextField, Button, Link } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import { lightTheme, darkTheme } from "../../themes/theme";
 import { SpacePrinterHttp, SpacePrinterWS, CardanoBoxHttp } from "../../api/SpacePrinterApis";
@@ -10,8 +10,12 @@ import "./CreateUserPage.css";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
-      margin: "10 auto",
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      textAlign: "center"
     }
   }),
 );
@@ -39,7 +43,7 @@ const CreateUserPage: React.FC = () => {
       <CssBaseline />
       <div className={classes.root}>
         <div style={{textAlign: "center"}}>
-          <img src={header} height="100" />
+          <img src={header} width="500" /> 
         </div>
         <div style={{textAlign: "center"}}>
           New User Account
@@ -70,7 +74,10 @@ const CreateUserPage: React.FC = () => {
             style={{ height: "50px" }}
           />
           <div>
-            <Button variant="contained" onClick={()=>createUser()} >Create</Button> || <Button variant="contained" onClick={()=>history.push("/LoginPage")} >Login</Button> 
+            <Button variant="contained" onClick={()=>createUser()} >Create</Button>
+          </div>
+          <div style={{ position:"relative", right: 70}}>
+            <Link href="#" color="primary" onClick={()=>history.push("/LoginPage")} >Back to Login</Link> 
           </div>
           <div>
             { status && status }

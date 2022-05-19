@@ -1,5 +1,6 @@
 import React, { FC, useRef, useEffect, useState } from "react";// eslint-disable-next-line
-import { Canvas, extend, useFrame, useThree, ReactThreeFiber} from "@react-three/fiber";
+import { Button } from '@material-ui/core/'; //tslint:disable-line
+import { Canvas, extend, useFrame, useThree, ReactThreeFiber } from "@react-three/fiber";
 import { BufferGeometry } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
@@ -40,15 +41,28 @@ export const STLViewer: FC<Props> = ({fileUrl, fileName}) => {
 
   return (
     <>
-    <Canvas style={{height: 800}}>
-      <Controls />
-      <ambientLight intensity={.5} />
-      <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} />
-      <pointLight position={[-10, -10, -10]} />
-      <mesh geometry={geometry} >
-        <meshStandardMaterial color={"green"} />
-      </mesh>
-    </Canvas>
+      {
+        geometry ?     
+        <div>
+          <Canvas style={{height: 750}}>
+            <Controls />
+            <ambientLight intensity={.5} />
+            <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} />
+            <pointLight position={[-10, -10, -10]} />
+            <mesh geometry={geometry} >
+              <meshStandardMaterial color={"green"} />
+            </mesh>
+          </Canvas>
+          <Button
+            href={fileUrl}
+            download={fileName+".stl"}
+          >
+            Download STL
+          </Button>
+        </div>
+        : 
+        <div>LOADING...<br />Loading files from IPFS can sometimes take a moment.</div>
+      }
     </>
   )
 }

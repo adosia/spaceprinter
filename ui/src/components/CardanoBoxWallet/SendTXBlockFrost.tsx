@@ -83,7 +83,13 @@ export const SendTXBlockFrost: React.FC<SendTXProps> = ({ jwToken, txResult, get
           <div style={{maxWidth: 700, wordWrap: "break-word"}}>
           { txInfo && txInfo.slot ?
             <div>
-              <img src={star} height="400" />
+              <div>
+                <img src={star} height="400" />
+              </div>
+              <div>
+                View TX on https://cardanoscan.io/ <br/>
+                <a href={`https://testnet.cardanoscan.io/transaction/${txid}`} target="_blank">{txid}</a>
+              </div>
             </div>
             :
             txid && txid.error ?  

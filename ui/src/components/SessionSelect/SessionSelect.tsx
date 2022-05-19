@@ -39,6 +39,10 @@ const SessionSelect: React.FC = () => {
           <div>  
             <CBLoginPage />
           </div>
+          <div style={{textAlign: "left"}}>
+            Choosing this session you use your cardano box login credentials, don't worry everything will be exactly the same as if using the blockfrost session.<br />
+            Each session generates a unique token to keep them seperate and secure.
+          </div>
           <div>
             <BlockfrostAPIKey />
           </div>
@@ -49,6 +53,10 @@ const SessionSelect: React.FC = () => {
           <div>
             <BFLoginPage />
           </div>
+          <div style={{textAlign: "left"}}>
+            Choosing this session you need to create a account on the Space Printer device. All session types are synced together but generate<br />
+            sepeare session tokens.
+          </div>          
           <div>
             <BlockfrostAPIKey />
           </div>

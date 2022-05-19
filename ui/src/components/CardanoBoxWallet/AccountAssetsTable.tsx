@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, FormControlLabel, Checkbox, TextField } from '@material-ui/core/'; //tslint:disable-line
+import { makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, FormControlLabel, Checkbox, TextField, Button } from '@material-ui/core/'; //tslint:disable-line
 import { a2hex, hex2a } from "../../utils/hextools";
 import { STLDialog } from "./STLDialog";
 
@@ -31,8 +31,9 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
   const columns: any[] = [
     { id: "asset", label: 'Asset Name', width: 100, disablePadding: false, },
     { id: "amount", label: 'Amount',  minWidth: 150 },
-    { id: "mediaType", label: 'Media Type',  minWidth: 150 },
-    { id: "media", label: "media",  minWidth: 150 }
+    { id: "mediaType", label: 'Media Type',  minWidth: 100 },
+    { id: "media", label: "media", width: 100 },
+    { id: "adosia", label: "Adosia Print Contract",  width: 50 },
   ];
 
   const classes = useStyles();
@@ -48,7 +49,7 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
   };
 
   const handleSelected = async ( event: React.ChangeEvent<HTMLInputElement>, TxId: string, txIndex:any, inputValue: any, assets: any, outputAsset: any ) => {
-    console.log(inputValue);
+    console.log(event.target.checked);
     const policyID: string = outputAsset.split(".")[0];
     const assetName: string = outputAsset.split(".")[1];
     // console.log(event.target.name)
@@ -149,9 +150,9 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
                     typeof row !== "number" && 
                     <FormControlLabel
                       control={<Checkbox 
-                        checked={assetCheck[row.asset+row.TxId+row.txIndex]} 
+                        checked={assetCheck[row.asset]} 
                         onChange={(event:any)=>{ handleSelected(event, row.TxId, row.txIndex, row.utxo[1].value.coins, row.utxo[1].value.assets, row.asset  ); }} 
-                        name={row.asset+row.TxId+row.txIndex} 
+                        name={row.asset} 
                         disabled={outputAddress.length < 108  && true}
                         />
 
@@ -188,39 +189,43 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
                   }
                 </TableCell>
                 <TableCell align="left" style={{  minHeight: 100 }}>
-                { row.meta.onchain_metadata && row.meta.onchain_metadata.files && row.meta.onchain_metadata.files.length > 0 &&
-                  row.meta.onchain_metadata.files.map( (file: any, key: any) => {
-                    return(
-                      <>
-                        { file.mediaType == "image/jpeg" && <img src={`https://ipfs.io/ipfs/${file.src[0].replace("ipfs://","")}`} alt="image" height="100" /> }
-                        { file.mediaType == "image/png" && <img src={`https://ipfs.io/ipfs/${file.src[0].replace("ipfs://","")}`} alt="image"height="100" /> } 
-                        { file.mediaType == "image/gif" && <img src={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}`} alt="image" height="100" /> } 
-                        { file.mediaType == "video/mp4" && <video controls height="100">
-                                                            <source src={`https://ipfs.io/ipfs/${file.src[0].replace("ipfs://","")}`} type="video/mp4" />
-                                                            Sorry, your browser doesn't support embedded videos.
-                                                            </video> 
-                        }
-                        { file.mediaType == "model/stl" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${file.src[0].replace("ipfs://","")}` } fileName="" /> }<br/>
-                      </>
-                    )
-                  })
-                }
-                {
-                  row.meta.onchain_metadata != null && row.meta.onchain_metadata.files &&
-                  <>
-                    {row.meta.onchain_metadata.files.mediaType == "image/jpeg" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.files.src.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> }
-                    {row.meta.onchain_metadata.files.mediaType == "image/png" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.files.src.replace("ipfs://","")}`} alt="image" height="100" />  <br /></> } 
-                    {row.meta.onchain_metadata.files.mediaType == "image/gif" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.files.src.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> } 
-                  </>
-                }
-                {
-                  row.meta.onchain_metadata && row.meta.onchain_metadata.mediaType && row.meta.onchain_metadata.image && row.meta.onchain_metadata.files == undefined &&
-                  <>
-                    { row.meta.onchain_metadata.mediaType === "image/jpeg" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.image.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> }
-                    { row.meta.onchain_metadata.mediaType === "image/png" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.image.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> }
-                    { row.meta.onchain_metadata.mediaType === "image/gif" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.image.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> }
-                  </>
-                }
+                  { row.meta.onchain_metadata && row.meta.onchain_metadata.files && row.meta.onchain_metadata.files.length > 0 &&
+                    row.meta.onchain_metadata.files.map( (file: any, key: any) => {
+                      return(
+                        <>
+                          { file.mediaType == "image/jpeg" && <img src={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}`} alt="image" height="100" /> }
+                          { file.mediaType == "image/png" && <img src={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}`} alt="image"height="100" /> } 
+                          { file.mediaType == "image/gif" && <img src={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}`} alt="image" height="100" /> } 
+                          { file.mediaType == "video/mp4" && <video controls height="100">
+                                                              <source src={`https://ipfs.io/ipfs/${file.src[0].replace("ipfs://","")}`} type="video/mp4" />
+                                                              Sorry, your browser doesn't support embedded videos.
+                                                              </video> 
+                          }
+                          { file.mediaType == "model/stl" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${file.src[0].replace("ipfs://","")}` } fileName={hex2a(row.meta.asset_name)} />  }<br/>
+                          { /* file.mediaType == "model/stl" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}` } fileName={hex2a(row.meta.asset_name)} /> */ }
+                        </>
+                      )
+                    })
+                  }
+                  {
+                    row.meta.onchain_metadata != null && row.meta.onchain_metadata.files &&
+                    <>
+                      {row.meta.onchain_metadata.files.mediaType == "image/jpeg" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.files.src.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> }
+                      {row.meta.onchain_metadata.files.mediaType == "image/png" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.files.src.replace("ipfs://","")}`} alt="image" height="100" />  <br /></> } 
+                      {row.meta.onchain_metadata.files.mediaType == "image/gif" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.files.src.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> } 
+                    </>
+                  }
+                  {
+                    row.meta.onchain_metadata && row.meta.onchain_metadata.mediaType && row.meta.onchain_metadata.image && row.meta.onchain_metadata.files == undefined &&
+                    <>
+                      { row.meta.onchain_metadata.mediaType === "image/jpeg" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.image.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> }
+                      { row.meta.onchain_metadata.mediaType === "image/png" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.image.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> }
+                      { row.meta.onchain_metadata.mediaType === "image/gif" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.image.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> }
+                    </>
+                  }
+                </TableCell>
+                <TableCell>
+                  { row.meta.onchain_metadata && row.meta.onchain_metadata.files && row.meta.onchain_metadata.files.length > 0 && row.meta.onchain_metadata.files[0].mediaType == "model/stl" && <Button>Send To Adosia</Button>}
                 </TableCell>
               </TableRow>
               );

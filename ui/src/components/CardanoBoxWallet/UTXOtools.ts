@@ -47,6 +47,7 @@ export const ParseBlockfrostUtxos = async ( address: string ) => {
   let utxos: any = [];
   const blockfrostres: any = await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/addresses/${address}/utxos`, "GET", "");
   console.log( blockfrostres );
+  if(blockfrostres && blockfrostres.error)return(utxos)
   await blockfrostres.map( async ( utxo: any ) => {
     let utxoAsset: any = [];
     let utxoAssets: any = [];

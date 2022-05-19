@@ -1,4 +1,5 @@
 import React from 'react';
+import { SpacePrinterHttp } from "../../api/SpacePrinterApis";
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Button, Dialog, Typography, Tooltip } from '@material-ui/core';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -56,30 +57,49 @@ const DialogActions = withStyles((theme: Theme) => ({
   },
 }))(MuiDialogActions);
 
-export const NewWalletPopup = () => {
+type DelWalletPopupProps = {
+  walletID: string,
+  queryWallets: any,
+}
+
+
+export const DelWalletPopup: React.FC<DelWalletPopupProps> = ({ walletID, queryWallets }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
+    console.log(walletID)
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
 
+  const delWallet: any  = async ( walletID: string ) => {
+    const jwToken: any = sessionStorage.getItem("jwtoken");
+    const userName: any = sessionStorage.getItem("userName");
+    const sessionType: any = sessionStorage.getItem("sessionType");
+    try{
+      const delRes: string = await SpacePrinterHttp.delCBWallet( jwToken, userName, sessionType, walletID, "" );
+      console.log(delRes);
+      queryWallets();
+    }catch( error ){
+      console.log(error)
+    }
+  };
+
   return (
     <>
-      <Button color="secondary" style={{position: "absolute", right: 115}} onClick={handleClickOpen}>
-        + ADD WALLET
+      <Button style={{ background: "#930006"}} onClick={handleClickOpen}>
+        Delete
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogContent dividers>
-          <Tooltip title="Currently you can only create a new printer wallet." placement="top">
-            <CreateWallet />
-          </Tooltip>
-            <hr />
-          <Tooltip title="Recover a printer or general wallet." placement="top">
-            <RecoverSeed />
-          </Tooltip>
+          <div>
+            This will delete your wallet, if you don't have your seed phrase saved you will not be able to recover this wallet any more!!!!
+          </div>
+          <div style={{ textAlign: "center" }}>
+          <Button onClick={ ()=>{ delWallet( walletID )}} >Delete</Button>
+          </div>
         </DialogContent>
       </Dialog>
     </>

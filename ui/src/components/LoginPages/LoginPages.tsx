@@ -54,9 +54,6 @@ export const CBLoginPage: React.FC = () => {
 
   return (
     <div style={{width: 400, margin: "10 auto", boxShadow:" 0px 0px 0px 1px rgba(255, 255, 255, 0.12)", borderRadius: "4px", padding: 25 }}>
-      <div style={{textAlign: "left" }}>
-        CB LOGIN
-      </div>
       <div>
         <TextField
           variant="outlined"
@@ -138,9 +135,6 @@ export const BFLoginPage: React.FC = () => {
 
   return (
     <div style={{width: 400, margin: "10 auto", boxShadow:" 0px 0px 0px 1px rgba(255, 255, 255, 0.12)", borderRadius: "4px", padding: 25, }}>
-      <div style={{textAlign: "left" }}>
-        BF LOGIN
-      </div>
       <div>
         <TextField
           variant="outlined"

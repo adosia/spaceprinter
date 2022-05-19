@@ -134,7 +134,8 @@ export const WalletAccounts: React.FC<WalletAccountsProps> = ( { walletInfo } ) 
                   { new Date(row.timeCreated*1000).toLocaleTimeString("en-US")} | { new Date(row.timeCreated*1000).toLocaleDateString("en-US") }
                 </TableCell>
                 <TableCell align="right">
-                  <AccountTabs jwToken={jwToken} address={row.baseAddr} accountName={row.accountName} walletID={walletInfo.walletID} /> <br /> <Button  className={classes.button} onClick={ ()=>{ delWalletAccount( row.accountName )}} >Delete</Button>
+                  <AccountTabs jwToken={jwToken} address={row.baseAddr} accountName={row.accountName} walletID={walletInfo.walletID} />  
+                  { /* <Button  className={classes.button} onClick={ ()=>{ delWalletAccount( row.accountName )}} >Delete</Button> */ }
                 </TableCell>
               </TableRow>
                   );
@@ -155,7 +156,7 @@ export const WalletAccounts: React.FC<WalletAccountsProps> = ( { walletInfo } ) 
       </div>       
     </DialogContent>
     <DialogActions>
-        <div> <GenWalletAccount jwToken={ jwToken } walletID={ walletInfo.walletID } getWalletAccounts={ getWalletAccounts } /> </div>
+        { /*<div> <GenWalletAccount jwToken={ jwToken } walletID={ walletInfo.walletID } getWalletAccounts={ getWalletAccounts } /> </div>*/}
         <Button onClick={handleClose}>Close</Button>
     </DialogActions>
   </Dialog>

@@ -145,7 +145,7 @@ export const TxPreview: React.FC<TxPreviewProps> = ({ jwToken, walletID, account
             sessionStorage.getItem("sessionType") == "blockfrost" ?
               <><SendTXBlockFrost jwToken={jwToken} txResult={txResult} getAddressInfo={getAddressInfo} /><br /></>
               :
-              <><SendTXOgmios jwToken={jwToken} txResult={txResult} getAddressInfo={getAddressInfo} /><br /></>
+              <><SendTXOgmios txResult={txResult} getAddressInfo={getAddressInfo} /><br /></>
             
           }
           Tx Fee: { txResult.fee } lovelace<br />
