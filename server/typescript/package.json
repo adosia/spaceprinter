@@ -42,7 +42,7 @@
     "passwd-linux": "https://github.com/bakon11/passwd-linux/raw/v2.0/passwd-linux-2.0.0.tgz",
     "serialport": "^9.2.8",
     "sqlite": "^4.0.23",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.3"
   },
   "devDependencies": {
     "@open-rpc/meta-schema": "^1.6.0",
