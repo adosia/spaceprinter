@@ -1,5 +1,7 @@
 ![spaceprinter_logo_V1](https://user-images.githubusercontent.com/50184793/158988554-897dfbab-ad58-4957-a183-4a2e8d72c6e9.png)
 
+**Videos**
+
 <details>
   <summary><b>Release Videos</b></summary>
   
@@ -45,40 +47,37 @@ https://user-images.githubusercontent.com/50184793/166266598-8e4d21e6-84c6-4fc6-
   <summary><b>Selecting Print Jobs</b></summary>
   Coming soon.
 </details>
-
 <hr />
+
+**Reading Material**
+
 <details>
   <summary><b>How this works</b></summary>
   
   Image is based on Ubuntu 22.04.
   <blockquote>
     
-  Space Printer "API" is a backend written in TypeScript using NodeJs. This backend connects the UI with the firmware and communicates 
-  with the cadano blockchain in one of two ways. 
+  Space Printer firmware brings a frontend dashboard that connects you to the cardano blockchain to access teh Adosia 3d printing smart contract.
 
-  Either through Cardano Box's hosted node or Blockfrost for those that don't wish to run their own node.
+  Space printer connects to Cardano blockchain through Cardano Box's hosted node or Blockfrost for those that don't wish to run their own node.
 
-  It utilizes https://open-rpc.org/ to generate and spec out the JSON-RPC 2.0 based backend api 
-  and front end client.
-
-  And uses Oura(https://github.com/txpipe/oura) to sync printer wallet data.
+  It utilizes https://open-rpc.org/ to generate and spec out the JSON-RPC 2.0 based backend api and front end client for React.
 
   The idea of Space Printer dapp is to have it work directly on Raspberry Pi hardware that is connected to your 3D printers serial port.
   Now days most serial ports on 3D printers are emulated through USB.
 
-  Also this takes in mind that you're running a 3D printer that suports Marlin Firmware G-Codr commands which is something like 95% of all 3D printers.
-  However if you'r running a specialty 3D printer and you have serial access to it, we will be more than happy to work with you to support as many 3D       printers out of the box as we can.
+  Also this takes in mind that you're running a 3D printer that supports Marlin Firmware G-Code commands which is something like 95% of all 3D printers.
+  However if you're running a specialty 3D printer and you have serial access to it, we will be more than happy to work with you to support as many 3D     printers out of the box as we can.
 
   Space Printer needs to be able to access the Cardano blockchain to pull information about print jobs from the Adosia market place smart contracts.
   And to create transactions like minting your registration NFT and accepting print jobs etc etc.
 
-  The dapp/firmware is currently setup to use Blockfrost, from which you can get a free API key that gives you up to 50k requests a day which is MORE       than enough for space printer. You will also be able to reuse the API key on more than one device.
+  The dapp/firmware is currently setup to use Blockfrost, for which you can get a free API key that gives you up to 50k requests a day which is MORE       than enough for Space Printer. You will also be able to reuse the API key on more than one device.
 
-  Second solution is running Cardano Box From Adosia. Cardano Box runs Ogmios that is hooked up to the Cardano Node directly. If you have the know how on   how to setup Ogmios and Cardano-node on your own hardware you can point Space Printer towards that as well.
+  Second solution is running Cardano Box From Adosia. Cardano Box runs tools like Ogmios and Kupo that are hooked up to the Cardano Node directly. If you   have the know how on how to setup Ogmios and Kup and Cardano-node on your own hardware you can point Space Printer towards that as well.
   </blockquote>
 </details>
 
-<hr />
 <details>
   <summary><b>Whats What</b></summary>
   
@@ -88,7 +87,6 @@ https://user-images.githubusercontent.com/50184793/166266598-8e4d21e6-84c6-4fc6-
     </blockquote>
 </details>
 
-<hr />  
 <details>
   <summary><b>Using the image</b></summary>
   
@@ -110,7 +108,6 @@ due to decentralization and data being stored on the Cardano network recovering 
 </blockquote>
 </details>
 
-<hr />
 <details>
   <summary><b>SSH Instructions</b></summary>
   
@@ -124,20 +121,19 @@ due to decentralization and data being stored on the Cardano network recovering 
   
   1) I would recommend SSH into the device and changing the password with the `passwd` command.
   
-  2) setup your WiFi if you need to (instructions coming soon)
+  2) You can setup your Wifi and Blockfrost API key headlesly by following the instrctions in the "Headless Setup" video above.
 </blockquote>
 </details>
 
-<hr />
 <details>
   <summary><b>Using Space Printer</b></summary>
   
 <blockquote>
   Keep in mind the Space Printer dapp is still in very early Development Beta stages.
   
-  Once you have your Raspberry Pi running with the Space Printer firmware and connected to your network. You should be able to open up any web browser      and type in `http://spaceprinter` in the address bar and it should bring up the Space Printer UI.
+  Once you have your Raspberry Pi running with the Space Printer firmware and connected to your network. You should be able to open up any web browser      and type in `http://spaceprinter.local` in the address bar and it should bring up the Space Printer UI.
 
-  From there you can select your session type, meaning how is the dapp accessing the Cardano Blockchain as explained above, you can choose `Blockfrost`     or `Cardano Box`(Currently missing full implementation).
+  From there you can select your session type, meaning how is the dapp accessing the Cardano Blockchain as explained above, you can choose `Blockfrost`     or `Cardano Box`.
 
   Choosing the Blockfrost option will require you to create a local account on your device and obtain a blockfrost API key.
   
