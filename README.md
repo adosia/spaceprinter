@@ -4,6 +4,11 @@
 
 <details>
   <summary><b>Release Videos</b></summary>
+   <details>
+    <summary>V0.5.1-Beta</summary>
+    
+https://user-images.githubusercontent.com/50184793/169188289-c19e733e-f1a3-4497-abae-b7a27b7c6d17.mp4
+  </details>
   
   <details>
     <summary>V0.5-Beta</summary>
@@ -41,6 +46,28 @@ https://user-images.githubusercontent.com/50184793/166245597-8fbeb16f-7113-405d-
   <summary><b>Setting up Printer</b></summary>
 
 https://user-images.githubusercontent.com/50184793/166266598-8e4d21e6-84c6-4fc6-af91-cee692597f3d.mp4
+</details>
+
+<details>
+  <summary><b>Blockfrost VS Cardanobox</b></summary>
+
+https://user-images.githubusercontent.com/50184793/169318248-05739bd3-a60e-42db-9e24-cb3f87fbd868.mp4
+</details>
+
+<details>
+  <summary><b>Space Printer Updater Client</b></summary>
+
+https://user-images.githubusercontent.com/50184793/169320539-3fb5e658-35b3-4f4c-ab59-2720fd574611.mp4
+</details>
+
+<details>
+  <summary><b>Spaceprinter Wallet Explained</b></summary>
+  Coming soon.
+</details>
+
+<details>
+  <summary><b>Submitting Print Jobs</b></summary>
+  Coming soon.
 </details>
 
 <details>
