@@ -49,7 +49,7 @@ https://user-images.githubusercontent.com/50184793/166266598-8e4d21e6-84c6-4fc6-
 </details>
 
 <details>
-  <summary><b>Wallet and Wallet Functions</b></summary>
+  <summary><b>Spaceprinter Wallet Explained</b></summary>
 
 https://user-images.githubusercontent.com/50184793/169544225-3d86764b-713d-4d65-8e0e-546bc578aab0.mp4
 </details>
@@ -64,11 +64,6 @@ https://user-images.githubusercontent.com/50184793/169318248-05739bd3-a60e-42db-
   <summary><b>Space Printer Updater Client</b></summary>
 
 https://user-images.githubusercontent.com/50184793/169320539-3fb5e658-35b3-4f4c-ab59-2720fd574611.mp4
-</details>
-
-<details>
-  <summary><b>Spaceprinter Wallet Explained</b></summary>
-  Coming soon.
 </details>
 
 <details>
