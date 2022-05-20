@@ -49,6 +49,12 @@ https://user-images.githubusercontent.com/50184793/166266598-8e4d21e6-84c6-4fc6-
 </details>
 
 <details>
+  <summary><b>Wallet and Wallet Functions</b></summary>
+
+https://user-images.githubusercontent.com/50184793/169544225-3d86764b-713d-4d65-8e0e-546bc578aab0.mp4
+</details>
+
+<details>
   <summary><b>Blockfrost VS Cardanobox</b></summary>
 
 https://user-images.githubusercontent.com/50184793/169318248-05739bd3-a60e-42db-9e24-cb3f87fbd868.mp4
