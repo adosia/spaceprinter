@@ -5,7 +5,7 @@ import useDarkMode from "use-dark-mode";
 import { a2hex, hex2a } from "../../utils/hextools";
 import { STLViewer } from "../AssetViewer/STLviewer";
 import { getAssetInfo } from "../Blockfrost/BlockfrostAsset";
-import { ParseBlockfrostUtxos, ParseOgmiosUtxos } from "../Parsers/UTXOParsers";
+import { ParseBlockfrostUtxos, ParseOgmiosUtxos } from "./UTXOParsers";
 
 const PrinterSC: React.FC = () => {
   const darkMode = useDarkMode();

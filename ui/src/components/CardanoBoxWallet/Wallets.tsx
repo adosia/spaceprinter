@@ -5,6 +5,7 @@ import useDarkMode from "use-dark-mode";
 import { WalletAccounts } from "./WalletAccounts";
 import { useHistory } from "react-router-dom";
 import { DelWalletPopup } from "./DelWalletPopup";
+import { DecodeDatum } from "./DecodeDatum";
 
 const Wallets: React.FC = () => {
   const useStyles = makeStyles({
@@ -126,8 +127,13 @@ const Wallets: React.FC = () => {
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
+           
         </Paper>
+
       }
+        <>
+         <DecodeDatum datum="8392f0c940435c06888f9bdb8c74a95dc69f156367d6a089cf008ae05caae01e" />
+        </>
     </>
   );
 };

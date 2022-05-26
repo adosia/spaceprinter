@@ -126,12 +126,11 @@ export const AccountTabs: React.FC< AccountTabsProps> = ({ jwToken, address, acc
       outputAddress: outputAddress,
       outputValue: outputLovelace,
       datums: [
-                { "constructorOuter": "0" },
-                { "constructorFields" : "0" },
+                { "constructorOuter": "1" },
+                // { "constructorFields" : "1" },
                 // { "datumType": "byte", datumValue: "", "byteType": "hex" },
-                { "datumType": "int", datumValue: "42", "byteType": "" },
-                { "datumType": "int", datumValue: "42", "byteType": "" },
-
+                // { "datumType": "int", datumValue: "42", "byteType": "" },
+                // { "datumType": "int", datumValue: "42", "byteType": "" },
                 // { "datumType": "byte", datumValue: "466972654e4654", "byteType": "hex" },
               ],
     }])

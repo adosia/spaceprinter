@@ -89,9 +89,9 @@ const ResponsiveDrawer:React.FC<DrawerProps> = ({ window, pageName }) => {
       <div className={classes.toolbar} />
       <div>
         <List>
-          <ListItem onClick={()=>history.push("/HomePage")} button>
+          <ListItem onClick={()=>history.push("/MainPage")} button>
             <ListItemIcon><img src={cbicon} height="40" /></ListItemIcon>
-            <ListItemText primary="Home" />
+            <ListItemText primary="Main" />
           </ListItem>
           <ListItem button>
             <ListItemIcon><img src={cbicon} height="40" /></ListItemIcon>

@@ -41,7 +41,7 @@ export const CBLoginPage: React.FC = () => {
     loginRes && loginRes.token && sessionStorage.setItem( 'userName', userName );
     loginRes && cbLoginRes.token && sessionStorage.setItem( 'cbjwtoken', cbLoginRes.token );
     loginRes && loginRes.token && setStatus("");
-    loginRes && loginRes.token && history.push("/HomePage");
+    loginRes && loginRes.token && history.push("/MainPage");
   };
 
   const resetUser = async () => {
@@ -122,7 +122,7 @@ export const BFLoginPage: React.FC = () => {
     loginRes && loginRes.token && sessionStorage.setItem( 'userName', userName );
     loginRes && loginRes.token && sessionStorage.setItem( 'jwtoken', loginRes.token );
     loginRes && loginRes.token && setStatus("");
-    loginRes && loginRes.token && history.push("/HomePage");
+    loginRes && loginRes.token && history.push("/MainPage");
   };
 
   const resetUser = async () => {

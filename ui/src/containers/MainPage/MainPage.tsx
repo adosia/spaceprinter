@@ -6,9 +6,9 @@ import { lightTheme, darkTheme } from "../../themes/theme";
 import AppDrawer from "../../components/NavBar/AppDrawer";
 import AppDrawer2 from "../../components/NavBar/AppDrawer2";
 import { Updates } from "../../components/GetUpdates/Updates";
-import "./HomePage.css";
+import "./MainPage.css";
 
-const HomePage: React.FC = () => {
+const MainPage: React.FC = () => {
   const darkMode = useDarkMode();
   const drawerWidth = 265;
   const useStyles = makeStyles((theme: Theme) =>
@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
         },
       },
     })
-  )
+  );
 
   const theme = darkMode.value ? darkTheme : lightTheme;
   const jwToken: any = sessionStorage.getItem("jwtoken");
@@ -36,12 +36,12 @@ const HomePage: React.FC = () => {
 
   useEffect(()=>{
     jwToken == null && history.push("/LoginPage");
-  })
+  });
 
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <AppDrawer2 pageName="Home" />
+      <AppDrawer2 pageName="Main" />
       <div className={classes.main}>
         <Updates />
       </div>
@@ -49,4 +49,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default MainPage;

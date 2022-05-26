@@ -8,7 +8,6 @@ type DecodeDatumProps = {
 export const DecodeDatum = ( {datum}: DecodeDatumProps ) => {
 
   const blockfrostApi: any = localStorage.getItem("blockfrostApi");
-
   const [ datumRes, setDatumRes ]: any = useState();
 
   const getDatum = async () => {
@@ -29,22 +28,18 @@ export const DecodeDatum = ( {datum}: DecodeDatumProps ) => {
       getDatum();
     }, []);
 
-
   return(
     <>
       {datumRes && console.log(datumRes)}
       {
         datumRes && datumRes.error ? 
-        
          datum 
-        
-        : 
-        
-        <Tooltip title={ datumRes.json_value && datumRes.json_value.constructor }>
+        :
+
           <Button>
             { datum }
           </Button>
-        </Tooltip>
+
         
       }
     </>

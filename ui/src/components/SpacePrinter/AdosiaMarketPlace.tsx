@@ -12,13 +12,10 @@ export const AdosiaMarketPlace: React.FC = () => {
   const [ printerUUID, setPrinterUUID ] = useState();
   return (
     <>
-      {
-        sessionStorage.getItem("walletExists") === "true" &&
-        <div >
-          <PrinterSC /> 
-        </div>
-      }
+      { /* sessionStorage.getItem("walletExists") === "true" && */ }
+      <div >
+        <PrinterSC /> 
+      </div>
     </>
   );
 };
-

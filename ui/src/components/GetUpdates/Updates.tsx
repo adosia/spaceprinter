@@ -24,7 +24,7 @@ export const Updates: React.FC = () => {
         },
       },
     })
-  )
+  );
 
   const theme = darkMode.value ? darkTheme : lightTheme;
   const history = useHistory();
