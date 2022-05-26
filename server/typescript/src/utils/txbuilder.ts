@@ -114,7 +114,7 @@ export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metad
           tradeDetails.add(
             CardanoWasm.PlutusData.new_constr_plutus_data(
               CardanoWasm.ConstrPlutusData.new(
-                CardanoWasm.BigNum.from_str("0"),
+                CardanoWasm.BigNum.from_str(output.datums[0].constructorFields),
                 datumFields
               )
             )
