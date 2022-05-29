@@ -48,7 +48,7 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
     setPage(0);
   };
 
-  const handleSelected = async ( event: React.ChangeEvent<HTMLInputElement>, TxId: string, txIndex:any, inputValue: any, assets: any, outputAsset: any ) => {
+  const handleSelected = async ( event: React.ChangeEvent<HTMLInputElement>, TxId: string, txIndex:any, inputValue: any, assets: any, outputAsset: any, datums: any[] ) => {
     console.log(event.target.checked);
     const policyID: string = outputAsset.split(".")[0];
     const assetName: string = outputAsset.split(".")[1];
@@ -105,7 +105,8 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
                                                   assetName, 
                                                   assetAmount: "1",
                                                   outputValue: "0",
-                                                  outputAsset
+                                                  outputAsset,
+                                                  datums
                                                 }])
       }else{
         console.log("setting new output")
@@ -116,7 +117,8 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
                                     assetName, 
                                     assetAmount: "1",
                                     outputValue: "0",
-                                    outputAsset
+                                    outputAsset,
+                                    datums
                                   }])
       };
     };
@@ -151,7 +153,7 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
                     <FormControlLabel
                       control={<Checkbox 
                         checked={assetCheck[row.asset]} 
-                        onChange={(event:any)=>{ handleSelected(event, row.TxId, row.txIndex, row.utxo[1].value.coins, row.utxo[1].value.assets, row.asset  ); }} 
+                        onChange={(event:any)=>{ handleSelected(event, row.TxId, row.txIndex, row.utxo[1].value.coins, row.utxo[1].value.assets, row.asset, []  ); }} 
                         name={row.asset} 
                         disabled={outputAddress.length < 108  && true}
                         />
