@@ -29,7 +29,7 @@ const genGruntTX: GenGruntTX = ( jwToken, userName, sessionType, walletID, walle
       // console.log(assets);
       // console.log(metadata);
       // console.log(utxoKey)
-      // console.log(outputs);
+      console.log(outputs);
       const gruntTxResult = await gruntTX( utxoKey, utxos, assets, metadata, outputs, changeAddress, Number(txTTL) );
       resolve( gruntTxResult );
     }catch( error ){

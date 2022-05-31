@@ -96,48 +96,58 @@ export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metad
       let hasDatum: boolean = false;
       // console.log(output);
       if( !output.assetName ){
-
         if(output.datums.length > 0){
-          console.log("adding Datums");          
           
+          console.log("adding Datums");          
+          console.log(output.datums[0].datumFieldsOuter.constructor);
+
           const pkh: any = CardanoWasm.BaseAddress?.from_address(CardanoWasm.Address.from_bech32(changeAddress))?.payment_cred().to_keyhash();
           console.log( "pkh: " );
           console.log( await Buffer.from( pkh.to_bytes()).toString("hex"));
 
           const datumFieldsInner = CardanoWasm.PlutusList.new();
-          await output.datums.map( async ( datum: any ) => {
-            console.log(datum);
-            // datumFields.add(CardanoWasm.PlutusData.new_bytes(Buffer.from('3f7826896a48c593598465a096d63606ceb8206', 'hex|utf8')));
-            // datumFields.add(CardanoWasm.PlutusData.new_integer(CardanoWasm.BigInt.from_str("22222")));             
+          output.datums[1].datumFieldsInner.length > 0 &&
+          await output.datums[1].datumFieldsInner.map( async ( datum: any ) => {
+            console.log(datum);        
             datum.datumType === "byte" && await datumFieldsInner.add(CardanoWasm.PlutusData.new_bytes(Buffer.from( datum.datumValue, datum.byteType )));
             datum.datumType === "int" && await datumFieldsInner.add(CardanoWasm.PlutusData.new_integer(CardanoWasm.BigInt.from_str( datum.datumValue )));
           });
           
           const datumFieldsOuter = CardanoWasm.PlutusList.new();
-          datumFieldsOuter.add(
+          output.datums[0].datumFieldsOuter.length > 0 &&
+          await output.datums[0].datumFieldsOuter.map( async ( datum: any ) => {
+            console.log(datum);
+            // datumFields.add(CardanoWasm.PlutusData.new_bytes(Buffer.from('3f7826896a48c593598465a096d63606ceb8206', 'hex|utf8')));
+            // datumFields.add(CardanoWasm.PlutusData.new_integer(CardanoWasm.BigInt.from_str("22222")));             
+            datum.datumType === "byte" && await datumFieldsOuter.add(CardanoWasm.PlutusData.new_bytes(Buffer.from( datum.datumValue, datum.byteType )));
+            datum.datumType === "int" && await datumFieldsOuter.add(CardanoWasm.PlutusData.new_integer(CardanoWasm.BigInt.from_str( datum.datumValue )));
+          });
+
+          await datumFieldsOuter.add(
             CardanoWasm.PlutusData.new_constr_plutus_data(
               CardanoWasm.ConstrPlutusData.new(
-                CardanoWasm.BigNum.from_str("0"),
+                CardanoWasm.BigNum.from_str(output.datums[1].datumFieldsInner[0].constructor),
                 datumFieldsInner
               )
             )
           );
+
           const datumData = CardanoWasm.PlutusData.new_constr_plutus_data(
             CardanoWasm.ConstrPlutusData.new(
-              CardanoWasm.BigNum.from_str(output.datums[0].constructorOuter),
+              CardanoWasm.BigNum.from_str(output.datums[0].datumFieldsOuter[0].constructor),
               datumFieldsOuter
             )
           );
           
-          /*
-          const constrDatum = CardanoWasm.ConstrPlutusData.new(
-            CardanoWasm.BigNum.from_str(output.datums[0].constructorOuter),
-            datumFieldsInner
-          );
-          datumData = CardanoWasm.PlutusData.new_constr_plutus_data(constrDatum);
-          */
-
+          // add datum values to cbor/tx
           dataHash = CardanoWasm.hash_plutus_data(datumData);
+
+          await witnesses.set_plutus_data(datumFieldsOuter);  
+          //await txBuilder.set_script_data(datumFields);
+
+          // add redemers to cbor/tx
+          // const redeemers = await CardanoWasm.Redeemers.new();
+          // await witnesses.set_redeemers(redeemers);
           
           /*
           //add SC to cbor/tx
@@ -146,15 +156,6 @@ export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metad
           await scripts.add(CardanoWasm.PlutusScript.from_bytes(Buffer.from(script, 'hex')));
           await witnesses.set_plutus_scripts(scripts);
           */
-
-          // add datum values to cbor/tx
-          //await txBuilder.set_script_data(datumFields);
-          await witnesses.set_plutus_data(datumFieldsOuter);
-          
-          // add redemers to cbor/tx
-          // const redeemers = await CardanoWasm.Redeemers.new();
-          // await witnesses.set_redeemers(redeemers);
-          
 
           // console.log("calc script hash");
           // await txBuilder.calc_script_data_hash( CardanoWasm.TxBuilderConstants.plutus_default_cost_models() );
@@ -252,7 +253,7 @@ export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metad
     // calculate the min fee required and send any change to an address
     // console.log("setting change");
     console.log("setting change");
-    //await txBuilder.add_change_if_needed( CardanoWasm.Address.from_bech32(changeAddress) );
+    await txBuilder.add_change_if_needed( CardanoWasm.Address.from_bech32(changeAddress) );
 
     // once the transaction is ready, we build it to get the tx body without witnesses
     console.log("Building and singing TX");
