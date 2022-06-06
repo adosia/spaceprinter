@@ -126,7 +126,7 @@ Few things to keep in mind. Using certain Raspberry Pi's come with certian restr
 **SD Cards**: Even though this image is supported on SD Cards and using certain Raspberry Pi models will give you no choice but to use a SD Card. I am not a SD Card fan, they're not too reliable and painfully slow but get the job done most of the time. However as long as you save your printer seed phrases.
 due to decentralization and data being stored on the Cardano network recovering from a crashed SD card or system in general is rather painless.
   
-**Slicer**: Space Printer has the capability to run Kiri:Moto Slicer locally, but it won't let you set it up unless you're using a device with 4Gb or more.
+**Slicer**: Space Printer has the capability to run Kiri:Moto Slicer locally, but it won't let you set it up unless you're using a device with 2Gb or more.
   
 **Raspberry Pi 3A+**: This is a great little 512Ram Quad Corce devvice wtih build in WiFi, SD Card port and 1xUSB2.0 port. Using this device you will need to setup a file with your WiFi credentials describe int he instructions and you can only use an SD card do to it only hacing one USB port which use going to be use to plug into your 3D printer.
   
