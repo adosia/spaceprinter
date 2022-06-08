@@ -116,23 +116,30 @@ https://user-images.githubusercontent.com/50184793/169320539-3fb5e658-35b3-4f4c-
 </details>
 
 <details>
-  <summary><b>Using the image</b></summary>
+  <summary><b>Materials</b></summary>
   
 <blockquote> 
-Currently space printer is supported on all Raspberry PI3 and above. You can atually burn the image onto a SD Card or USB Drive and switch it on the go between different Raspberry Pis.
+Currently Space Printer is supported on all Raspberry PI3 and above. You can atually burn the image onto a SD Card or USB Drive and switch it on the go between different Raspberry Pis.
 
 Few things to keep in mind. Using certain Raspberry Pi's come with certian restrictions outlined below:
   
 **SD Cards**: Even though this image is supported on SD Cards and using certain Raspberry Pi models will give you no choice but to use a SD Card. I am not a SD Card fan, they're not too reliable and painfully slow but get the job done most of the time. However as long as you save your printer seed phrases.
 due to decentralization and data being stored on the Cardano network recovering from a crashed SD card or system in general is rather painless.
   
-**Slicer**: Space Printer has the capability to run Kiri:Moto Slicer locally, but it won't let you set it up unless you're using a device with 4Gb or more.
+**Slicer**: Space Printer has the capability to run Kiri:Moto Slicer locally, but it won't let you set it up unless you're using a device with 2Gb or more.
   
 **Raspberry Pi 3A+**: This is a great little 512Ram Quad Corce devvice wtih build in WiFi, SD Card port and 1xUSB2.0 port. Using this device you will need to setup a file with your WiFi credentials describe int he instructions and you can only use an SD card do to it only hacing one USB port which use going to be use to plug into your 3D printer.
   
 **Raspberry Pi 3B+**: This is by far my favorite model and I still have one I bought 5 years ago. These come with 1Gb Ram, Quad 64Bit core, 4 USB ports and ethernet port. Due to the fact that you can plug this one up to your network directly it makes it somewhat easier to do first time setup after burning and running your image.
 
 **Raspberry Pi 4B+** Much like the 3B+ any range from 1Gb to 8Gb of these will work these are excellent SBCs.
+  
+**Power Supplies** Buy a Raspberry Pi certified power supply, simple Amazon or Google search will turn up several I like using this power supply beccause it comes with plugs for most countries: https://www.amazon.com/gp/product/B07VNQ3YHG/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+  
+**Ethernet** Normal ethernet CAT5 and higher cable if you don't want to use WiFi setup.
+
+**USB** Your 3D printer should have come with a USB cable to connect to your computer, if it didn't check what type of USB port your printer has and get one.
+
 </blockquote>
 </details>
 
