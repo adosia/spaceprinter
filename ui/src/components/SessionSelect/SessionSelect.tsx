@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { InputLabel, MenuItem, FormHelperText, FormControl, Select, Button } from "@material-ui/core"; //tslint:disable-line
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import { BlockfrostAPIKey } from "../Blockfrost/BlockfrostAPIKey";
 import { CBLoginPage, BFLoginPage } from "../LoginPages/LoginPages";
 

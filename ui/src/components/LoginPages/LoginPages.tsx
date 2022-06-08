@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import {MuiThemeProvider, CssBaseline, makeStyles, createStyles, Theme, TextField, Button, Tooltip, Link } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import { lightTheme, darkTheme } from "../../themes/theme";
-import { SpacePrinterHttp, SpacePrinterWS, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import SessionSelect from "../../components/SessionSelect/SessionSelect";
 
 export const CBLoginPage: React.FC = () => {
@@ -24,7 +24,7 @@ export const CBLoginPage: React.FC = () => {
 
     let cbLoginRes: any = await CardanoBoxHttp.loginUser( userName, password );
     console.log( cbLoginRes );
-    let loginRes: any = await SpacePrinterHttp.loginUser( userName, password, sessionType );
+    let loginRes: any = await SpacePrinterAPI.loginUser( userName, password, sessionType );
     console.log(loginRes);
 
     // Checks for different cases of auhtorization errors
@@ -35,7 +35,7 @@ export const CBLoginPage: React.FC = () => {
     // Checks for different cases of no account errors
     loginRes == "noAccount" && setStatus( "No Account" );
     if( loginRes && loginRes.token && cbLoginRes == "noAccount") return setStatus("Account exists localy but not on cardano box: You either created a new account on CB and didn't update SP or you CB is not setup");
-    if( cbLoginRes && cbLoginRes.token && loginRes == "noAccount" ) await SpacePrinterHttp.createUser( userName, password, sessionType ); loginRes = await SpacePrinterHttp.loginUser( userName, password, sessionType );
+    if( cbLoginRes && cbLoginRes.token && loginRes == "noAccount" ) await SpacePrinterAPI.createUser( userName, password, sessionType ); loginRes = await SpacePrinterAPI.loginUser( userName, password, sessionType );
 
     loginRes && loginRes.token && sessionStorage.setItem( 'jwtoken', loginRes.token );
     loginRes && loginRes.token && sessionStorage.setItem( 'userName', userName );
@@ -46,7 +46,7 @@ export const CBLoginPage: React.FC = () => {
 
   const resetUser = async () => {
     setStatus("Wiping User Data");
-    const wipeRes: any = await SpacePrinterHttp.resetUser();
+    const wipeRes: any = await SpacePrinterAPI.resetUser();
     sessionStorage.clear();
     localStorage.removeItem("blockfrostApi");
     console.log(wipeRes);
@@ -112,7 +112,7 @@ export const BFLoginPage: React.FC = () => {
 
     const blockfrostApi: any = localStorage.getItem("blockfrostApi");
     if( blockfrostApi == null ){ return(setStatus( "Please set a Blockfrost API key" )) }
-    let loginRes: any = await SpacePrinterHttp.loginUser( userName, password, sessionType );
+    let loginRes: any = await SpacePrinterAPI.loginUser( userName, password, sessionType );
     console.log(loginRes);
 
     // Checks for different cases of no account errors
@@ -127,7 +127,7 @@ export const BFLoginPage: React.FC = () => {
 
   const resetUser = async () => {
     setStatus("Wiping User Data");
-    const wipeRes: any = await SpacePrinterHttp.resetUser();
+    const wipeRes: any = await SpacePrinterAPI.resetUser();
     sessionStorage.clear();
     localStorage.removeItem("blockfrostApi");
     console.log(wipeRes);

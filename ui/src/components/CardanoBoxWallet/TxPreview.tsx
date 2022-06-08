@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles, Paper, TableContainer, FormControlLabel, Button } from '@material-ui/core/'; //tslint:disable-line
 import { DataGrid, GridRowModel } from '@mui/x-data-grid';
-import { SpacePrinterHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI } from "../../api/SpacePrinterApis";
 import { a2hex, hex2a } from "../../utils/hextools";
 import { STLDialog } from "./STLDialog";
 import { SendTXOgmios } from "./SendTXOgmios";
@@ -64,7 +64,7 @@ export const TxPreview: React.FC<TxPreviewProps> = ({ jwToken, walletID, account
     const sessionType: any = sessionStorage.getItem("sessionType");
 
     try{
-      const genTxResult: any = await SpacePrinterHttp.genGruntTX(
+      const genTxResult: any = await SpacePrinterAPI.genGruntTX(
         jwToken,
         userName,
         sessionType,

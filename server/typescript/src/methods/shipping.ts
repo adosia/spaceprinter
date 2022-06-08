@@ -1,10 +1,10 @@
 import fetch from "node-fetch";
 import { JSONRPCError } from "@open-rpc/server-js";
 
-const apikey: string = "" || process.env.SHIPPING;
-const carrierID: string = "" || process.env.SHIPPINGCARRIERID;
+const apikey: string = "";
+const carrierID: string = "";
 
-export const getShippingRates: GetShippingRates = async (userFirst: string, userLast: string, userStreet: string, userStreet2: string, userCity: string, userState: string, userZipcode: string, userCountry: string, userPhone: string, weightUnits: string, weightAmount: string, userCompany: string ) => {
+export const getShippingRates = async (userFirst: string, userLast: string, userStreet: string, userStreet2: string, userCity: string, userState: string, userZipcode: string, userCountry: string, userPhone: string, weightUnits: string, weightAmount: string, userCompany: string ) => {
   const body: any = {
     rate_options: {
       carrier_ids: [
@@ -61,7 +61,7 @@ export const getShippingRates: GetShippingRates = async (userFirst: string, user
   return data;
 };
 
-export const getShippingLabel: GetShippingLabel = async ( shipingRateID: string )  => {
+export const getShippingLabel = async ( shipingRateID: string )  => {
   const body: any = {
     label_format: "pdf",
     label_layout: "4x6",
@@ -83,7 +83,7 @@ export const getShippingLabel: GetShippingLabel = async ( shipingRateID: string 
     return data;
   }
 };
-export const trackUsingLabelID: TrackUsingLabelID = async ( labelID: string ) => {
+export const trackUsingLabelID = async ( labelID: string ) => {
   console.log("Getting Label");
 
   const response: any = await fetch("https://api.shipengine.com/v1/labels/" + labelID + "/track", {

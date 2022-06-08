@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp, OgmiosWS } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import { makeStyles, Button, ButtonBase, DialogTitle, Dialog, DialogContent, Typography, TextField, Tooltip } from '@material-ui/core';
 
 export const ChangeDeviceName = () => {
@@ -30,7 +30,7 @@ export const ChangeDeviceName = () => {
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
 
-    const changeNameRes: any = await SpacePrinterHttp.changeDeviceName( jwtoken, userName, sessionType, newDeviceName );
+    const changeNameRes: any = await SpacePrinterAPI.changeDeviceName( jwtoken, userName, sessionType, newDeviceName );
     console.log(changeNameRes);
     changeNameRes == "ok" ? setStatus("Name changed to: " + newDeviceName + ". Device will reboot within 5 seconds") : setStatus("error");
     

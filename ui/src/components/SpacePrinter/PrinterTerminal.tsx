@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { SpacePrinterHttp, SpacePrinterWS, CardanoBoxHttp} from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import { makeStyles } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import PrinterCMD from "./PrinterCMD";
@@ -27,25 +27,32 @@ const PrinterTerminal:React.FC<PrinterProps> = ({ setPrinterUUID }) => {
     },
   });
 
-  const [ printerConnInfo, setPrinterConnInfo ] = useState<any>([]);
+  const [ printerConnInfo, setPrinterConnInfo ]:any = useState<any>([]);
   const classes = useStyles(); 
  
+  
   const printerConnect: any = async () => {
     console.log("getting printer info");
+
+    
     try{
-      SpacePrinterWS.onNotification( (data) => {
-        console.log(data)
-        data.method && data.method == "serialPort" && setPrinterConnInfo( (printerConnInfo: any) => [...printerConnInfo,  data.result[0] ]);
-        let myRegexp: any = /UUID:(.*)/; 
-        let uuid = myRegexp.exec(data.result[0]);
-        console.log(uuid[1])
-        setPrinterUUID(uuid[1]);
-      });
+      SpacePrinterWSS.onmessage = ( data: any ) => {
+        data = JSON.parse(data.data);
+        console.log(data);
+        data.error ? setPrinterConnInfo( (printerConnInfo: any) => [...printerConnInfo,  data.error ]) :
+        data.method && data.method == "serialPort" && setPrinterConnInfo( (printerConnInfo: any) => [...printerConnInfo,  data.result ]);
+        // let myRegexp: any = /UUID:(.*)/; 
+        // let uuid = myRegexp.exec(data.result[0]);
+        // console.log(uuid[1])
+        // setPrinterUUID(uuid[1]);
+      };
     }catch( error ){
       console.log(error)
-    } 
+    }
+    
   };
   
+ 
   useEffect( () => {
     printerConnect()
   }, []);

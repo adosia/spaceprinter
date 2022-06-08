@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SpacePrinterHttp, SpacePrinterWS, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import useDarkMode from "use-dark-mode";
 
 type PrinterProps = {
@@ -15,7 +15,7 @@ const PrinterWalletAddress:React.FC<PrinterProps> = ({ walletID }) => {
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const walletsAddresesResult: any = await SpacePrinterHttp.getCBWallets( jwtoken, userName, sessionType, walletID );
+      const walletsAddresesResult: any = await SpacePrinterAPI.getCBWallets( jwtoken, userName, sessionType, walletID );
       console.log(walletsAddresesResult);
       setAddresses( walletsAddresesResult )
     }catch (error ){

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@material-ui/core"; //tslint:disable-line
-import { SpacePrinterHttp, SpacePrinterWS, CardanoBoxHttp} from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 
 interface WalletProps {
   queryWallets: any,
@@ -33,7 +33,7 @@ const GenPrinterWallet:React.FC<WalletProps> = ( { queryWallets, uuid } ) => {
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const result: any = await SpacePrinterHttp.genPrinterWallet( jwtoken, userName, sessionType, uuid, "", passPhrase, walletType );
+      const result: any = await SpacePrinterAPI.genPrinterWallet( jwtoken, userName, sessionType, uuid, "", passPhrase, walletType );
       console.log( result );
       // queryWallets();
       result && result.seed ? setSeedPhrase( result.seed ) : setStatus( result.error );

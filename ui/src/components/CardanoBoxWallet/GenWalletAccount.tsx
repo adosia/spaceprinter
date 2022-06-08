@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@material-ui/core"; //tslint:disable-line
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp, OgmiosWS } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp, OgmiosWS } from "../../api/SpacePrinterApis";
 
 type walletProps = {
   jwToken: string,
@@ -28,7 +28,7 @@ const GenWalletAccount:React.FC<walletProps> = ( { jwToken, walletID, getWalletA
     /*
     if(accountName === "" ) { return setStatus("Please enter account name."); };
     if(passPhrase === "" ) { return setStatus("Please enter password."); };
-    const result: any = await SpacePrinterHttp.genPrinterWallet( jwToken, walletID, accountName, passPhrase );
+    const result: any = await SpacePrinterAPI.genPrinterWallet( jwToken, walletID, accountName, passPhrase );
     console.log( result );
     result.code ? setStatus("Error") : setStatus( result )
     getWalletAccounts( walletID )

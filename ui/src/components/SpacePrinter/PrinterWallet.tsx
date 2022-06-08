@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SpacePrinterHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI } from "../../api/SpacePrinterApis";
 import { TextField, Button, makeStyles } from "@material-ui/core"; 
 import useDarkMode from "use-dark-mode";
 import GenPrinterWallet from "./GenPrinterWallet";
@@ -39,7 +39,7 @@ const PrinterWallet:React.FC<PrinterProps> = ({ printerUUID, walletExist, setWal
     const jwtoken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
-    const walletsResult: any = await SpacePrinterHttp.getCBWallets( jwtoken, userName, sessionType, "" );
+    const walletsResult: any = await SpacePrinterAPI.getCBWallets( jwtoken, userName, sessionType, "" );
     console.log(walletsResult);
     walletsResult.map((wallet: any )=>{
       if(wallet.walletType == "printer"){ 

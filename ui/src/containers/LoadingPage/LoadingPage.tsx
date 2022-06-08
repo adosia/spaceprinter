@@ -4,7 +4,7 @@ import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
 import useDarkMode from "use-dark-mode";
 import { lightTheme, darkTheme } from "../../themes/theme";
 import NavBar from "../../components/NavBar/NavBar";
-import { SpacePrinterHttp, SpacePrinterWS, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 
 import "./LoadingPage.css";
 

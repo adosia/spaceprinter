@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, TextField} from "@material-ui/core";
 import useDarkMode from "use-dark-mode";
 import { blockfrostApi } from "../../api/SpacePrinterApis";
-import { SpacePrinterHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI } from "../../api/SpacePrinterApis";
 
 export const BlockfrostAPIKey: React.FC = ( ) => {
   const darkMode = useDarkMode();
@@ -26,7 +26,7 @@ export const BlockfrostAPIKey: React.FC = ( ) => {
       const sessionType: any = sessionStorage.getItem("sessionType");
       const jwToken: any = sessionStorage.getItem("jwtoken");
   
-      const getBFKeyRes: any = await SpacePrinterHttp.editConfig( "", "", sessionType, "bfAPi" );
+      const getBFKeyRes: any = await SpacePrinterAPI.editConfig( "", "", sessionType, "bfAPi" );
       console.log(getBFKeyRes);
       getBFKeyRes.blockfrostApiKey !== "" && localStorage.setItem("blockfrostApi", getBFKeyRes.blockfrostApiKey);
       getBFKeyRes.blockfrostApiKey !== "" && setBlockfrostApiKey(getBFKeyRes.blockfrostApiKey);

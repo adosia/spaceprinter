@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core"; //tslint:disable-line
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import useDarkMode from "use-dark-mode";
 import { WalletAccounts } from "./WalletAccounts";
 import { useHistory } from "react-router-dom";
@@ -48,7 +48,7 @@ const Wallets: React.FC = () => {
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const walletsResult: any = await SpacePrinterHttp.getCBWallets( jwToken, userName, sessionType, "" );
+      const walletsResult: any = await SpacePrinterAPI.getCBWallets( jwToken, userName, sessionType, "" );
       console.log(walletsResult);
       walletsResult == "authError" && history.push("/LoginPage");
       setWallets(walletsResult);

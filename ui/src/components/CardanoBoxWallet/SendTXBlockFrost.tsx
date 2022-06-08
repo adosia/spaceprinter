@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp, OgmiosWS, blockfrostApi } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp, OgmiosWS, blockfrostApi } from "../../api/SpacePrinterApis";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import  star  from "../../assets/sticker.webp";

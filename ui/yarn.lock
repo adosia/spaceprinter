@@ -12107,10 +12107,10 @@
   dependencies:
     "mkdirp" "^0.5.1"
 
-"ws@*", "ws@^7.0.0":
-  "integrity" "sha512-KMvVuFzpKBuiIXW3E4u3mySRO2/mCHSyZDJQM5NQ9Q9KHWHWh0NHgfbRMLLrceUK5qAL4ytALJbpRMjixFZh8A=="
-  "resolved" "https://registry.npmjs.org/ws/-/ws-7.5.7.tgz"
-  "version" "7.5.7"
+"ws@*":
+  "integrity" "sha512-c2gsP0PRwcLFzUiA8Mkr37/MI7ilIlHQxaEAtd0uNMbVMoy8puJyafRlm0bV9MbGSabUPeLrRRaqIBcFcA2Pqg=="
+  "resolved" "https://registry.npmjs.org/ws/-/ws-8.7.0.tgz"
+  "version" "8.7.0"
 
 "ws@^5.2.0":
   "integrity" "sha512-jZArVERrMsKUatIdnLzqvcfydI85dvd/Fp1u/VOpfdDWQ4c9qWXe+VIeAbQ5FrDwciAkr+lzofXLz3Kuf26AOA=="
@@ -12132,6 +12132,11 @@
   "version" "6.2.2"
   dependencies:
     "async-limiter" "~1.0.0"
+
+"ws@^7.0.0":
+  "integrity" "sha512-ri1Id1WinAX5Jqn9HejiGb8crfRio0Qgu8+MtL36rlTA6RLsMdWt1Az/19A2Qij6uSHUMphEFaTKa4WG+UNHNw=="
+  "resolved" "https://registry.npmjs.org/ws/-/ws-7.5.8.tgz"
+  "version" "7.5.8"
 
 "xml-name-validator@^3.0.0":
   "integrity" "sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw=="

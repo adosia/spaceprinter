@@ -1,5 +1,5 @@
 import React from 'react';
-import { SpacePrinterHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI } from "../../api/SpacePrinterApis";
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Button, Dialog, Typography, Tooltip } from '@material-ui/core';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -79,7 +79,7 @@ export const DelWalletPopup: React.FC<DelWalletPopupProps> = ({ walletID, queryW
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const delRes: string = await SpacePrinterHttp.delCBWallet( jwToken, userName, sessionType, walletID, "" );
+      const delRes: string = await SpacePrinterAPI.delCBWallet( jwToken, userName, sessionType, walletID, "" );
       console.log(delRes);
       queryWallets();
     }catch( error ){

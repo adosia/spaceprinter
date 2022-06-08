@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import { TextField, Button } from "@material-ui/core"; 
 import useDarkMode from "use-dark-mode";
 
@@ -15,7 +15,7 @@ const PrinterCMD: React.FC = () => {
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const cmdResult: any = await SpacePrinterHttp.sendCmdToPrinter( jwtoken, userName, sessionType, printerCMD );
+      const cmdResult: any = await SpacePrinterAPI.sendCmdToPrinter( jwtoken, userName, sessionType, printerCMD );
       console.log(cmdResult);
       cmdResult.stderr != "" && setStatus(cmdResult.stderr);
     }catch(error){
@@ -23,12 +23,11 @@ const PrinterCMD: React.FC = () => {
     };
   };
 
-  const openSerial = () => {
-    SpacePrinterWSSend.send( JSON.stringify( { jsonrpc: '2.0', method: 'serialPort', params: [ "open" ] } ) );
-    
+  const openSerial = async () => {
+    SpacePrinterWSS.send( JSON.stringify( { jsonrpc: '2.0', method: 'serialPort', params: [ "open" ] } ) );
   };
   const closeSerial = () => {
-    SpacePrinterWSSend.send( JSON.stringify( { jsonrpc: '2.0', method: 'serialPort', params: [ "close" ] } ) );
+    SpacePrinterWSS.send( JSON.stringify( { jsonrpc: '2.0', method: 'serialPort', params: [ "close" ] } ) );
   };
 
   return (

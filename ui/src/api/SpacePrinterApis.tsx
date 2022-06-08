@@ -1,36 +1,42 @@
 import spaceprinterclient from "spaceprinterclient";
 import cardanoboxclient from "cardanoboxclient";
-var W3CWebSocket = require('websocket').w3cwebsocket;
+const W3CWebSocket = require('websocket').w3cwebsocket;
 
-export const SpacePrinterHttp = new spaceprinterclient({
+export const SpacePrinterAPI = new spaceprinterclient({
     transport: {
-        type: "http",
+        type: window.location.hostname == "armdev" ? "http" : "https",
         host: window.location.hostname == "armdev" ? "spaceprinter.local" : window.location.hostname,
-        port: 4441,
+        port: window.location.hostname == "armdev" ? 4441 : 4442
     },
 });
 
-export const SpacePrinterWS = new spaceprinterclient({
-    transport: {
-        type: "websocket",
-        host: window.location.hostname == "armdev" ? "spaceprinter.local" : window.location.hostname,
-        port: 3331,
-    },
-});
-
-export const SpacePrinterWSSend = new W3CWebSocket(
-  window.location.hostname == "armdev" ? 'ws://spaceprinter.local:3331/' : `ws://${window.location.hostname}:3331/`, 'echo-protocol'
+// Create Websocket for space printer
+export const SpacePrinterWSS = new W3CWebSocket(
+  window.location.hostname == "armdev" ? 
+    'ws://spaceprinter.local:3331/' : 
+    `wss://${window.location.hostname}:3332/`, 'echo-protocol'
 );
 
+SpacePrinterWSS.onopen = () => {
+  console.log("Space Printer connection open")
+};
+
+SpacePrinterWSS.onerror = () => {
+  console.log('Space Printer Connection Error');
+};
+
+// Create websocket for Ogmios on Cardano Box
 export const OgmiosWS = new W3CWebSocket(
-   'ws://cardanobox.local:4200'
+  window.location.hostname == "armdev" ? 
+  'ws://cardanobox.local:4200' : 
+  'wss://cardanobox.local:4200'
 );
 
 OgmiosWS.onopen = () => {
   console.log("Ogmios connection open")
 };
 
-OgmiosWS.onerror = function() {
+OgmiosWS.onerror = () => {
   console.log('Ogmios Connection Error');
 };
 

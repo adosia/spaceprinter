@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, ButtonBase, Dialog, DialogActions, DialogContent, DialogTitle, Checkbox, makeStyles } from "@material-ui/core"; //tslint:disable-line
-import { SpacePrinterHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI } from "../../api/SpacePrinterApis";
 import useDarkMode from "use-dark-mode";
 
 export const GetUpdates: React.FC = () => {
@@ -47,12 +47,12 @@ export const GetUpdates: React.FC = () => {
     const deviceName: string = window.location.hostname;
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
-    const getUpdUIResult: any = await SpacePrinterHttp.update( jwToken, userName, sessionType, "ui");
+    const getUpdUIResult: any = await SpacePrinterAPI.update( jwToken, userName, sessionType, "ui");
     console.log(getUpdUIResult);
     setUpdateUIstate(`UI Update: ${getUpdUIResult}`);
 
     setUpdateAPIState("Updating Api");
-    const getUpdApiResult: any = await SpacePrinterHttp.update( jwToken, userName, sessionType, "update");
+    const getUpdApiResult: any = await SpacePrinterAPI.update( jwToken, userName, sessionType, "update");
     console.log(getUpdApiResult);
     setUpdateAPIState( `Api Update: ${getUpdApiResult}` );
     
@@ -67,12 +67,12 @@ export const GetUpdates: React.FC = () => {
     const deviceName: string = window.location.hostname;
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
-    const getUpdUIResult: any = await SpacePrinterHttp.update( jwToken, userName, sessionType, "ui");
+    const getUpdUIResult: any = await SpacePrinterAPI.update( jwToken, userName, sessionType, "ui");
     console.log(getUpdUIResult);
     setUpdateUIstate(`UI Update: ${getUpdUIResult}`);
 
     setUpdateAPIState("Wiping and installing");
-    const getUpdApiResult: any = await SpacePrinterHttp.update( jwToken, userName, sessionType, "full");
+    const getUpdApiResult: any = await SpacePrinterAPI.update( jwToken, userName, sessionType, "full");
     console.log(getUpdApiResult);
     setUpdateAPIState( `Api Update: ${getUpdApiResult}` );
     

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import { makeStyles, Radio, useTheme, Theme, createStyles, ButtonBase, Button, DialogTitle, Dialog, DialogContent, Typography, TextField, Tooltip } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -51,7 +51,7 @@ export const Wifi = () => {
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const wifiResult: any = await SpacePrinterHttp.manageWifi( jwtoken, userName, sessionType, "status", "", "" );
+      const wifiResult: any = await SpacePrinterAPI.manageWifi( jwtoken, userName, sessionType, "status", "", "" );
       console.log(JSON.parse(wifiResult));
       JSON.parse(wifiResult).length > 0 && setSSIDs(JSON.parse(wifiResult));
       JSON.parse(wifiResult).length == 0 && wifiScan();
@@ -66,7 +66,7 @@ export const Wifi = () => {
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const wifiResult: any = await SpacePrinterHttp.manageWifi( jwtoken, userName, sessionType, "scan", "", "" );
+      const wifiResult: any = await SpacePrinterAPI.manageWifi( jwtoken, userName, sessionType, "scan", "", "" );
       // console.log(JSON.parse(wifiResult));
       setSSIDs(JSON.parse(wifiResult));
     }catch(error){
@@ -81,7 +81,7 @@ export const Wifi = () => {
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const wifiConnectRes: any = await SpacePrinterHttp.manageWifi( jwtoken, userName, sessionType, "connect", ssid, wifiPassword[ssid] )
+      const wifiConnectRes: any = await SpacePrinterAPI.manageWifi( jwtoken, userName, sessionType, "connect", ssid, wifiPassword[ssid] )
       console.log(wifiConnectRes)
     }catch( error ){
       console.log (error )
@@ -94,7 +94,7 @@ export const Wifi = () => {
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const wifiConnectRes: any = await SpacePrinterHttp.manageWifi( jwtoken, userName, sessionType, "disconnect", ssid, "" )
+      const wifiConnectRes: any = await SpacePrinterAPI.manageWifi( jwtoken, userName, sessionType, "disconnect", ssid, "" )
     }catch( error ){
       console.log (error )
     };

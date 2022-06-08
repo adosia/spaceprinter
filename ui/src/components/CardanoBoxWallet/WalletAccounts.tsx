@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { SpacePrinterHttp, SpacePrinterWS, SpacePrinterWSSend, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import React, { useState } from "react";
+import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp } from "../../api/SpacePrinterApis";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@material-ui/core";
 import { hex2a } from "../../utils/hextools";
 import GenWalletAccount from "./GenWalletAccount";
@@ -59,7 +59,7 @@ export const WalletAccounts: React.FC<WalletAccountsProps> = ( { walletInfo } ) 
     const jwToken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
-    const walletAccRes: any = await SpacePrinterHttp.getCBWallets( jwToken, userName, sessionType, walletInfo.walletID );
+    const walletAccRes: any = await SpacePrinterAPI.getCBWallets( jwToken, userName, sessionType, walletInfo.walletID );
     console.log(walletAccRes);
     setAccounts(walletAccRes);
   };
@@ -68,16 +68,10 @@ export const WalletAccounts: React.FC<WalletAccountsProps> = ( { walletInfo } ) 
     const jwToken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
     const sessionType: any = sessionStorage.getItem("sessionType");
-    const delRes: string = await SpacePrinterHttp.delCBWallet( jwToken, userName, sessionType, walletInfo.walletID, accountName );
+    const delRes: string = await SpacePrinterAPI.delCBWallet( jwToken, userName, sessionType, walletInfo.walletID, accountName );
     console.log(delRes);
     getWalletAccounts();
   };
-
-  
-  // useEffect(()=>{
-  //  getWalletAccounts();
-  // },[])
-
 
   return (
     <>
