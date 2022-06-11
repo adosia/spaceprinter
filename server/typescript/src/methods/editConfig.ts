@@ -16,6 +16,7 @@ const editConfig: EditConfig = ( jwToken, userName, sessionType, configjson ) =>
     if( checkToken.name ) return resolve("authError");
     if(configjson === ""){
       resolve( getConfig() );
+      return;
     }else{
       // open the database
       const db = await open({

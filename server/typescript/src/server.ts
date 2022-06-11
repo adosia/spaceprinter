@@ -9,11 +9,15 @@ import doc from "./openrpc.json";
 let serialport = require('serialport');
 const exec = require('child_process').exec
 import fs from 'fs';
+import { buildSSLcert } from "./methods/genSSL"
 
 export async function start() {
+  
+  await checkForCert() == 0 && await buildSSLcert("spaceprinter.local", "US", "Underground", "The Printer People");
+  
   const serverOptions: ServerOptions = {
     openrpcDocument: await parseOpenRPCDocument(doc as OpenrpcDocument),
-    transportConfigs: await checkForCert() > 0 ? [
+    transportConfigs:[
       {
         type: "HTTPTransport",
         options: {
@@ -31,15 +35,6 @@ export async function start() {
           // ca: fs.readFileSync("ssl/ca.crt")
         } as HTTPSServerTransportOptions,
       }
-    ] : 
-    [
-      {
-        type: "HTTPTransport",
-        options: {
-          port: 4441,
-          middleware: [],
-        } as HTTPServerTransportOptions,
-      },
     ],
     methodMapping,
   };
@@ -48,9 +43,7 @@ export async function start() {
   const s = new Server(serverOptions);
 
   s.start();
-  
-
-}
+};
 
 const checkForCert = () => {
   console.log("checking for cert Dir");

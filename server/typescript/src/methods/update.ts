@@ -26,56 +26,56 @@ const update: Update = ( jwToken, userName, sessionType, updateType ) => {
 
 const getFull = async() => {
   let mirror;
-  try{
-    const mirror1: string = "curl https://link.us1.storjshare.io/s/jwsuf2mh3ke4ipt2cadpp64js6lq/spaceprinter/spaceprinterInstall.tgz?download=1 -o spaceprinterInstall.tgz  && mv spaceprinterInstall.tgz /home/printer/.spaceprinter/updates/";
-    const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jwsuf2mh3ke4ipt2cadpp64js6lq/spaceprinter/spaceprinterInstall.tgz?download=1");
-    // console.log(mirror1res)
-    const mirror2: string = "curl https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterInstall.tgz?raw=true -o spaceprinterInstall.tgz && mv spaceprinterInstall.tgz /home/printer/.spaceprinter/updates/";
-    const mirror2res: any = await checkMirror("https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterInstall.tgz?raw=true");
-    // console.log(mirror2res);
-    mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
-    console.log( mirror );
-    const commandUpdateFiles: string = "sh updateFiles/runupdate.sh";
-    const command2: string = "rm -rf /home/printer/.spaceprinter/app/* && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterInstall.tgz -C /home/printer/.spaceprinter/app/";
-    await checkForUpdateFiles() === 1 && console.log(await exec( commandUpdateFiles, { "encoding":"utf8" } ));
-    const command3: string = "sudo systemctl restart spaceprinter.service";
-    const command4: string = "rm -rf ~/snap/chromium/common/chromium/";
-    console.log(await exec( mirror , { "encoding":"utf8" } ));
-    console.log(await exec( command2 , { "encoding":"utf8" } ));
-    console.log(await exec( command4, { "encoding":"utf8" } ));
-    console.log(setTimeout(()=>{ exec( command3, { "encoding":"utf8" }), 3000 }));
-    return("ok");
-  }catch(error){
-    console.log(error);
-    return("error");
-  };
+  return new Promise( async (resolve) => {
+    try{
+      const mirror1: string = "curl https://link.us1.storjshare.io/s/jwsuf2mh3ke4ipt2cadpp64js6lq/spaceprinter/spaceprinterInstall.tgz?download=1 -o spaceprinterInstall.tgz  && mv spaceprinterInstall.tgz /home/printer/.spaceprinter/updates/";
+      const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jwsuf2mh3ke4ipt2cadpp64js6lq/spaceprinter/spaceprinterInstall.tgz?download=1");
+      // console.log(mirror1res)
+      const mirror2: string = "curl https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterInstall.tgz?raw=true -o spaceprinterInstall.tgz && mv spaceprinterInstall.tgz /home/printer/.spaceprinter/updates/";
+      const mirror2res: any = await checkMirror("https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterInstall.tgz?raw=true");
+      // console.log(mirror2res);
+      mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
+      console.log( mirror );
+      const commandUpdateFiles: string = "sh updateFiles/runupdate.sh";
+      const command2: string = "rm -rf /home/printer/.spaceprinter/app/* && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterInstall.tgz -C /home/printer/.spaceprinter/app/";
+      const command3: string = "sudo systemctl restart spaceprinter.service";
+      console.log(await exec( mirror , { "encoding":"utf8" } ));
+      console.log(await exec( command2 , { "encoding":"utf8" } ))
+      resolve("ok");
+      await checkForUpdateFiles() === 1 && console.log(await exec( commandUpdateFiles, { "encoding":"utf8" } ));;
+      console.log(setTimeout(()=>{ exec( command3, { "encoding":"utf8" }), 3000 }));
+    }catch(error){
+      console.log(error);
+      return("error");
+    };
+  });
 };
 
 const getUpdate = async() => {
   let mirror;
-  try{
-    const mirror1: string = "curl https://link.us1.storjshare.io/s/jul3nrrwumstjejenvltb6xr2wxa/spaceprinter/spaceprinterUpdate.tgz?download=1 -o spaceprinterUpdate.tgz && mv spaceprinterUpdate.tgz /home/printer/.spaceprinter/updates/";
-    const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jul3nrrwumstjejenvltb6xr2wxa/spaceprinter/spaceprinterUpdate.tgz?download=1");
-    // console.log(mirror1res);
-    const mirror2: string = "curl https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterUpdate.tgz?raw=true -o spaceprinterUpdate.tgz && mv spaceprinterUpdate.tgz /home/printer/.spaceprinter/updates/";
-    const mirror2res: any = await checkMirror("https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterUpdate.tgz?raw=true");
-    // console.log(mirror2res);
-    mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
-    console.log( mirror );
-    const commandUpdateFiles: string = "sh updateFiles/runupdate.sh";
-    const command2: string = "rm /home/printer/.spaceprinter/app/spaceprinter && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterUpdate.tgz -C /home/printer/.spaceprinter/app/";
-    const command3: string = "sudo systemctl restart spaceprinter.service";
-    const command4: string = "rm -rf ~/snap/chromium/common/chromium/";
-    console.log(await exec( mirror , { "encoding":"utf8" } ));
-    console.log(await exec( command2, { "encoding":"utf8" } ));
-    await checkForUpdateFiles() > 0 && console.log(await exec( commandUpdateFiles, { "encoding":"utf8" } ));
-    console.log(await exec( command4, { "encoding":"utf8" } ));
-    console.log(setTimeout(()=>{ exec( command3, { "encoding":"utf8" }), 3000 }));
-    return("ok");
-  }catch(error){
-    console.log(error);
-    return("error");
-  };
+  return new Promise( async (resolve) => {
+    try{
+      const mirror1: string = "curl https://link.us1.storjshare.io/s/jul3nrrwumstjejenvltb6xr2wxa/spaceprinter/spaceprinterUpdate.tgz?download=1 -o spaceprinterUpdate.tgz && mv spaceprinterUpdate.tgz /home/printer/.spaceprinter/updates/";
+      const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jul3nrrwumstjejenvltb6xr2wxa/spaceprinter/spaceprinterUpdate.tgz?download=1");
+      // console.log(mirror1res);
+      const mirror2: string = "curl https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterUpdate.tgz?raw=true -o spaceprinterUpdate.tgz && mv spaceprinterUpdate.tgz /home/printer/.spaceprinter/updates/";
+      const mirror2res: any = await checkMirror("https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterUpdate.tgz?raw=true");
+      // console.log(mirror2res);
+      mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
+      console.log( mirror );
+      const commandUpdateFiles: string = "sh updateFiles/runupdate.sh";
+      const command2: string = "rm /home/printer/.spaceprinter/app/spaceprinter && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterUpdate.tgz -C /home/printer/.spaceprinter/app/";
+      const command3: string = "sudo systemctl restart spaceprinter.service";
+      console.log(await exec( mirror , { "encoding":"utf8" } ));
+      console.log(await exec( command2, { "encoding":"utf8" } ));
+      resolve("ok");
+      await checkForUpdateFiles() > 0 && console.log(await exec( commandUpdateFiles, { "encoding":"utf8" } ));
+      console.log(setTimeout(()=>{ exec( command3, { "encoding":"utf8" }), 3000 }));
+    }catch(error){
+      console.log(error);
+      return("error");
+    };
+  });
 };
 
 const updateUI = async() => {
@@ -90,8 +90,10 @@ const updateUI = async() => {
     mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
     console.log( mirror );
     const command2: string = "rm -rf /home/printer/.spaceprinter/www/* && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterui.tgz -C /home/printer/.spaceprinter/www/";
+    const command4: string = "rm -rf ~/snap/chromium/common/chromium/";
     console.log(await exec( mirror , { "encoding":"utf8" } ));
     console.log(await exec( command2 , { "encoding":"utf8" } ));
+    console.log(await exec( command4, { "encoding":"utf8" } ));
     return("ok");
   }catch(error){
     console.log(error);

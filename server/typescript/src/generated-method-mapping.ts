@@ -18,6 +18,7 @@ export const methodMapping: MethodMapping = {
   update: methods.update,
   changeDeviceName: methods.changeDeviceName,
   manageWifi: methods.manageWifi,
+  genSSL: methods.genSSL,
 };
 
 export default methodMapping;

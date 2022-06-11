@@ -51,7 +51,6 @@ const PrinterTerminal:React.FC<PrinterProps> = ({ setPrinterUUID }) => {
     
   };
   
- 
   useEffect( () => {
     printerConnect()
   }, []);

@@ -1,5 +1,5 @@
 import React from "react";
-import {MuiThemeProvider, CssBaseline, makeStyles, createStyles, Theme } from "@material-ui/core"; //tslint:disable-line
+import {MuiThemeProvider, CssBaseline, makeStyles, createStyles, Theme, ButtonBase} from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import { lightTheme, darkTheme } from "../../themes/theme";
 import SessionSelect from "../../components/SessionSelect/SessionSelect";
@@ -23,7 +23,7 @@ const LoginPage: React.FC = () => {
   const darkMode = useDarkMode();
   const theme = darkMode.value ? darkTheme : lightTheme;
   const classes = useStyles();
-
+  
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
@@ -34,6 +34,11 @@ const LoginPage: React.FC = () => {
         <div></div>
         <div>
           <SessionSelect />
+        </div>
+        <div>
+          FireFox User: If you can't login when using https://. <br />
+          Please click the link below and accept self signed certificate.<br />
+          <ButtonBase onClick={()=>window.location.assign("https://" + window.location.hostname + ":4442")}>https://{window.location.hostname}:4442</ButtonBase>
         </div>
       </div>
     </MuiThemeProvider >

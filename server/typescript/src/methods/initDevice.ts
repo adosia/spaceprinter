@@ -6,6 +6,7 @@ const { exec } = require('child_process');
 const serialport = require('serialport');
 import { WebSocketServer } from 'ws';
 import { createServer } from 'https';
+import { buildSSLcert } from "./genSSL"
 
 const initDevice: any = async () => {
   const config: any = await getConfig();
@@ -15,6 +16,7 @@ const initDevice: any = async () => {
   connectWiFi();
   saveBlockFrostApi();
   initWebsocket();
+  await checkForCert() == 0 && await buildSSLcert("spaceprinter.local", "US", "Underground", "The Printer People");
   await checkForCert() > 0 && initWebsocketSSL();
 };
 

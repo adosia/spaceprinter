@@ -12,6 +12,7 @@ import downloadFile from "./downloadFile";
 import update from "./update";
 import changeDeviceName from "./changeDeviceName";
 import manageWifi from "./manageWifi";
+import genSSL from "./genSSL";
 
 const methods = {
   initDevice,
@@ -28,6 +29,7 @@ const methods = {
   update,
   changeDeviceName,
   manageWifi,
+  genSSL,
 };
 
 export default methods;

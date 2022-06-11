@@ -34,7 +34,7 @@ export const Updates: React.FC = () => {
     <>
       <div style={{ border: `1px dashed ${darkMode.value ? "#fff" : "#000"}`, borderRadius: 5, padding: 5, margin: 15, overflow: "hidden", justifyContent: "center", alignItems: "center", textAlign: "left" }}>
         <strong>v0.6.0-beta</strong>:<br/>
-        -SSL.<br />
+        -SSL anb SSL Generator.<br />
         -Option to update Blockfrost API key from device settings.<br/>
         -New update client wich allows for updating major releases without the need of burning image file.<br/>
         -Auto scroll added to printer terminal window.<br/>

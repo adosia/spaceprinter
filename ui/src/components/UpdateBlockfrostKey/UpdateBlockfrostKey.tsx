@@ -16,11 +16,13 @@ export const UpdateBlockfrostKey = () => {
   };
 
   const handleClose = () => {
+    setStatus("");
     setOpen(false);
   };
 
   const setKey = async () => {
     localStorage.setItem("blockfrostApi", newKey);
+    setBlockfrostApiKey(newKey);
     const checkHealth: any = await blockfrostApi("https://cardano-testnet.blockfrost.io/api/v0/health", "GET", "");
     await saveKeyDB();
     setStatus("saved");
@@ -36,6 +38,7 @@ export const UpdateBlockfrostKey = () => {
     console.log(configRes);    
     const saveConfig = await SpacePrinterAPI.editConfig( jwtoken, userName, sessionType, JSON.stringify(configRes) );
     console.log(saveConfig);
+    setStatus("saved")
   };
 
   useEffect(
@@ -60,7 +63,7 @@ export const UpdateBlockfrostKey = () => {
   
         <DialogContent>
           <div>
-            Current Key: { blockfrostApiKey }
+            Current Key: { blockfrostApiKey && blockfrostApiKey }
           </div>
           <hr/>
           <div>
@@ -83,6 +86,9 @@ export const UpdateBlockfrostKey = () => {
             <Button onClick={()=>setKey()}>
               Save Key
             </Button> 
+          </div>
+          <div>
+            {status && status}
           </div>
         </DialogContent>
       </Dialog>

@@ -372,6 +372,40 @@
           "type": "string"
         }
       }
+    },
+    {
+      "name": "genSSL",
+      "description" : "Generate new ssl cert.",
+      "params" : [
+        {
+          "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sessionType"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sslCommonName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sslCountry"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sslLocation"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/sslOrg"
+        }
+      ],
+      "result": {
+        "name": "manageWifiResult",
+        "description": "Returns action results for wifi",
+        "schema": {
+          "type": "string"
+        }
+      }
     }
   ],
   "components": {
@@ -704,7 +738,43 @@
           "title": "ssidPass",
           "type": "string"
         }
-      }   
+      },
+      "sslCommonName": {
+        "name": "sslCommonName",
+        "description": "Common name for ssl cert or fqdn eg: spaceprinter.local.",
+        "required": true,
+        "schema": {
+          "title": "sslCommonName",
+          "type": "string"
+        }
+      },
+      "sslCountry": {
+        "name": "sslCountry",
+        "description": "SSL Country two letter eg: US.",
+        "required": true,
+        "schema": {
+          "title": "sslCountry",
+          "type": "string"
+        }
+      },
+      "sslLocation": {
+        "name": "sslLocation",
+        "description": "SSL location eg: The underground.",
+        "required": true,
+        "schema": {
+          "title": "sslLocation",
+          "type": "string"
+        }
+      },
+      "sslOrg": {
+        "name": "sslOrg",
+        "description": "SSL organication Name eg: The House of Printers.",
+        "required": true,
+        "schema": {
+          "title": "sslOrg",
+          "type": "string"
+        }
+      }
     }
   }
 }
