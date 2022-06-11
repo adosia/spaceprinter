@@ -75,7 +75,7 @@ const ResponsiveDrawer:React.FC<DrawerProps> = ({ window, pageName }) => {
   const theme = darkMode.value ? darkTheme : lightTheme;
   const history = useHistory();
   const [ sessionType, setSessionType ] = useState(sessionStorage.getItem("sessionType"))
-  const [ version, setVersion ] = useState("v0.5.1-beta");
+  const [ version, setVersion ] = useState("v0.6.0-beta");
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

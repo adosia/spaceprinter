@@ -5,7 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { ChangeDeviceName } from "../ChangeDeviceName/ChangeDeviceName";
 import { Wifi } from "../Wifi/Wifi";
 import { GetUpdates } from "../GetUpdates/GetUpdates";
-import sbicon from "../../assets/sp_icon_logo_V1.png"
+import { UpdateBlockfrostKey } from "../UpdateBlockfrostKey/UpdateBlockfrostKey";
+import sbicon from "../../assets/sp_icon_logo_V1.png";
 
 export const SettingsMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -32,6 +33,7 @@ export const SettingsMenu = () => {
       >
         <MenuItem><ChangeDeviceName /></MenuItem>
         <MenuItem><Wifi /></MenuItem>
+        <MenuItem><UpdateBlockfrostKey /></MenuItem>
         <MenuItem><GetUpdates /></MenuItem>
       </Menu>
     </div>

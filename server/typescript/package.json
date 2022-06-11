@@ -1,8 +1,8 @@
 {
   "name": "spaceprinterapi",
   "private": false,
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.6.0-beta",
+  "description": "This is a backend for space printer",
   "repository": {
     "type": "git",
     "url": "https://github.com/open-rpc/generator-client.git"
@@ -15,8 +15,8 @@
   "scripts": {
     "start": "npm run build && node ./build/index.js",
     "build": "tsc",
-    "createFull": "npm run build && npm run nexeBuild && tar -C ./app/ -czvf ./updates/spaceprinterInstall.tgz . && tar -C ./app/ -czvf ./updates/spaceprinterUpdate.tgz spaceprinter ./node_modules/ ",
-    "createUpdate": "npm run build && npm run nexeBuild && tar -C ./app/ -czvf ./updates/spaceprinterUpdate.tgz spaceprinter ./node_modules/ ",
+    "createFull": "npm run build && npm run nexeBuild && tar -C ./app/ -czvf ./updates/spaceprinterInstall.tgz . && tar -C ./app/ -czvf ./updates/spaceprinterUpdate.tgz spaceprinter ./node_modules/ ./updateFiles ",
+    "createUpdate": "npm run build && npm run nexeBuild && tar -C ./app/ -czvf ./updates/spaceprinterUpdate.tgz spaceprinter ./node_modules/ ./updateFiles",
     "uploadUpdate": "uplink cp updates/spaceprinterInstall.tgz sj://spaceprinter && uplink cp updates/spaceprinterUpdate.tgz sj://spaceprinter",
     "nexeBuild": "nexe build/index.js -b -p python3 -t arm64-16.3.0 -o app/spaceprinter",
     "test": "npm run test:lint && npm run test:unit",

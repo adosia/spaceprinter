@@ -1,6 +1,5 @@
 import { getConfig } from "../utils/config";
 import fs from 'fs';
-import editConfig from "./editConfig";
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 const { exec } = require('child_process');
@@ -16,7 +15,7 @@ const initDevice: any = async () => {
   connectWiFi();
   saveBlockFrostApi();
   initWebsocket();
-  initWebsocketSSL();
+  await checkForCert() > 0 && initWebsocketSSL();
 };
 
 const startSlicer = async(  ) => {
@@ -44,11 +43,11 @@ const connectWiFi = async () => {
 };
 
 const saveBlockFrostApi = async ( ) => {
+  const config: any = await getConfig();
   const hlConfig:any = fs.readFileSync('/boot/firmware/hlConfig.json', 'utf8');
   console.log(JSON.parse(hlConfig));
-  if( JSON.parse(hlConfig).blockfrostAPI !== "" ){
+  if( JSON.parse(hlConfig).blockfrostAPI !== "" && config.blockfrostApiKey !== "" ){
     console.log("Setting Blockfrost Api key: " +  JSON.parse(hlConfig).blockfrostAPI);
-    
     // open the database
     const db = await open({
       filename: './db/cb.db',
@@ -56,7 +55,7 @@ const saveBlockFrostApi = async ( ) => {
     });
 
     console.log("writing Config");
-    const SQLSaveConfig = `UPDATE Config SET blockfrostApiKey=? WHERE id=1`;
+    const SQLSaveConfig: string = "UPDATE Config SET blockfrostApiKey=? WHERE id=1";
     try{
       const SQLSaveConfigRes: any = await db.run( SQLSaveConfig, JSON.parse(hlConfig).blockfrostAPI );
       db.close();
@@ -113,16 +112,14 @@ const initWebsocket = async () => {
 const initWebsocketSSL = async () => {
   console.log( "Starting Websocket SSL on port: 3332 ");
   const server = createServer({
-    key: fs.readFileSync("cert/server.key"),
-    cert: fs.readFileSync("cert/server.cert"),
+    key: fs.readFileSync("./cert/server.key"),
+    cert: fs.readFileSync("./cert/server.cert"),
   });
   const wss = new WebSocketServer({ server });
-
   let myPort = new serialport("/dev/ttyUSB0", { baudRate: 115200, autoOpen: false }); //capture serial port but don't start it.
   let Readline = serialport.parsers.Readline; // make instance of Readline parser.
   let parser = new Readline(); // make a new parser to read ASCII lines.
   myPort.pipe(parser); // pipe the serial stream to the parser.
-
   wss.on('connection',  async ( ws: any ) => {
     console.log("connected on SSL");
     ws.send(JSON.stringify({jsonrpc: '2.0', method: 'websocket', result: ["Websocket Connected SSL"]}))
@@ -131,7 +128,6 @@ const initWebsocketSSL = async () => {
       console.log('port open. Data rate: ' + myPort.baudRate);
       ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', result: ['serial open. Data rate: ' + myPort.baudRate]}))
     });
-
     myPort.on('error', ( err: any ) => {
       console.log('Error: ', err.message)
       ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', error: [ err.message ]}))
@@ -141,12 +137,10 @@ const initWebsocketSSL = async () => {
       console.log(data);
       ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', result: [data]}))
     });
-
     myPort.on('close', ( ) => {
       console.log('port closed.');
       ws.send(JSON.stringify({jsonrpc: '2.0', method: 'serialPort', result: ["Port Connection Closed"]}));
     });
-
     ws.on('message', ( data: any ) => {
       let message = JSON.parse(data);
       console.log(message);
@@ -155,9 +149,20 @@ const initWebsocketSSL = async () => {
     });
   });
   server.listen(3332);
-
 };
 
 initDevice();
+
+const checkForCert = () => {
+  console.log("checking for cert Dir");
+  try{
+    const folderExists = fs.readdirSync("./cert/").length;
+    console.log(folderExists);
+    return(folderExists)
+  }catch(error){
+    console.log(error);
+    return(error); 
+  };
+};
 
 export default initDevice;

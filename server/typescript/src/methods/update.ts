@@ -1,6 +1,7 @@
 import { Update } from "../generated-typings";
 const exec = require('child_process').execSync;
 import { checkJWT } from "../utils/checkauth";
+import fs from 'fs';
 
 const update: Update = ( jwToken, userName, sessionType, updateType ) => {
   return new Promise( async (resolve, reject) => {
@@ -34,7 +35,9 @@ const getFull = async() => {
     // console.log(mirror2res);
     mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
     console.log( mirror );
+    const commandUpdateFiles: string = "sh updateFiles/runupdate.sh";
     const command2: string = "rm -rf /home/printer/.spaceprinter/app/* && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterInstall.tgz -C /home/printer/.spaceprinter/app/";
+    await checkForUpdateFiles() === 1 && console.log(await exec( commandUpdateFiles, { "encoding":"utf8" } ));
     const command3: string = "sudo systemctl restart spaceprinter.service";
     const command4: string = "rm -rf ~/snap/chromium/common/chromium/";
     console.log(await exec( mirror , { "encoding":"utf8" } ));
@@ -55,15 +58,17 @@ const getUpdate = async() => {
     const mirror1res: any = await checkMirror("https://link.us1.storjshare.io/s/jul3nrrwumstjejenvltb6xr2wxa/spaceprinter/spaceprinterUpdate.tgz?download=1");
     // console.log(mirror1res);
     const mirror2: string = "curl https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterUpdate.tgz?raw=true -o spaceprinterUpdate.tgz && mv spaceprinterUpdate.tgz /home/printer/.spaceprinter/updates/";
-    const mirror2res: any = await checkMirror(" https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterUpdate.tgz?raw=true");
+    const mirror2res: any = await checkMirror("https://github.com/adosia/spaceprinterapi/blob/master/server/typescript/updates/spaceprinterUpdate.tgz?raw=true");
     // console.log(mirror2res);
     mirror1res == "200"? mirror = mirror1 : mirror = mirror2;
     console.log( mirror );
+    const commandUpdateFiles: string = "sh updateFiles/runupdate.sh";
     const command2: string = "rm /home/printer/.spaceprinter/app/spaceprinter && tar -xvzf /home/printer/.spaceprinter/updates/spaceprinterUpdate.tgz -C /home/printer/.spaceprinter/app/";
     const command3: string = "sudo systemctl restart spaceprinter.service";
     const command4: string = "rm -rf ~/snap/chromium/common/chromium/";
     console.log(await exec( mirror , { "encoding":"utf8" } ));
     console.log(await exec( command2, { "encoding":"utf8" } ));
+    await checkForUpdateFiles() > 0 && console.log(await exec( commandUpdateFiles, { "encoding":"utf8" } ));
     console.log(await exec( command4, { "encoding":"utf8" } ));
     console.log(setTimeout(()=>{ exec( command3, { "encoding":"utf8" }), 3000 }));
     return("ok");
@@ -106,4 +111,15 @@ const checkMirror = async( mirror: string ) => {
   }
 };
 
+const checkForUpdateFiles = () => {
+  console.log("checking for updatefiles Dir");
+  try{
+    const folderExists = fs.readdirSync("./updateFiles").length;
+    console.log(folderExists);
+    return(folderExists)
+  }catch(error){
+    console.log(error);
+    return(error); 
+  };
+};
 export default update;

@@ -34,6 +34,7 @@ const SessionSelect: React.FC = () => {
   return (
     <>
       <div style={{textAlign: "center"}}>
+        {console.log(window.location.protocol)}
         { sesstionType === "cardanobox" && 
         <div>
           <div>  

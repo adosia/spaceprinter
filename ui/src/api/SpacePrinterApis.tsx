@@ -4,15 +4,15 @@ const W3CWebSocket = require('websocket').w3cwebsocket;
 
 export const SpacePrinterAPI = new spaceprinterclient({
     transport: {
-        type: window.location.hostname == "armdev" ? "http" : "https",
+        type: window.location.protocol == "http:" ? "http" : "https",
         host: window.location.hostname == "armdev" ? "spaceprinter.local" : window.location.hostname,
-        port: window.location.hostname == "armdev" ? 4441 : 4442
+        port: window.location.protocol == "http:" ? 4441 : 4442
     },
 });
 
 // Create Websocket for space printer
 export const SpacePrinterWSS = new W3CWebSocket(
-  window.location.hostname == "armdev" ? 
+  window.location.protocol == "http:" ? 
     'ws://spaceprinter.local:3331/' : 
     `wss://${window.location.hostname}:3332/`, 'echo-protocol'
 );
@@ -27,7 +27,7 @@ SpacePrinterWSS.onerror = () => {
 
 // Create websocket for Ogmios on Cardano Box
 export const OgmiosWS = new W3CWebSocket(
-  window.location.hostname == "armdev" ? 
+  window.location.protocol == "http:" ? 
   'ws://cardanobox.local:4200' : 
   'wss://cardanobox.local:4200'
 );
@@ -52,9 +52,9 @@ export const wsp = (methodname: any, args: any) => {
 
 export const CardanoBoxHttp = new cardanoboxclient({
     transport: {
-        type: "http",
+        type: window.location.protocol == "http:" ? "http" : "https",
         host: "cardanobox.local",
-        port: 4441,
+        port: window.location.protocol == "http:" ? 4441 : 4442,
     },
 });
 

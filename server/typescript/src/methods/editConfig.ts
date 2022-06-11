@@ -25,10 +25,10 @@ const editConfig: EditConfig = ( jwToken, userName, sessionType, configjson ) =>
       
       console.log("writing Config");
       const conf: any = JSON.parse(configjson);
-      const SQLSaveConfig = `UPDATE Config SET rootDir=?, serial=?, baud=?, network=?, testNetMagic=?, autoStartNode=? WHERE id=1`;
+      const SQLSaveConfig = `UPDATE Config SET rootDir=?, serial=?, baud=?, network=?, testNetMagic=?, autoStartSlicer=?, blockfrostApiKey=? WHERE id=1`;
 
       try{
-        const SQLSaveConfigRes: any = await db.run( SQLSaveConfig, conf.rootDir, conf.serial, conf.baud, conf.network, conf.testNetMagic, conf.autoStartNode );
+        const SQLSaveConfigRes: any = await db.run( SQLSaveConfig, conf.rootDir, conf.serial, conf.baud, conf.network, conf.testNetMagic, conf.autoStartSlicer, conf.blockfrostApiKey );
         db.close();
         resolve(configjson);
         return;

@@ -52,6 +52,21 @@ export const CBLoginPage: React.FC = () => {
     console.log(wipeRes);
   };
 
+  useEffect(() => {
+    const keyDownHandler = (event: any) => {
+      console.log('User pressed: ', event.key);
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        // 👇️ call submit function here
+        login();
+      }
+    };
+    document.addEventListener('keydown', keyDownHandler);
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, []);
+
   return (
     <div style={{width: 400, margin: "10 auto", boxShadow:" 0px 0px 0px 1px rgba(255, 255, 255, 0.12)", borderRadius: "4px", padding: 25 }}>
       <div>

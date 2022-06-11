@@ -126,6 +126,7 @@ export const AccountTabs: React.FC< AccountTabsProps> = ({ jwToken, address, acc
         outputAddress: outputAddress,
         outputValue: outputLovelace,
         datums: [
+                /*
                   {
                     "datumFieldsOuter":[
                         { "constructor": "0" },
@@ -140,12 +141,15 @@ export const AccountTabs: React.FC< AccountTabsProps> = ({ jwToken, address, acc
                         { "datumType": "int", "datumValue": "12000000", "byteType": "" },
                     ]
                   },
+                */
                 ],
         redeemers:[
+                  /*
                     { "constructorOuter": "1" },
                     { "constructorInner": "0" },
                     { "redeemerType": "byte", "redeemerValue": "a1c10c4767a63fe4983f1882d74d110652e9e7335d49db55f94e9841", "byteType": "hex" },
                     { "redeemerType": "int",  "redeemerValue": "12000000", "byteType": "" },
+                  */
                   ],
         plutus:[
                 //  {

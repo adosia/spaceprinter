@@ -13,24 +13,33 @@ import fs from 'fs';
 export async function start() {
   const serverOptions: ServerOptions = {
     openrpcDocument: await parseOpenRPCDocument(doc as OpenrpcDocument),
-    transportConfigs: [
+    transportConfigs: await checkForCert() > 0 ? [
       {
         type: "HTTPTransport",
         options: {
-          port: process.env.HTTP_PORT ? parseInt(process.env.HTTP_PORT, 10) : 4441,
+          port: 4441,
           middleware: [],
         } as HTTPServerTransportOptions,
       },
       {
         type: "HTTPSTransport",
         options: {
-          port: process.env.HTTPS_PORT || 4442,
+          port: 4442,
           middleware: [],
-          key: fs.readFileSync("cert/server.key"),
-          cert: fs.readFileSync("cert/server.cert"),
+          key: fs.readFileSync("./cert/server.key"),
+          cert: fs.readFileSync("./cert/server.cert"),
           // ca: fs.readFileSync("ssl/ca.crt")
         } as HTTPSServerTransportOptions,
       }
+    ] : 
+    [
+      {
+        type: "HTTPTransport",
+        options: {
+          port: 4441,
+          middleware: [],
+        } as HTTPServerTransportOptions,
+      },
     ],
     methodMapping,
   };
@@ -42,3 +51,15 @@ export async function start() {
   
 
 }
+
+const checkForCert = () => {
+  console.log("checking for cert Dir");
+  try{
+    const folderExists = fs.readdirSync("./cert/").length;
+    console.log(folderExists);
+    return(folderExists)
+  }catch(error){
+    console.log(error);
+    return(error); 
+  };
+};

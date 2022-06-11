@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, TextField} from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import useDarkMode from "use-dark-mode";
 import { blockfrostApi } from "../../api/SpacePrinterApis";
 import { SpacePrinterAPI } from "../../api/SpacePrinterApis";
@@ -8,7 +8,7 @@ export const BlockfrostAPIKey: React.FC = ( ) => {
   const darkMode = useDarkMode();
   const [blockfrostApiKey, setBlockfrostApiKey ] = useState<any>(localStorage.getItem("blockfrostApi"));
   const [ status, setStatus ] = useState("");
-  const [ viewPass ] = useState("password");
+  const [ viewPass, setViewPass ] = useState("password");
 
   const setKey = async () => {
     localStorage.setItem("blockfrostApi", blockfrostApiKey);

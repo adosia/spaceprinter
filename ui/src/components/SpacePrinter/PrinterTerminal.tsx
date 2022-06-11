@@ -33,18 +33,17 @@ const PrinterTerminal:React.FC<PrinterProps> = ({ setPrinterUUID }) => {
   
   const printerConnect: any = async () => {
     console.log("getting printer info");
-
-    
     try{
-      SpacePrinterWSS.onmessage = ( data: any ) => {
+      SpacePrinterWSS.onmessage = async ( data: any ) => {
         data = JSON.parse(data.data);
-        console.log(data);
+        // console.log(data);
         data.error ? setPrinterConnInfo( (printerConnInfo: any) => [...printerConnInfo,  data.error ]) :
         data.method && data.method == "serialPort" && setPrinterConnInfo( (printerConnInfo: any) => [...printerConnInfo,  data.result ]);
-        // let myRegexp: any = /UUID:(.*)/; 
-        // let uuid = myRegexp.exec(data.result[0]);
-        // console.log(uuid[1])
-        // setPrinterUUID(uuid[1]);
+        let myRegexp: any = /UUID:(.*)/; 
+        // console.log(myRegexp)
+        let uuid = await myRegexp.exec(data.result[0]);
+        uuid !== null && console.log(uuid[1])
+        uuid !== null && setPrinterUUID(uuid[1]);
       };
     }catch( error ){
       console.log(error)
@@ -57,14 +56,19 @@ const PrinterTerminal:React.FC<PrinterProps> = ({ setPrinterUUID }) => {
     printerConnect()
   }, []);
 
+  useEffect( () => {
+    var objDiv: any = document.getElementById("term");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  });
+
   return(
     <div style={{width: 800}}>
     Printer Terminal: 
-      <div className={classes.terminal} >
+      <div id="term" className={classes.terminal} >
         { 
           printerConnInfo && 
           printerConnInfo.map((line: any, key: any) => 
-            <span id={ key }>{line}<br/></span>
+            <>{line}<br/></>
           )
         }
       </div>

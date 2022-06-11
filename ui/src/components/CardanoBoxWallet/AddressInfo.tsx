@@ -81,7 +81,7 @@ const AddressInfo: React.FC<walletProps> = ( {jwToken, address  } ) => {
                     asset.meta.files.map( (asset: any, key: any) =>
                       <>         
                         Media: {asset.mediaType}
-                        {  asset.mediaType === "model/stl" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${asset.src[0].replace("ipfs://","")}` } fileName="" /> }
+                        {  asset.mediaType === "model/stl" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${asset.src[0].replace("ipfs://","")}` } fileName="" stlName="" /> }
                         <br />
                       </>
                     )
@@ -90,9 +90,7 @@ const AddressInfo: React.FC<walletProps> = ( {jwToken, address  } ) => {
                       { asset.policyID && typeof asset.meta.files !== "undefined" && asset.meta.files.mediaType === "image/png"   && <img src={`https://ipfs.io/ipfs/${asset.meta.image.replace("ipfs://","")}`} alt="png file" height="50" /> }
                       { asset.policyID && typeof asset.meta.files !== "undefined" && asset.meta.files.mediaType === "image/jpeg"  && <img src={`https://ipfs.io/ipfs/${asset.meta.image.replace("ipfs://","")}`} alt="jpeg file" height="50" /> }
                       { asset.policyID && typeof asset.meta.files !== "undefined" && asset.meta.files.mediaType === "image/jpg"   && <img src={`https://ipfs.io/ipfs/${asset.meta.image.replace("ipfs://","")}`} alt="jpg" height="50"/> }
-                      
                     </>
-                    
                   }
                 </div>
               )

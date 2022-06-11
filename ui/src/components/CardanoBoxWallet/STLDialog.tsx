@@ -6,9 +6,10 @@ import { STLViewer } from "../AssetViewer/STLviewer";
 type dialogProps = {
   fileUrl: string;
   fileName: string;
+  stlName: string;
 }
 
-export const STLDialog: React.FC<dialogProps> = ( { fileUrl, fileName } ) => {
+export const STLDialog: React.FC<dialogProps> = ( { fileUrl, fileName, stlName } ) => {
   const [ open, setOpen ] = useState( false );
   const darkMode = useDarkMode();
 
@@ -24,7 +25,7 @@ export const STLDialog: React.FC<dialogProps> = ( { fileUrl, fileName } ) => {
   return (
     <>
       <Button variant="outlined" onClick={handleClickOpen}>
-        View STL
+        {stlName !== "" ? stlName : "View STL"}
       </Button>
       <Dialog
         open={open}
