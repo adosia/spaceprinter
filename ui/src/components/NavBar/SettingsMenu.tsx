@@ -6,6 +6,7 @@ import { ChangeDeviceName } from "../ChangeDeviceName/ChangeDeviceName";
 import { Wifi } from "../Wifi/Wifi";
 import { GetUpdates } from "../GetUpdates/GetUpdates";
 import { UpdateBlockfrostKey } from "../UpdateBlockfrostKey/UpdateBlockfrostKey";
+import { GenSSL } from "../GenSSL/GenSSL";
 import sbicon from "../../assets/sp_icon_logo_V1.png";
 
 export const SettingsMenu = () => {
@@ -34,6 +35,7 @@ export const SettingsMenu = () => {
         <MenuItem><ChangeDeviceName /></MenuItem>
         <MenuItem><Wifi /></MenuItem>
         <MenuItem><UpdateBlockfrostKey /></MenuItem>
+        <MenuItem><GenSSL /></MenuItem>
         <MenuItem><GetUpdates /></MenuItem>
       </Menu>
     </div>

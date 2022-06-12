@@ -20,7 +20,6 @@ import { SettingsMenu } from "./SettingsMenu";
 import { PrinterMenu } from "./PrinterMenu";
 import { NewWalletPopup } from "../CardanoBoxWallet/NewWalletPopup";
 
-
 const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

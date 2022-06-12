@@ -16,7 +16,7 @@ const initDevice: any = async () => {
   connectWiFi();
   saveBlockFrostApi();
   initWebsocket();
-  await checkForCert() == 0 && await buildSSLcert("spaceprinter.local", "US", "Underground", "The Printer People");
+  await checkForCert() == 0 && await buildSSLcert("spaceprinter.local", "SL", "Underground", "ThePrinterPeople");
   await checkForCert() > 0 && initWebsocketSSL();
 };
 

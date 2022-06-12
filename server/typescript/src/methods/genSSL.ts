@@ -13,10 +13,10 @@ const genSSL: GenSSL = (jwToken, userName, sessionType, sslCommonName, sslCountr
   });
 };
 
-export const buildSSLcert = async ( sslCommonName: string, sslCountry: string, sslLocation: string, sslOrg: string ) => {
-  const genSSLcmd: string = `openssl req -x509 -sha256 -days 356 -nodes -newkey rsa:2048 -subj "/CN=${sslCommonName}/C=${sslCountry}/L=${sslLocation}/0=${sslOrg}" -keyout cert/server.key -out cert/server.cert`
+export const buildSSLcert = async ( sslCommonName: string, sslCountry: string, sslLocation: string, sslOrg: string ) => { 
+  const genSSLcmd: string = `openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=${sslCountry}/ST=blockchain/L=${sslLocation}/O=${sslOrg}/CN=${sslCommonName}" -addext "subjectAltName = DNS:${sslCommonName}" -keyout cert/server.key -out cert/server.cert`
   console.log(await exec( genSSLcmd , { "encoding":"utf8" } ));
-  return("ok");
+  return("ok")
 };
 
 export default genSSL;

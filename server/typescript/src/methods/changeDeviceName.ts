@@ -2,6 +2,7 @@ import { ChangeDeviceName } from "../generated-typings";
 const execAwait = require('child_process').execSync;
 const exec = require('child_process').exec;
 import { checkJWT } from "../utils/checkauth";
+import { buildSSLcert } from "./genSSL"
 
 const changeDeviceName: ChangeDeviceName = (jwToken, userName, sessionType, hostname) => {
   return new Promise( async (resolve, reject) => {
@@ -20,6 +21,7 @@ const changeName = async ( newHostname: string ) => {
 
   try{
     execAwait( changeNameCmd, { "encoding":"utf8" } );
+    await buildSSLcert(newHostname+".local", "SL", "Underground", "ThePrinterPeople");
     setTimeout(
       ()=>{
         execAwait( cmReboot, { "encoding":"utf8" } );

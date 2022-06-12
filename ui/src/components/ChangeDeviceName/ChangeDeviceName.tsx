@@ -32,11 +32,12 @@ export const ChangeDeviceName = () => {
 
     const changeNameRes: any = await SpacePrinterAPI.changeDeviceName( jwtoken, userName, sessionType, newDeviceName );
     console.log(changeNameRes);
+
     changeNameRes == "ok" ? setStatus("Name changed to: " + newDeviceName + ". Device will reboot within 5 seconds") : setStatus("error");
     
     setTimeout(
       ()=>{
-        window.location.assign(`http://${newDeviceName}.local`);
+        window.location.assign(`https://${newDeviceName}.local`);
       }, 7000 );
   };
 

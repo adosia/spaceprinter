@@ -13,7 +13,7 @@ import { buildSSLcert } from "./methods/genSSL"
 
 export async function start() {
   
-  await checkForCert() == 0 && await buildSSLcert("spaceprinter.local", "US", "Underground", "The Printer People");
+  await checkForCert() == 0 && await buildSSLcert("spaceprinter.local", "SL", "Underground", "ThePrinterPeople");
   
   const serverOptions: ServerOptions = {
     openrpcDocument: await parseOpenRPCDocument(doc as OpenrpcDocument),
