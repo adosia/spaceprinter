@@ -29,15 +29,16 @@ export const SessionSelect: React.FC = () => {
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSessionType(event.target.value as string);
-    sessionStorage.setItem("sessionType", event.target.value as string)
+    event.target.value !== "cardanobox" && sessionStorage.setItem("sessionType", event.target.value as string)
   };
 
   const setSelfHostParams = () => {
     if( ogmiosURI == "" ){ return(setStatus( "Provide Ogmios URI" )) };
-    sesstionType === "cardanobox" && sessionStorage.setItem("ogmiosURI", ogmiosURI)
-    sesstionType === "cardanobox" && sessionStorage.setItem("ogmiosPort", ogmiosPort)
-    sesstionType === "cardanobox" && sessionStorage.setItem("kupoURI", kupoURI)
-    sesstionType === "cardanobox" && sessionStorage.setItem("kupoPort", kupoPort)
+    sesstionType === "cardanobox" && sessionStorage.setItem("ogmiosURI", ogmiosURI);
+    sesstionType === "cardanobox" && sessionStorage.setItem("ogmiosPort", ogmiosPort);
+    sesstionType === "cardanobox" && sessionStorage.setItem("kupoURI", kupoURI);
+    sesstionType === "cardanobox" && sessionStorage.setItem("kupoPort", kupoPort);
+    sessionStorage.setItem("sessionType", "cardanobox");
   };
 
   return (
@@ -83,6 +84,7 @@ export const SessionSelect: React.FC = () => {
           />
         </div>
         <div>
+          Optional<br />
           <TextField
               variant="outlined"
               margin="dense"

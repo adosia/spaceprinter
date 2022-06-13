@@ -12,6 +12,7 @@ const GenPrinterWallet:React.FC<WalletProps> = ( { queryWallets, uuid } ) => {
   const [ walletType, setWalletType ] = useState<any>("printer")
   const [ status, setStatus ] = useState<any>();
   const [ seedPhrase, setSeedPhrase ] = useState("");
+  const [ viewSeedPhrase, setViewSeedPhrase ] = useState("password")
   const [ open, setOpen ] = useState<boolean>(false)
 
   const handleClickOpen = () => {
@@ -72,7 +73,7 @@ const GenPrinterWallet:React.FC<WalletProps> = ( { queryWallets, uuid } ) => {
             disabled
           />
           <TextField
-            type="password"
+            type={viewSeedPhrase}
             variant="outlined"
             margin="dense"
             required
@@ -89,8 +90,20 @@ const GenPrinterWallet:React.FC<WalletProps> = ( { queryWallets, uuid } ) => {
           <div>
             <span style={{color: "red", fontWeight: "bold"}}>Makes sure you record this seed Phrase, once this window disapears it will be none recoverable you HAVE BEEN WARNED.</span><br/><br/> 
             <div>
-            Phrase:<br />  
-            { seedPhrase }
+              Phrase:<br />
+              <TextField
+              type="password"
+              variant="outlined"
+              margin="dense"
+              id="seedPhrase"
+              name="seedPhrase"
+              label="seedPhrase"
+              value={seedPhrase}
+              fullWidth
+              />
+            </div>
+            <div>
+              <Button onClick={()=>setViewSeedPhrase("text")}>View Phrase</Button>
             </div>
           </div>       
         }

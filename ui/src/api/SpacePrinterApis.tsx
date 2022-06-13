@@ -24,31 +24,6 @@ SpacePrinterWSS.onerror = () => {
   console.log('Space Printer Connection Error');
 };
 
-// Create websocket for Ogmios on Cardano Box
-export const OgmiosWS = new W3CWebSocket(
-  window.location.protocol == "http:" ? 
-  'ws://cardanobox.local:4200' : 
-  'wss://cardanobox.local:4200'
-);
-
-OgmiosWS.onopen = () => {
-  console.log("Ogmios connection open")
-};
-
-OgmiosWS.onerror = () => {
-  console.log('Ogmios Connection Error');
-};
-
-export const wsp = (methodname: any, args: any) => {
-  OgmiosWS.send(JSON.stringify({
-    type: "jsonwsp/request",
-    version: "1.0",
-    servicename: "ogmios",
-    methodname,
-    args
-  }));
-}
-
 export const blockfrostApi = async ( uri: string, method: string, content: any ) => {
   console.log(JSON.stringify(content));
   let settings:any = {};

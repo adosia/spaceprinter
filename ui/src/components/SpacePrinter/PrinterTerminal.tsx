@@ -41,7 +41,7 @@ const PrinterTerminal:React.FC<PrinterProps> = ({ setPrinterUUID }) => {
         data.method && data.method == "serialPort" && setPrinterConnInfo( (printerConnInfo: any) => [...printerConnInfo,  data.result ]);
         let myRegexp: any = /UUID:(.*)/; 
         // console.log(myRegexp)
-        let uuid = await myRegexp.exec(data.result[0]);
+        let uuid = await myRegexp.exec(data.result !== undefined && data.result[0]);
         uuid !== null && console.log(uuid[1])
         uuid !== null && setPrinterUUID(uuid[1]);
       };

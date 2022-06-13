@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { SpacePrinterAPI, SpacePrinterWSS, OgmiosWS, blockfrostApi } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS, blockfrostApi } from "../../api/SpacePrinterApis";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import  star  from "../../assets/sticker.webp";
@@ -31,16 +31,6 @@ export const SendTXBlockFrost: React.FC<SendTXProps> = ({ jwToken, txResult, get
     getAddressInfo();
     setOpen(false);
   };
-
-  const wsp = (methodname: any, args: any) => {
-    OgmiosWS.send(JSON.stringify({
-      type: "jsonwsp/request",
-      version: "1.0",
-      servicename: "ogmios",
-      methodname,
-      args
-    }));
-  }
 
   const sendTX = async () => {
     const blockfrostres: any = await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/tx/submit`, "POST", txResult.cborHex);

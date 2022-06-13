@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Tooltip } from "@material-ui/core"; //tslint:disable-line
-import { SpacePrinterAPI, SpacePrinterWSS, OgmiosWS } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS } from "../../api/SpacePrinterApis";
 import { useHistory } from "react-router-dom";
 
 export const RecoverSeed: React.FC = () => {

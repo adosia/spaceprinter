@@ -1,5 +1,6 @@
 import { getAssetInfo } from "../Blockfrost/BlockfrostAsset";
-import { SpacePrinterAPI, SpacePrinterWSS, OgmiosWS, blockfrostApi } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS, blockfrostApi } from "../../api/SpacePrinterApis";
+import { OgmiosWS } from "../../api/OgmiosApi";
 
 export const parseOgmiosUtxos = async ( address: string ) => {
   const cbjwtoken: any = sessionStorage.getItem("cbjwtoken")
