@@ -48,7 +48,6 @@
     "@mui/material": "^5.5.3",
     "@mui/x-data-grid": "^5.7.0",
     "@react-three/fiber": "^7.0.21",
-    "cardanoboxclient": "file:../../../cardanobox/cardanoboxapi/client/typescript/cardanoboxclient-1.0.0.tgz",
     "i18next": "^17.3.0",
     "i18next-browser-languagedetector": "^4.0.0",
     "moment": "^2.24.0",
@@ -56,7 +55,7 @@
     "react-dom": "17.0.1",
     "react-i18next": "^10.13.1",
     "react-router-dom": "^5.2.0",
-    "spaceprinterclient": "file:../client/typescript/spaceprinterclient-1.0.0.tgz",
+    "spaceprinterclient": "https://github.com/adosia/spaceprinterapi/raw/master/client/typescript/spaceprinterclient-1.0.0.tgz",
     "three": "^0.135.0",
     "use-dark-mode": "^2.3.1",
     "websocket": "^1.0.34"

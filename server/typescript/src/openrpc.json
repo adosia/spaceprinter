@@ -27,9 +27,6 @@
         },
         {
           "$ref": "#/components/contentDescriptors/password"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/sessionType"
         }
       ],
       "result": {
@@ -49,9 +46,6 @@
         },
         {
           "$ref": "#/components/contentDescriptors/password"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/sessionType"
         }
       ],
       "result": {
@@ -85,9 +79,6 @@
           "$ref": "#/components/contentDescriptors/userName"
         },
         {
-          "$ref": "#/components/contentDescriptors/sessionType"
-        },
-        {
           "$ref": "#/components/contentDescriptors/walletName"
         },
         {
@@ -119,9 +110,6 @@
           "$ref": "#/components/contentDescriptors/userName"
         },
         {
-          "$ref": "#/components/contentDescriptors/sessionType"
-        },
-        {
           "$ref": "#/components/contentDescriptors/walletID"
         }
       ],
@@ -142,9 +130,6 @@
         },
         {
           "$ref": "#/components/contentDescriptors/userName"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/walletID"
@@ -170,9 +155,6 @@
         },
         {
           "$ref": "#/components/contentDescriptors/userName"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/walletID"
@@ -221,9 +203,6 @@
           "$ref": "#/components/contentDescriptors/userName"
         },
         {
-          "$ref": "#/components/contentDescriptors/sessionType"
-        },
-        {
           "$ref": "#/components/contentDescriptors/configjson"
         }
       ],
@@ -246,9 +225,6 @@
           "$ref": "#/components/contentDescriptors/userName"
         },
         {
-          "$ref": "#/components/contentDescriptors/sessionType"
-        },
-        {
           "$ref": "#/components/contentDescriptors/gcode"
         }
       ],
@@ -269,9 +245,6 @@
         },
         {
           "$ref": "#/components/contentDescriptors/userName"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/fileURL"
@@ -299,9 +272,6 @@
           "$ref": "#/components/contentDescriptors/userName"
         },
         {
-          "$ref": "#/components/contentDescriptors/sessionType"
-        },
-        {
           "$ref": "#/components/contentDescriptors/updateType"
         }
       ],
@@ -324,9 +294,6 @@
           "$ref": "#/components/contentDescriptors/userName"
         },
         {
-          "$ref": "#/components/contentDescriptors/sessionType"
-        },
-        {
           "$ref": "#/components/contentDescriptors/hostname"
         }
       ],
@@ -347,9 +314,6 @@
         },
         {
           "$ref": "#/components/contentDescriptors/userName"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/wifiAction"
@@ -378,9 +342,6 @@
         },
         {
           "$ref": "#/components/contentDescriptors/userName"
-        },
-        {
-          "$ref": "#/components/contentDescriptors/sessionType"
         },
         {
           "$ref": "#/components/contentDescriptors/sslCommonName"

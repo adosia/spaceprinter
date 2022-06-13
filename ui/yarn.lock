@@ -3328,19 +3328,6 @@
   dependencies:
     "rsvp" "^4.8.4"
 
-"cardanoboxclient@file:../../../cardanobox/cardanoboxapi/client/typescript/cardanoboxclient-1.0.0.tgz":
-  "integrity" "sha512-8varum56bxN2aDYXvv/Js5k+dRxMZZ45mIaDhU7lKME4Pawithi7o1+Eyjy/9aeDT+6CIR93TVxzNCqPjblb4w=="
-  "resolved" "file:../../../cardanobox/cardanoboxapi/client/typescript/cardanoboxclient-1.0.0.tgz"
-  "version" "1.0.0"
-  dependencies:
-    "@open-rpc/client-js" "1.7.1"
-    "@open-rpc/meta-schema" "1.14.2"
-    "@open-rpc/schema-utils-js" "1.15.0"
-    "@types/json-schema" "7.0.3"
-    "@types/lodash" "^4.14.149"
-    "@types/ws" "^6.0.1"
-    "lodash" "^4.17.15"
-
 "case-sensitive-paths-webpack-plugin@2.3.0":
   "integrity" "sha512-/4YgnZS8y1UXXmC02xD5rRrBEu6T5ub+mQHLNRj0fzTRbgdBYhsNo2V5EqwgqrExjxsjtF/OpAKAMkKsxbD5XQ=="
   "resolved" "https://registry.npmjs.org/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.3.0.tgz"
@@ -10629,9 +10616,9 @@
   "resolved" "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz"
   "version" "0.6.1"
 
-"spaceprinterclient@file:../client/typescript/spaceprinterclient-1.0.0.tgz":
-  "integrity" "sha512-XCeuKhI6egqWxFUM8F2opiK5NzPRm2U+a0HhC8iV8kf/pGWbs/fa31pESWokjav8Be5hJmkCnqzlm9CXjmGCwg=="
-  "resolved" "file:../client/typescript/spaceprinterclient-1.0.0.tgz"
+"spaceprinterclient@https://github.com/adosia/spaceprinterapi/raw/master/client/typescript/spaceprinterclient-1.0.0.tgz":
+  "integrity" "sha512-0QBDltG4/AxuDfXn6HwsFa8pcLUQpHN6JF4vtt2wwYjJyA0HTnKJl6fWLIYp+nlelKVs+oXUo/AbSFAakJvH1A=="
+  "resolved" "https://github.com/adosia/spaceprinterapi/raw/master/client/typescript/spaceprinterclient-1.0.0.tgz"
   "version" "1.0.0"
   dependencies:
     "@open-rpc/client-js" "1.7.1"

@@ -46,13 +46,12 @@ export const GetUpdates: React.FC = () => {
     setUpdateUIstate("Updating UI");
     const deviceName: string = window.location.hostname;
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
-    const getUpdUIResult: any = await SpacePrinterAPI.update( jwToken, userName, sessionType, "ui");
+    const getUpdUIResult: any = await SpacePrinterAPI.update( jwToken, userName, "ui");
     console.log(getUpdUIResult);
     setUpdateUIstate(`UI Update: ${getUpdUIResult}`);
 
     setUpdateAPIState("Updating Api");
-    const getUpdApiResult: any = await SpacePrinterAPI.update( jwToken, userName, sessionType, "update");
+    const getUpdApiResult: any = await SpacePrinterAPI.update( jwToken, userName, "update");
     console.log(getUpdApiResult);
     setUpdateAPIState( `Api Update: ${getUpdApiResult}` );
     
@@ -66,13 +65,12 @@ export const GetUpdates: React.FC = () => {
     setUpdateUIstate("Restoring UI files");
     const deviceName: string = window.location.hostname;
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
-    const getUpdUIResult: any = await SpacePrinterAPI.update( jwToken, userName, sessionType, "ui");
+    const getUpdUIResult: any = await SpacePrinterAPI.update( jwToken, userName, "ui");
     console.log(getUpdUIResult);
     setUpdateUIstate(`UI Update: ${getUpdUIResult}`);
 
     setUpdateAPIState("Wiping and installing");
-    const getUpdApiResult: any = await SpacePrinterAPI.update( jwToken, userName, sessionType, "full");
+    const getUpdApiResult: any = await SpacePrinterAPI.update( jwToken, userName, "full");
     console.log(getUpdApiResult);
     setUpdateAPIState( `Api Update: ${getUpdApiResult}` );
     

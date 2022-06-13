@@ -3,9 +3,9 @@ const execAwait = require('child_process').execSync;
 const exec = require('child_process').exec;
 import { checkJWT } from "../utils/checkauth";
 
-const manageWifi: ManageWifi = (jwToken, userName, sessionType, wifiAction, ssid, ssidPass) => {
+const manageWifi: ManageWifi = (jwToken, userName, wifiAction, ssid, ssidPass) => {
   return new Promise( async (resolve, reject) => {
-    const checkToken: any = await checkJWT(jwToken, userName, sessionType);
+    const checkToken: any = await checkJWT(jwToken, userName);
     if( checkToken.name ) return resolve("authError");
     wifiAction === "scan"       && await resolve( scanWifi() );
     wifiAction === "connect"    && await resolve( connectWifi( ssid, ssidPass ) );

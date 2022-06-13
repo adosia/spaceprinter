@@ -4,7 +4,7 @@ import { getConfig } from "../utils/config";
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 
-const editConfig: EditConfig = ( jwToken, userName, sessionType, configjson ) => {
+const editConfig: EditConfig = ( jwToken, userName, configjson ) => {
   return new Promise( async(resolve, reject) =>{
 
     if ( configjson === "bfAPi" ){
@@ -12,7 +12,7 @@ const editConfig: EditConfig = ( jwToken, userName, sessionType, configjson ) =>
       return; 
     };
 
-    const checkToken: any = await checkJWT( jwToken, userName, sessionType );
+    const checkToken: any = await checkJWT( jwToken, userName );
     if( checkToken.name ) return resolve("authError");
     if(configjson === ""){
       resolve( getConfig() );

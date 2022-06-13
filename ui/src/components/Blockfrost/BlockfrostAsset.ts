@@ -1,5 +1,3 @@
-
-
 export const getAssetInfo = async ( asset: string ) => {
     // console.log(asset);
     const  blockfrostApi: any = localStorage.getItem("blockfrostApi");

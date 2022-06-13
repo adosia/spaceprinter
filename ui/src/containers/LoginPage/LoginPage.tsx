@@ -2,7 +2,9 @@ import React from "react";
 import {MuiThemeProvider, CssBaseline, makeStyles, createStyles, Theme, ButtonBase} from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import { lightTheme, darkTheme } from "../../themes/theme";
-import SessionSelect from "../../components/SessionSelect/SessionSelect";
+import { Login } from "../../components/Login/Login";
+import { SessionSelect } from "../../components/Login/SessionSelect";
+import { BlockfrostAPIKey } from "../../components/Blockfrost/BlockfrostAPIKey";
 import header from "../../assets/spaceprinter_logo_V1.png"
 import "./LoginPage.css";
 
@@ -31,9 +33,14 @@ const LoginPage: React.FC = () => {
         <div style={{textAlign: "center"}}>
           <img src={header} width="500" /> 
         </div>
-        <div></div>
+        <div>
+          <Login />
+        </div>
         <div>
           <SessionSelect />
+        </div>
+        <div>
+          <BlockfrostAPIKey />
         </div>
         <div>
           FireFox User: If you can't login when using https://. <br />

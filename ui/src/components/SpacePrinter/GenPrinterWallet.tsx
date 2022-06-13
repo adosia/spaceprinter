@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@material-ui/core"; //tslint:disable-line
-import { SpacePrinterAPI, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI } from "../../api/SpacePrinterApis";
 
 interface WalletProps {
   queryWallets: any,
@@ -31,9 +31,9 @@ const GenPrinterWallet:React.FC<WalletProps> = ( { queryWallets, uuid } ) => {
     if(passPhrase.length < 10){return setStatus("Password needs to be 10 character or longer."); };
     const jwtoken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
+
     try{
-      const result: any = await SpacePrinterAPI.genPrinterWallet( jwtoken, userName, sessionType, uuid, "", passPhrase, walletType );
+      const result: any = await SpacePrinterAPI.genPrinterWallet( jwtoken, userName, uuid, "", passPhrase, walletType );
       console.log( result );
       // queryWallets();
       result && result.seed ? setSeedPhrase( result.seed ) : setStatus( result.error );

@@ -32,11 +32,10 @@ export const UpdateBlockfrostKey = () => {
   const saveKeyDB = async () => {
     const jwtoken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
-    const configRes: any = await SpacePrinterAPI.editConfig( jwtoken, userName, sessionType, "" );
+    const configRes: any = await SpacePrinterAPI.editConfig( jwtoken, userName, "" );
     configRes.blockfrostApiKey = newKey;
     console.log(configRes);    
-    const saveConfig = await SpacePrinterAPI.editConfig( jwtoken, userName, sessionType, JSON.stringify(configRes) );
+    const saveConfig = await SpacePrinterAPI.editConfig( jwtoken, userName, JSON.stringify(configRes) );
     console.log(saveConfig);
     setStatus("saved")
   };

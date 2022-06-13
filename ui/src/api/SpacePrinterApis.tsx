@@ -1,5 +1,4 @@
 import spaceprinterclient from "spaceprinterclient";
-import cardanoboxclient from "cardanoboxclient";
 const W3CWebSocket = require('websocket').w3cwebsocket;
 
 export const SpacePrinterAPI = new spaceprinterclient({
@@ -49,14 +48,6 @@ export const wsp = (methodname: any, args: any) => {
     args
   }));
 }
-
-export const CardanoBoxHttp = new cardanoboxclient({
-    transport: {
-        type: window.location.protocol == "http:" ? "http" : "https",
-        host: "cardanobox.local",
-        port: window.location.protocol == "http:" ? 4441 : 4442,
-    },
-});
 
 export const blockfrostApi = async ( uri: string, method: string, content: any ) => {
   console.log(JSON.stringify(content));

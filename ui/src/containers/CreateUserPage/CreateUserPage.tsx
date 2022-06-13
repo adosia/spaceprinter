@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import {MuiThemeProvider, CssBaseline, makeStyles, createStyles, Theme, TextField, Button, Link } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import { lightTheme, darkTheme } from "../../themes/theme";
-import { SpacePrinterAPI, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI } from "../../api/SpacePrinterApis";
 import header from "../../assets/spaceprinter_logo_V1.png"
 import "./CreateUserPage.css";
 
@@ -31,8 +31,7 @@ const CreateUserPage: React.FC = () => {
   const history = useHistory();
 
   const createUser = async () => {
-    const sessionType: any = sessionStorage.getItem("sessionType");
-    const createUserRes: any = await SpacePrinterAPI.createUser( userName, password, sessionType);
+    const createUserRes: any = await SpacePrinterAPI.createUser( userName, password );
     console.log(createUserRes);
     createUserRes.error && setStatus(createUserRes.error);
     createUserRes.changes &&  history.push("/LoginPage");

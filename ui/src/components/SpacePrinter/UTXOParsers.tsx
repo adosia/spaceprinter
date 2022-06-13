@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SpacePrinterAPI, CardanoBoxHttp, blockfrostApi, OgmiosWS } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, blockfrostApi, OgmiosWS } from "../../api/SpacePrinterApis";
 import { makeStyles, Checkbox, FormControlLabel, Button } from "@material-ui/core";
 import useDarkMode from "use-dark-mode";
 import { a2hex, hex2a } from "../../utils/hextools";

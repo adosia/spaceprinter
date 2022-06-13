@@ -3,9 +3,9 @@ const exec = require('child_process').execSync;
 import { checkJWT } from "../utils/checkauth";
 import fs from 'fs';
 
-const update: Update = ( jwToken, userName, sessionType, updateType ) => {
+const update: Update = ( jwToken, userName, updateType ) => {
   return new Promise( async (resolve, reject) => {
-    const checkToken: any = await checkJWT(jwToken, userName, sessionType);
+    const checkToken: any = await checkJWT(jwToken, userName);
     if( checkToken.name ) return resolve("authError");
 
     if (updateType === "full" ){

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { SpacePrinterAPI, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI } from "../../api/SpacePrinterApis";
 import { makeStyles, Button, DialogTitle, Dialog, DialogContent, Typography, TextField, Tooltip, ButtonBase } from '@material-ui/core';
 
 export const GenSSL = () => {
@@ -19,9 +19,8 @@ export const GenSSL = () => {
   const genCert = async () => {
     const jwtoken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
     setStatus("Generating SSL");
-    const genCertRes = await SpacePrinterAPI.genSSL(jwtoken, userName, sessionType, window.location.hostname, "SL", "Underground", "ThePrinterPeople");
+    const genCertRes = await SpacePrinterAPI.genSSL(jwtoken, userName, window.location.hostname, "SL", "Underground", "ThePrinterPeople");
     setStatus("New SSL Certificate created. Please Restart your Space Printer device for all changes to take effect. You will also have to accept the new certificate after restart.")
   };
 

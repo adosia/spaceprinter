@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS } from "../../api/SpacePrinterApis";
 import { TextField, Button } from "@material-ui/core"; 
 import useDarkMode from "use-dark-mode";
 
@@ -13,9 +13,8 @@ const PrinterCMD: React.FC = () => {
   const sendCMD = async () => {
     const jwtoken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const cmdResult: any = await SpacePrinterAPI.sendCmdToPrinter( jwtoken, userName, sessionType, printerCMD );
+      const cmdResult: any = await SpacePrinterAPI.sendCmdToPrinter( jwtoken, userName, printerCMD );
       console.log(cmdResult);
       cmdResult.stderr != "" && setStatus(cmdResult.stderr);
     }catch(error){

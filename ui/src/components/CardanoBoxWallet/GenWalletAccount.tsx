@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@material-ui/core"; //tslint:disable-line
-import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp, OgmiosWS } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS, OgmiosWS } from "../../api/SpacePrinterApis";
 
 type walletProps = {
   jwToken: string,

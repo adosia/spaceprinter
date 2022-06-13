@@ -38,8 +38,7 @@ const PrinterWallet:React.FC<PrinterProps> = ({ printerUUID, walletExist, setWal
   const queryPrinterWallet = async () => {
     const jwtoken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
-    const walletsResult: any = await SpacePrinterAPI.getCBWallets( jwtoken, userName, sessionType, "" );
+    const walletsResult: any = await SpacePrinterAPI.getCBWallets( jwtoken, userName, "" );
     console.log(walletsResult);
     walletsResult.map((wallet: any )=>{
       if(wallet.walletType == "printer"){ 

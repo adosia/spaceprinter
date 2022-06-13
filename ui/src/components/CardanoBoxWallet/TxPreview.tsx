@@ -61,13 +61,11 @@ export const TxPreview: React.FC<TxPreviewProps> = ({ jwToken, walletID, account
     const assets: any = [];
     const jwToken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
 
     try{
       const genTxResult: any = await SpacePrinterAPI.genGruntTX(
         jwToken,
         userName,
-        sessionType,
         walletID,
         walletPassword,
         accountName,

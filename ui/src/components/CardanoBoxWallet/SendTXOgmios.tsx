@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp, OgmiosWS, blockfrostApi } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS, OgmiosWS, blockfrostApi } from "../../api/SpacePrinterApis";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import  star  from "../../assets/sticker.webp";
@@ -53,7 +53,7 @@ export const SendTXOgmios: React.FC<SendTXProps> = ({ txResult, getAddressInfo }
   
   const getMempoolStatus = async () => {
     const jwToken: any = sessionStorage.getItem("cbjwtoken");
-    const queryTipResult: any = await CardanoBoxHttp.cardanoNode( jwToken, "", "");
+    const queryTipResult: any = [];
     const result = JSON.parse(queryTipResult);
     setMempool(result);
   };

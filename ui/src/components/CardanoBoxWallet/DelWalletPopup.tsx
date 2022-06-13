@@ -77,9 +77,8 @@ export const DelWalletPopup: React.FC<DelWalletPopupProps> = ({ walletID, queryW
   const delWallet: any  = async ( walletID: string ) => {
     const jwToken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
     try{
-      const delRes: string = await SpacePrinterAPI.delCBWallet( jwToken, userName, sessionType, walletID, "" );
+      const delRes: string = await SpacePrinterAPI.delCBWallet( jwToken, userName, walletID, "" );
       console.log(delRes);
       queryWallets();
     }catch( error ){

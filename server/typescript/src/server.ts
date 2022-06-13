@@ -6,8 +6,6 @@ import { OpenrpcDocument } from "@open-rpc/meta-schema";
 import { parseOpenRPCDocument } from "@open-rpc/schema-utils-js";
 import methodMapping from "./generated-method-mapping";
 import doc from "./openrpc.json";
-let serialport = require('serialport');
-const exec = require('child_process').exec
 import fs from 'fs';
 import { buildSSLcert } from "./methods/genSSL"
 

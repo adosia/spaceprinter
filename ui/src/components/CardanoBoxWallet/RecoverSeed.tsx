@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Tooltip } from "@material-ui/core"; //tslint:disable-line
-import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp, OgmiosWS } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS, OgmiosWS } from "../../api/SpacePrinterApis";
 import { useHistory } from "react-router-dom";
 
 export const RecoverSeed: React.FC = () => {
@@ -26,8 +26,7 @@ export const RecoverSeed: React.FC = () => {
   const submitSeed = async () => {
     const jwToken: any = sessionStorage.getItem("jwtoken");
     const userName: any = sessionStorage.getItem("userName");
-    const sessionType: any = sessionStorage.getItem("sessionType");
-    const result: any = await SpacePrinterAPI.genPrinterWallet( jwToken, userName, sessionType, walletName, seedPhrase, passPhrase, walletType );
+    const result: any = await SpacePrinterAPI.genPrinterWallet( jwToken, userName, walletName, seedPhrase, passPhrase, walletType );
     console.log( result );
     result.error ? setStatus( result.error ) : setStatus( result );   
   };

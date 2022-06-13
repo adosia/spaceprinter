@@ -2,9 +2,9 @@ import { GenSSL } from "../generated-typings";
 const exec = require('child_process').execSync;
 import { checkJWT } from "../utils/checkauth";
 
-const genSSL: GenSSL = (jwToken, userName, sessionType, sslCommonName, sslCountry, sslLocation, sslOrg) => {
+const genSSL: GenSSL = (jwToken, userName, sslCommonName, sslCountry, sslLocation, sslOrg) => {
   return new Promise( async(resolve, reject) => {
-    const checkToken: any = await checkJWT( jwToken, userName, sessionType );
+    const checkToken: any = await checkJWT( jwToken, userName );
     if( checkToken.name ) return resolve("authError");
 
     const buildSSLCertRes: any = buildSSLcert(sslCommonName, sslCountry, sslLocation, sslOrg);

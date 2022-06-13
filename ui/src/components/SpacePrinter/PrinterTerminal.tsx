@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { SpacePrinterAPI, SpacePrinterWSS, CardanoBoxHttp } from "../../api/SpacePrinterApis";
+import { SpacePrinterAPI, SpacePrinterWSS } from "../../api/SpacePrinterApis";
 import { makeStyles } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import PrinterCMD from "./PrinterCMD";

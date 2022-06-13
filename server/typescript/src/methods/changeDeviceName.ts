@@ -4,9 +4,9 @@ const exec = require('child_process').exec;
 import { checkJWT } from "../utils/checkauth";
 import { buildSSLcert } from "./genSSL"
 
-const changeDeviceName: ChangeDeviceName = (jwToken, userName, sessionType, hostname) => {
-  return new Promise( async (resolve, reject) => {
-    const checkToken: any = await checkJWT(jwToken, userName, sessionType);
+const changeDeviceName: ChangeDeviceName = ( jwToken, userName, hostname ) => {
+  return new Promise( async ( resolve, reject ) => {
+    const checkToken: any = await checkJWT( jwToken, userName );
     if( checkToken.name ) return resolve("authError");
 
     resolve(changeName( hostname ));
