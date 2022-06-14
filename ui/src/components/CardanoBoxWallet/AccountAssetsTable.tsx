@@ -48,10 +48,48 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
     setPage(0);
   };
 
-  const handleSelected = async ( event: React.ChangeEvent<HTMLInputElement>, TxId: string, txIndex:any, inputValue: any, assets: any, outputAsset: any, datums: any[] ) => {
+  const handleSelected = async ( event: React.ChangeEvent<HTMLInputElement>, TxId: string, txIndex:any, inputValue: any, assets: any, outputAsset: any, datum: any[] ) => {
     console.log(event.target.checked);
     const policyID: string = outputAsset.split(".")[0];
     const assetName: string = outputAsset.split(".")[1];
+
+    const datums: any = [/*
+              {
+                "datumFieldsOuter":[
+                  { "constructor": "0" },
+                  // { "datumType": "int",  "datumValue": "7000000", "byteType": "" },
+                  // { "datumType": "byte", "datumValue": "a1c10c4767a63fe4983f1882d74d110652e9e7335d49db55f94e9841", "byteType": "hex" },
+                  // { "datumType": "byte", "datumValue": "", "byteType": "hex" },
+                  // { "datumType": "int",  "datumValue": "0", "byteType": "" },
+                  // { "datumType": "int",  "datumValue": "0", "byteType": "" }, 
+                ]
+              },
+              {
+                "datumFieldsInner":[
+                    { "constructor": "0" },
+                    { "datumType": "int",  "datumValue": "7000000", "byteType": "" },
+                    { "datumType": "byte", "datumValue": "a1c10c4767a63fe4983f1882d74d110652e9e7335d49db55f94e9841", "byteType": "hex" },
+                    { "datumType": "byte", "datumValue": "", "byteType": "hex" },
+                    { "datumType": "int",  "datumValue": "0", "byteType": "" },
+                    { "datumType": "int",  "datumValue": "0", "byteType": "" }, 
+                ]
+              },
+              */
+            ]
+    const redeemers = [
+                  /*
+                  { "constructorOuter": "1" },
+                  { "constructorInner": "0" },
+                  { "redeemerType": "byte", "redeemerValue": "a1c10c4767a63fe4983f1882d74d110652e9e7335d49db55f94e9841", "byteType": "hex" },
+                  { "redeemerType": "int",  "redeemerValue": "12000000", "byteType": "" },
+                  */
+                ]
+    const plutus = [
+            //  {
+            //    "script": "591e18591e1501000033233223322332233223232333222323332223233333333222222223233322232333322223232332232333222323332223232332233223232333332222233223322332233223322332222323232323223232232325335303833300d3333573466e1cd55cea805a400046666644"
+            //  }
+            ]
+
     // console.log(event.target.name)
     setAssetcheck({ ...assetCheck, [event.target.name]: event.target.checked });
     setUtxocheck({ ...utxoCheck, [TxId+"#"+txIndex.toString()]: event.target.checked });

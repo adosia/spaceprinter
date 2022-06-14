@@ -18,7 +18,7 @@ const newUser: CreateUser = async ( userName, password ) => {
   });
   const passEncrypt: any = await bcrypt.hash( password, 10 );
   const timecreated: any  = Math.floor(Date.now() / 1000);
-  const insertUserSQL: string = `INSERT INTO Account ( userName, password, timeCreated ) VALUES (?, ?, ?, ?)`;
+  const insertUserSQL: string = `INSERT INTO Account ( userName, password, timeCreated, sessionType ) VALUES (?, ?, ?, ?)`;
   const getUserSQL: string = 'SELECT userName FROM Account WHERE userName=?';
   try{
     const checkAccountRes: any = await db.get( getUserSQL, [ userName ] );
@@ -27,7 +27,7 @@ const newUser: CreateUser = async ( userName, password ) => {
     if(typeof checkAccountRes !== "undefined") db.close();
     if(typeof checkAccountRes !== "undefined") return({"error":"Account Exists"});
 
-    const queryDB: any = await db.run( insertUserSQL, [ userName, passEncrypt, timecreated ] );
+    const queryDB: any = await db.run( insertUserSQL, [ userName, passEncrypt, timecreated, "" ] );
     db.close();
     return(queryDB);
   }catch( error ) {

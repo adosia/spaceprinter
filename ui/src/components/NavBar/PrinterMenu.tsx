@@ -33,8 +33,8 @@ export const PrinterMenu = () => {
         onClose={handleClose}
       > 
         <MenuItem onClick={()=>history.push("/PrinterPage")} >Setup Printer</MenuItem>
-        <MenuItem onClick={()=>history.push("/CBWalletPage")} >Printer Wallet</MenuItem>
         <MenuItem onClick={()=>history.push("/AdosiaMarketPlacePage")} >Print Jobs</MenuItem>
+        <MenuItem onClick={()=>history.push("/CBWalletPage")} >Wallet</MenuItem>
         <MenuItem onClick={()=>history.push("/SlicerPage")} >Slicer(Experimental)</MenuItem>
 
       </Menu>

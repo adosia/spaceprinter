@@ -9,7 +9,10 @@ export const OgmiosWS = new W3CWebSocket(
       :
       `wss://${sessionStorage.getItem("ogmiosURI")}:${sessionStorage.getItem("ogmiosPort")}`
   :
-    "ws://nosocket"
+    window.location.protocol == "http:" ?
+      "ws://nosocket" 
+      :
+      "wss://nosocket"
 );
 
 OgmiosWS.onopen = () => {

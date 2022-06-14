@@ -22,7 +22,7 @@ export const Login: React.FC = () => {
     if(password === "") return setStatus("Password blank");
 
     if( sessionType == null ){ return(setStatus( "Please select session type" ))};
-    if( blockfrostApi == null ){ return(setStatus( "Please set a Blockfrost API key" ))};
+    // if( blockfrostApi == null ){ return(setStatus( "Please set a Blockfrost API key" ))};
     
     let loginRes: any = await SpacePrinterAPI.loginUser( userName, password );
     console.log(loginRes);

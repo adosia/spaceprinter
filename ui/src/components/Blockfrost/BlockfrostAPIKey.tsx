@@ -40,7 +40,7 @@ export const BlockfrostAPIKey: React.FC = ( ) => {
   return(
     <>
       {
-        blockfrostApiKey && blockfrostApiKey == undefined &&
+        blockfrostApiKey && blockfrostApiKey == "" &&
         <div style={{width: 400, margin: "10 auto", boxShadow:" 0px 0px 0px 1px rgba(255, 255, 255, 0.12)", borderRadius: "4px", padding: 25 }}>
           <div></div>
           Blockfrost API Key<br />

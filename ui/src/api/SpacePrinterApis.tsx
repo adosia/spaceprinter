@@ -12,8 +12,8 @@ export const SpacePrinterAPI = new spaceprinterclient({
 // Create Websocket for space printer
 export const SpacePrinterWSS = new W3CWebSocket(
   window.location.protocol == "http:" ? 
-    'ws://spaceprinter.local:3331/' : 
-    `wss://${window.location.hostname}:3332/`, 'echo-protocol'
+    'ws://spaceprinter.local:3331/, echo-protocol' : 
+    `wss://${window.location.hostname}:3332/, echo-protocol`
 );
 
 SpacePrinterWSS.onopen = () => {

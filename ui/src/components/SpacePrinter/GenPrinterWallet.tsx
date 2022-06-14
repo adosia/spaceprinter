@@ -73,7 +73,7 @@ const GenPrinterWallet:React.FC<WalletProps> = ( { queryWallets, uuid } ) => {
             disabled
           />
           <TextField
-            type={viewSeedPhrase}
+            type="password"
             variant="outlined"
             margin="dense"
             required
@@ -92,7 +92,7 @@ const GenPrinterWallet:React.FC<WalletProps> = ( { queryWallets, uuid } ) => {
             <div>
               Phrase:<br />
               <TextField
-              type="password"
+              type={viewSeedPhrase}
               variant="outlined"
               margin="dense"
               id="seedPhrase"
