@@ -1,9 +1,18 @@
 ![spaceprinter_logo_V1](https://user-images.githubusercontent.com/50184793/158988554-897dfbab-ad58-4957-a183-4a2e8d72c6e9.png)
 
 **Videos**
-
 <details>
   <summary><b>Release Videos</b></summary>
+  <details>
+    <summary><b>V0.6.0-Beta</b></summary>
+    How to Upgarde to 0.6.0-Beta<br/>
+    https://user-images.githubusercontent.com/50184793/173244042-30b596ab-ef05-4f32-92f3-e29cff4ddd31.mp4
+    <br/><br/>
+    Extended Video explaining new login Screen.<br/>
+    https://user-images.githubusercontent.com/50184793/173454280-80cb56aa-62b4-4cc7-b414-f72816c90a18.mp4
+  
+  </details>
+  
    <details>
     <summary>V0.5.1-Beta</summary>
     
