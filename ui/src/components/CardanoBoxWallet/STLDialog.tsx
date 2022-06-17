@@ -24,7 +24,7 @@ export const STLDialog: React.FC<dialogProps> = ( { fileUrl, fileName, stlName }
 
   return (
     <>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={handleClickOpen} style={{ minWidth: 100 }}>
         {stlName !== "" ? stlName : "View STL"}
       </Button>
       <Dialog

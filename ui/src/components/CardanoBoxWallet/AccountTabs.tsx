@@ -12,6 +12,7 @@ import { AccountAssetsTable } from './AccountAssetsTable';
 import { AccountUTXOsTable } from "./AccountUTXOsTable";
 import { parseOgmiosUtxos, ParseBlockfrostUtxos} from "./UTXOtools";
 import { TxPreview } from "./TxPreview";
+import { LovelaceOutputs } from "./LovelaceOutputs";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -110,110 +111,6 @@ export const AccountTabs: React.FC< AccountTabsProps> = ({ jwToken, address, acc
     // const nftSearchRes: any = await CardanoBoxHttp.nftSearch( jwToken, "1", "1" );
     // console.log(nftSearchRes);
   };
-
-  const updateLovelaceOutput = async () => {
-    let exists = 0;
-    await outputs.map(( output: any, key: any )=> {
-      console.log(output)
-      if (output.id == "lovelace" && output.outputAddress == outputAddress){
-      outputs[key].outputValue = outputLovelace
-      exists = 1
-    }});
-    exists == 0 && 
-    
-    setOutputs( [ ...outputs,
-      {
-        id: "lovelace",
-        outputAddress: outputAddress,
-        outputValue: outputLovelace,
-        datums: [
-                /*
-                  {
-                    "datumFieldsOuter":[
-                        // { "constructor": "0" },
-                        // { "datumType": "int",  "datumValue": "7000000", "byteType": "" },
-                        // { "datumType": "byte", "datumValue": "a1c10c4767a63fe4983f1882d74d110652e9e7335d49db55f94e9841", "byteType": "hex" },
-                        // { "datumType": "byte", "datumValue": "", "byteType": "hex" },
-                        // { "datumType": "int",  "datumValue": "0", "byteType": "" },
-                        // { "datumType": "int",  "datumValue": "0", "byteType": "" }, 
-                    ]
-                  },
-                  {
-                    "datumFieldsInner":[
-                        //{ "constructor": "0" },
-                        //{ "datumType": "int",  "datumValue": "7000000", "byteType": "" },
-                        //{ "datumType": "byte", "datumValue": "a1c10c4767a63fe4983f1882d74d110652e9e7335d49db55f94e9841", "byteType": "hex" },
-                        //{ "datumType": "byte", "datumValue": "", "byteType": "hex" },
-                        //{ "datumType": "int",  "datumValue": "0", "byteType": "" },
-                        //{ "datumType": "int",  "datumValue": "0", "byteType": "" }, 
-                    ]
-                  },
-                */
-                ],
-        redeemers:[
-                  /*
-                    { "constructorOuter": "1" },
-                    { "constructorInner": "0" },
-                    { "redeemerType": "byte", "redeemerValue": "a1c10c4767a63fe4983f1882d74d110652e9e7335d49db55f94e9841", "byteType": "hex" },
-                    { "redeemerType": "int",  "redeemerValue": "12000000", "byteType": "" },
-                  */
-                  ],
-        plutus:[
-                //  {
-                //    "script": "591e18591e1501000033233223322332233223232333222323332223233333333222222223233322232333322223232332232333222323332223232332233223232333332222233223322332233223322332222323232323223232232325335303833300d3333573466e1cd55cea805a400046666644"
-                //  }
-              ]
-        
-      }
-    ])};
-
-  const inputs = () => {
-    return (
-      <div>
-        <TextField
-          autoFocus
-          variant="outlined"
-          type="text"
-          margin="dense"
-          required
-          id="outputAddress"
-          name="outputAddress"
-          label="Send to Address"
-          value={outputAddress}
-          onChange={(event:any) => {setOutputAddress( event.target.value )}}
-          style={{ height: "50px", width: "100%" }}
-        />
-        <TextField
-          variant="outlined"
-          type="number"
-          margin="dense"
-          required
-          id="outputLoveace"
-          name="outputLovelace"
-          label="Amount Lovelace to send"
-          value={outputLovelace}
-          onChange={( event:any ) => { setOutputlovelace( event.target.value ); event.target.value !== "" && updateLovelaceOutput(); }}
-          style={{ height: "50px", width: "100%" }}
-          disabled={outputAddress.length < 108  && true} // 103 mainnet
-          onBlur={ () =>  outputLovelace !== "" && updateLovelaceOutput() }
-        />
-        <TextField
-          variant="outlined"
-          type="password"
-          margin="dense"
-          required
-          id="walletPassword"
-          name="walletPassword"
-          label="Wallet Password"
-          value={walletPassword}
-          onChange={(event:any) => {setWalletPassword( event.target.value )}}
-          style={{ height: "50px", width: "100%" }}
-          disabled={outputLovelace < 1000000 && true}
-        />
-      </div>
-    )
-  };
-
   return (
     <>
       <Button color="primary" onClick={handleClickOpen}>
@@ -250,11 +147,11 @@ export const AccountTabs: React.FC< AccountTabsProps> = ({ jwToken, address, acc
             </AppBar>
             <TabPanel value={value} index={0}>
               { parsedUtxos ? <AccountAssetsTable rows={parsedUtxos} utxos={utxos} setUtxos={setUtxos} utxoCheck={utxoCheck} setUtxocheck={setUtxocheck} outputs={outputs} setOutputs={setOutputs} assetCheck={assetCheck} setAssetcheck={setAssetcheck} outputAddress={outputAddress} outputLovelace={outputLovelace} /> : <>LOADING...</>}
-              {inputs()}
+              <LovelaceOutputs  outputs={outputs} setOutputs={setOutputs} outputAddress={outputAddress} setOutputAddress={setOutputAddress} outputLovelace={outputLovelace} setOutputlovelace={setOutputlovelace} walletPassword={walletPassword} setWalletPassword={setWalletPassword} />
             </TabPanel>
             <TabPanel value={value} index={1}>
               { parsedUtxos ? <AccountUTXOsTable rows={parsedUtxos} utxos={utxos} setUtxos={setUtxos} utxoCheck={utxoCheck} setUtxocheck={setUtxocheck} outputs={outputs} setOutputs={setOutputs} assetCheck={assetCheck} setAssetcheck={setAssetcheck} /> : <>LOADING...</> }
-              {inputs()}
+              <LovelaceOutputs  outputs={outputs} setOutputs={setOutputs} outputAddress={outputAddress} setOutputAddress={setOutputAddress} outputLovelace={outputLovelace} setOutputlovelace={setOutputlovelace} walletPassword={walletPassword} setWalletPassword={setWalletPassword} />
             </TabPanel>
             <TabPanel value={value} index={2}>
               <TxPreview jwToken={jwToken} walletID={walletID} accountName={accountName} address={address} utxos={utxos} setUtxos={setUtxos} utxoCheck={utxoCheck} setUtxocheck={setUtxocheck} outputs={outputs} setOutputs={setOutputs} assetCheck={assetCheck} setAssetcheck={setAssetcheck} walletPassword={walletPassword} outputAddress={outputAddress} outputLovelace={outputLovelace} getAddressInfo={getAddressInfo} />                       

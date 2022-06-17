@@ -2,8 +2,8 @@ import CardanoWasm = require('@emurgo/cardano-serialization-lib-nodejs');
 // import CardanoWasm = require('@dcspark/cardano-multiplatform-lib-nodejs');
 
 export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metadata: string, outputs: string, changeAddress: string, txTTL: number ) => {
-  const witnesses = await CardanoWasm.TransactionWitnessSet.new();
-  const vkeyWitnesses = await CardanoWasm.Vkeywitnesses.new();
+  let witnesses = await CardanoWasm.TransactionWitnessSet.new();
+  let vkeyWitnesses = await CardanoWasm.Vkeywitnesses.new();
   let includeMeta = 0;
   let datumData: any;
   let datumFields: any;
@@ -29,12 +29,7 @@ export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metad
         console.log("Adding utxo: " + utxo.txix)
         await txBuilder.add_input(
           CardanoWasm.Address.from_bech32(changeAddress),
-          CardanoWasm.TransactionInput.new(
-            CardanoWasm.TransactionHash.from_bytes(
-                Buffer.from(utxo.txix, "hex")
-            ), // tx hash
-            utxo.txIndex, // index
-          ),
+          CardanoWasm.TransactionInput.new( CardanoWasm.TransactionHash.from_bytes( Buffer.from(utxo.txix, "hex")), utxo.txIndex ),
           CardanoWasm.Value.new(CardanoWasm.BigNum.from_str(utxo.inputValue))
         );
       });
@@ -72,19 +67,14 @@ export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metad
 
             // Setting value with multiasset
             await assetsVal.set_multiasset(assetMA);
-            
+
             // adding input for the asset with assetsValue set to 0.
             console.log("adding asset input: " + assetName)
             await txBuilder.add_input(
               CardanoWasm.Address.from_bech32( changeAddress ),
-              CardanoWasm.TransactionInput.new(
-                CardanoWasm.TransactionHash.from_bytes(
-                    Buffer.from(utxo.txix, "hex")
-                ), // tx hash
-                utxo.txIndex, // index
-              ),
+              CardanoWasm.TransactionInput.new( CardanoWasm.TransactionHash.from_bytes( Buffer.from(utxo.txix, "hex")), utxo.txIndex ),
               assetsVal
-            );   
+            );
           });
         };
       });
@@ -144,25 +134,6 @@ export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metad
           dataHash = CardanoWasm.hash_plutus_data(datumData);
 
           await witnesses.set_plutus_data(datumFieldsOuter);  
-          //await txBuilder.set_script_data(datumFields);
-
-          // add redemers to cbor/tx
-          // const redeemers = await CardanoWasm.Redeemers.new();
-          // await witnesses.set_redeemers(redeemers);
-          
-          /*
-          //add SC to cbor/tx
-          const script = "";
-          const scripts = CardanoWasm.PlutusScripts.new();
-          await scripts.add(CardanoWasm.PlutusScript.from_bytes(Buffer.from(script, 'hex')));
-          await witnesses.set_plutus_scripts(scripts);
-          */
-
-          // console.log("calc script hash");
-          // await txBuilder.calc_script_data_hash( CardanoWasm.TxBuilderConstants.plutus_default_cost_models() );
-
-          // console.log("count missing input scripts");
-          // console.log(await txBuilder.count_missing_input_scripts())
 
           hasDatum = true;
           
@@ -254,7 +225,7 @@ export const gruntTX = async ( utxoKey: any, utxos: string, assets:string, metad
     // calculate the min fee required and send any change to an address
     // console.log("setting change");
     console.log("setting change");
-    // await txBuilder.set_fee( CardanoWasm.BigNum.from_str("178613") );
+    //await txBuilder.set_fee( CardanoWasm.BigNum.from_str("178613") );
     await txBuilder.add_change_if_needed( CardanoWasm.Address.from_bech32(changeAddress) );
 
     // once the transaction is ready, we build it to get the tx body without witnesses

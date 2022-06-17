@@ -115,7 +115,7 @@ export const AccountUTXOsTable: React.FC<AccountUTXOsTableProps> = ({ rows, utxo
           </TableHead>
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(  (row: any) => {
-              {!row.asset && console.log(row)}
+              // {!row.asset && console.log(row)}
               return(
               !row.asset &&
               <TableRow hover role="checkbox" tabIndex={-1} key={row.TxId+row.txIndex} >

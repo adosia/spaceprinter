@@ -131,7 +131,7 @@ const Wallets: React.FC = () => {
 
       }
         <>
-         <DecodeDatum datum="116a4bfc6be1b1f80664b9d5274ebda43c8ad07e1f0a2c4d36b47db3594e309f" />
+         { /* <DecodeDatum datum="116a4bfc6be1b1f80664b9d5274ebda43c8ad07e1f0a2c4d36b47db3594e309f" /> */ }
         </>
     </>
   );

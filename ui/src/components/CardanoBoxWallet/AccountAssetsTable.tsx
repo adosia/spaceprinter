@@ -29,11 +29,10 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
   });
 
   const columns: any[] = [
-    { id: "asset", label: 'Asset Name', width: 100, disablePadding: false, },
-    { id: "amount", label: 'Amount',  minWidth: 150 },
-    { id: "mediaType", label: 'Media Type',  minWidth: 100 },
-    { id: "media", label: "media", width: 100 },
-    { id: "adosia", label: "Adosia Print Contract",  width: 50 },
+    { id: "asset", label: 'Asset Name', width: 50, disablePadding: false, },
+    { id: "amount", label: 'Amount', width: 50, disablePadding: true, },
+    { id: "mediaType", label: 'Media Type',  width: 50, disablePadding: false, },
+    { id: "media", label: "media", width: 100, disablePadding: false, },
   ];
 
   const classes = useStyles();
@@ -202,20 +201,33 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
                   }
                 </TableCell>
                 <TableCell align="left" style={{  minHeight: 100 }}>
-                  {row.assetAmount}
-                  <TextField
-                    variant="outlined"
-                    type="text"
-                    margin="dense"
-                    required
-                    id="outputAddress"
-                    name="outputAddress"
-                    label="Send to Address"
-                    value={outputAddress}
-                    // onChange={(event:any) => {setOutputAddress( event.target.value )}}
-                    style={{ height: "50px", width: "100%" }}
-                    disabled
-                  />                  
+                  {
+                    row.assetAmount && Number(row.assetAmount) > 1 ? 
+                    <TextField
+                      variant="outlined"
+                      margin="dense"
+                      id="assetAmount"
+                      name="assetAmount"
+                      label={row.assetAmount}
+                      value={"1"}
+                      // onChange={(event:any) => {setOutputAddress( event.target.value )}}
+                      style={{ height: "50px", width: "20%" }}
+                      disabled
+                    />
+                    
+                    :
+                    <TextField
+                      variant="outlined"
+                      margin="dense"
+                      id="assetAmount"
+                      name="assetAmount"
+                      label={"Owned"}
+                      value={row.assetAmount}
+                      // onChange={(event:any) => {setOutputAddress( event.target.value )}}
+                      style={{ height: "50px", width: "20%" }}
+                      disabled
+                    />
+                  }
                 </TableCell>
                 <TableCell style={{  minHeight: 100 }}>
                   { row.meta.onchain_metadata && row.meta.onchain_metadata.files && row.meta.onchain_metadata.files.length > 0 ?
@@ -263,9 +275,6 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
                       { row.meta.onchain_metadata.mediaType === "image/gif" && <><img src={`https://ipfs.io/ipfs/${row.meta.onchain_metadata.image.replace("ipfs://","")}`} alt="image" height="100" /> <br /></> }
                     </>
                   }
-                </TableCell>
-                <TableCell>
-                  { row.meta.onchain_metadata && row.meta.onchain_metadata.files && row.meta.onchain_metadata.files.length > 0 && row.meta.onchain_metadata.files[0].mediaType == "model/stl" && <Button>Send To Adosia</Button>}
                 </TableCell>
               </TableRow>
               );

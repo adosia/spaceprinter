@@ -21,7 +21,8 @@ interface Props {
 
 export const STLViewer: FC<Props> = ({fileUrl, fileName}) => {
   const [geometry, setGeometry] = useState<BufferGeometry>() 
-  
+  const [ipfsLoadProgress, setIpfsLoadProgress ]: any = useState();
+
   const Controls = () => {
     const { camera, gl, invalidate } = useThree();
     const ref: any = useRef();
@@ -36,6 +37,13 @@ export const STLViewer: FC<Props> = ({fileUrl, fileName}) => {
     stlLoader.load(fileUrl, geo => {
       setGeometry(geo);
      // console.log(geo);
+    },
+    (xhr: any) => {
+        console.log((((xhr.loaded / xhr.total)*100).toFixed(2)));
+        setIpfsLoadProgress(((xhr.loaded / xhr.total)*100).toFixed(2));
+    },
+    (error) => {
+        console.log(error);
     });// eslint-disable-next-line
   }, []);
 
@@ -61,7 +69,7 @@ export const STLViewer: FC<Props> = ({fileUrl, fileName}) => {
           </Button>
         </div>
         : 
-        <div>LOADING...<br />Loading files from IPFS can sometimes take a moment.</div>
+        <div>LOADING<br />{ipfsLoadProgress && ipfsLoadProgress } <br />Loading files from IPFS can sometimes take a moment.</div>
       }
     </>
   )
