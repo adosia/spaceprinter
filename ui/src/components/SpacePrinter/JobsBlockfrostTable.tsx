@@ -92,7 +92,7 @@ export const JobsBlockfrostTable: React.FC<JobsBlockfrostTableProps> = ({ rows }
                                                             Sorry, your browser doesn't support embedded videos.
                                                             </video>
                         }
-                        {file.mediaType == "model/stl" && <STLViewer fileUrl={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}`} fileName="STL" />  }     
+                        {file.mediaType == "model/stl" && "HAS STL" }     
                         </>
                       )
                     })

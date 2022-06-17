@@ -253,7 +253,8 @@ export const AccountAssetsTable: React.FC<AccountAssetsTableProps> = ({ rows, ut
                                                               Sorry, your browser doesn't support embedded videos.
                                                               </video> 
                           }
-                          { file.mediaType == "model/stl" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}` } fileName={hex2a(row.meta.asset_name)} stlName={file.name ? file.name : ""} />  }<br/>
+                          { file.mediaType == "model/stl" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}` } fileName={hex2a(row.meta.asset_name)} stlName={file.name ? file.name : ""} color={file.color ? file.color : "green"} type="stl" />  }
+                          { file.mediaType == "model/gltf-binary" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}` } fileName={hex2a(row.meta.asset_name)} stlName={file.name ? file.name : ""} type="gbl" color="" />  }<br/>
                           { /* file.mediaType == "model/stl" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}` } fileName={hex2a(row.meta.asset_name)} /> */ }
                         </>
                       )

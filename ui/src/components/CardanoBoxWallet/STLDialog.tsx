@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import { STLViewer } from "../AssetViewer/STLviewer";
-
+import { GLTFViewer } from "../AssetViewer/GLTFviewer";
 type dialogProps = {
   fileUrl: string;
   fileName: string;
   stlName: string;
+  color: string;
+  type: string;
 }
 
-export const STLDialog: React.FC<dialogProps> = ( { fileUrl, fileName, stlName } ) => {
+export const STLDialog: React.FC<dialogProps> = ( { fileUrl, fileName, stlName, color, type } ) => {
   const [ open, setOpen ] = useState( false );
+  const [ loading, setLoading ] = useState(true);
   const darkMode = useDarkMode();
 
   const handleClickOpen = () => {
@@ -32,14 +35,15 @@ export const STLDialog: React.FC<dialogProps> = ( { fileUrl, fileName, stlName }
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        fullWidth
+        fullWidth = { loading ? false : true }
         maxWidth="xl"
         
       >   
         <DialogTitle id="alert-dialog-title">
         </DialogTitle>
         <DialogContent>
-          <STLViewer fileUrl={ fileUrl } fileName={ fileName } /> 
+          { type === "stl" && <STLViewer fileUrl={ fileUrl } fileName={ fileName } setLoading={setLoading} color={color} /> }
+          { type === "gbl" && <GLTFViewer fileUrl={ fileUrl } fileName={ fileName } setLoading={setLoading} /> }
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>

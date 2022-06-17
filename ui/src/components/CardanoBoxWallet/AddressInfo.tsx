@@ -81,7 +81,7 @@ const AddressInfo: React.FC<walletProps> = ( {jwToken, address  } ) => {
                     asset.meta.files.map( (asset: any, key: any) =>
                       <>         
                         Media: {asset.mediaType}
-                        {  asset.mediaType === "model/stl" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${asset.src[0].replace("ipfs://","")}` } fileName="" stlName="" /> }
+                        {  asset.mediaType === "model/stl" && <STLDialog fileUrl={`https://ipfs.io/ipfs/${asset.src[0].replace("ipfs://","")}` } fileName="" stlName="" color="" type=""/> }
                         <br />
                       </>
                     )

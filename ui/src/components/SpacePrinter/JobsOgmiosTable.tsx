@@ -92,7 +92,7 @@ export const JobsOgmiosTable: React.FC<jobsTableProps> = ({ rows }) => {
                                                             Sorry, your browser doesn't support embedded videos.
                                                             </video> 
                         }
-                        { file.mediaType == "model/stl" && <STLViewer fileUrl={`https://ipfs.io/ipfs/${file.src.replace("ipfs://","")}`} fileName="STL" /> }  
+                        { file.mediaType == "model/stl" && "Has STL" }  
                       </>
                     )
                   })  
