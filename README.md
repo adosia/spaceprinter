@@ -1,5 +1,8 @@
 ![spaceprinter_logo_V1](https://user-images.githubusercontent.com/50184793/158988554-897dfbab-ad58-4957-a183-4a2e8d72c6e9.png)
 
+Space Printer is a linux distribution that runs on a Raspberry Pi and allows you to plug your printer into the Cardano blockchain.
+By allowing your 3D printer to part of the Cardano Network and registered with the Adosia market place we are enabling 3D printing manufacturing into peoples houses.
+
 **Videos**
 <details>
   <summary><b>Release Videos</b></summary>
