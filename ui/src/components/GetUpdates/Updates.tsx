@@ -33,6 +33,13 @@ export const Updates: React.FC = () => {
   return (
     <>
       <div style={{ border: `1px dashed ${darkMode.value ? "#fff" : "#000"}`, borderRadius: 5, padding: 5, margin: 15, overflow: "hidden", justifyContent: "center", alignItems: "center", textAlign: "left" }}>
+        <strong>v0.6.1-beta</strong>:<br />
+        -Blockfrost API Key health check. <a href="https://github.com/adosia/spaceprinter/issues/8" target="_blank" >issue #8</a><br />
+        -STL Viewer now does a better job of zooming the part out and trying to set a new anchor point. <a href="https://github.com/adosia/spaceprinter/issues/7" target="_blank" >issue #7</a> <br />
+        -Saving STL from wallet now saves it with proper name and .stl extension. <a href="https://github.com/adosia/spaceprinter/issues/6" target="_blank" >issue #6</a>
+      </div>
+      <br />
+      <div style={{ border: `1px dashed ${darkMode.value ? "#fff" : "#000"}`, borderRadius: 5, padding: 5, margin: 15, overflow: "hidden", justifyContent: "center", alignItems: "center", textAlign: "left" }}>
         <strong>v0.6.0-beta</strong>:<br />
         -New Login Screen<br />
         -Option for self hosted ogmios<br />

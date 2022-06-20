@@ -19,6 +19,7 @@ import LogoutBtn from "../LogoutBtn/LogoutBtn";
 import { SettingsMenu } from "./SettingsMenu";
 import { PrinterMenu } from "./PrinterMenu";
 import { NewWalletPopup } from "../CardanoBoxWallet/NewWalletPopup";
+import { BlockfrostHealth } from "../Blockfrost/BlockfrostHealth";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme: Theme) =>
@@ -113,7 +114,7 @@ const ResponsiveDrawer:React.FC<DrawerProps> = ({ window, pageName }) => {
             {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
           </IconButton>
         </Tooltip><br />
-        Session: { sessionType && sessionType}<br />
+        Session: { sessionType =="blockfrost" && <BlockfrostHealth />}<br />
         Version: { version && version }
       </div>
     </div>

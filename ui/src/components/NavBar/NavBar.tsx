@@ -9,8 +9,8 @@ import { useTranslation } from "react-i18next";
 import LanguageMenu from "../LanguageMenu";
 import {GetUpdates} from "../GetUpdates/GetUpdates";
 import AppDrawer from "./AppDrawer";
-// import header from "../../assets/header.jpg"
-import LogoutBtn from "../LogoutBtn/LogoutBtn"
+// import header from "../../assets/header.jpg";
+import LogoutBtn from "../LogoutBtn/LogoutBtn";
 
 const NavBar: React.FC = () => {
   const darkMode = useDarkMode();
@@ -35,8 +35,7 @@ const NavBar: React.FC = () => {
                   {darkMode.value ? <Brightness3Icon /> : <WbSunnyIcon />}
                 </IconButton>
               </Tooltip><br />
-              Version: { version && version }<br />
-              Sesion Type: { sessionType }
+
             </Grid>
           </Grid>
         </Toolbar>

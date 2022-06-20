@@ -28,7 +28,6 @@ export const BlockfrostAPIKey: React.FC = ( ) => {
       console.log(getBFKeyRes);
       getBFKeyRes.blockfrostApiKey !== "" && localStorage.setItem("blockfrostApi", getBFKeyRes.blockfrostApiKey);
       getBFKeyRes.blockfrostApiKey !== "" && setBlockfrostApiKey(getBFKeyRes.blockfrostApiKey);
-      getBFKeyRes.blockfrostApiKey === "" && setBlockfrostApiKey("");
     } 
   };
 

@@ -42,7 +42,7 @@ export const STLDialog: React.FC<dialogProps> = ( { fileUrl, fileName, stlName, 
         <DialogTitle id="alert-dialog-title">
         </DialogTitle>
         <DialogContent>
-          { type === "stl" && <STLViewer fileUrl={ fileUrl } fileName={ fileName } setLoading={setLoading} color={color} /> }
+          { type === "stl" && <STLViewer fileUrl={ fileUrl } fileName={ fileName } stlName={stlName} setLoading={setLoading} color={color} /> }
           { type === "gbl" && <GLTFViewer fileUrl={ fileUrl } fileName={ fileName } setLoading={setLoading} /> }
         </DialogContent>
         <DialogActions>

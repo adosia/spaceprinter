@@ -5,7 +5,6 @@ import { makeStyles, Checkbox, FormControlLabel, Button } from "@material-ui/cor
 import useDarkMode from "use-dark-mode";
 import { a2hex, hex2a } from "../../utils/hextools";
 import { STLViewer } from "../AssetViewer/STLviewer";
-import { getAssetInfo } from "../Blockfrost/BlockfrostAsset";
 import { JobsOgmiosTable } from "./JobsOgmiosTable";
 import { JobsBlockfrostTable } from "./JobsBlockfrostTable";
 
@@ -56,7 +55,8 @@ export const ParseOgmiosUtxos: React.FC = ( ) => {
           await Object.entries(utxo[1].value.assets).map( async ( asset: any ) => {
             const policyID: string = asset[0].split(".")[0];
             const assetName: string = asset[0].split(".")[1];
-            parsedUtxos.push({ "meta": await getAssetInfo( policyID+assetName ),"asset": asset[0], "assetAmount": asset[1], "TxId": utxo[0].txId, "txIndex":  utxo[0].index, "datum": utxo[1].datum });
+            const metaData: any =  await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/assets/${policyID+assetName}`, "GET", "");
+            parsedUtxos.push({ "meta": metaData,"asset": asset[0], "assetAmount": asset[1], "TxId": utxo[0].txId, "txIndex":  utxo[0].index, "datum": utxo[1].datum });
           })
           // console.log(utxo[1].value.coins)
           parsedUtxos.push({ "TxId": utxo[0].txId, "txIndex": utxo[0].index, "datum": utxo[1].datum, "loveLace": utxo[1].value.coins  });

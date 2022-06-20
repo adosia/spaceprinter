@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core"; //tslint:disable-line
 import useDarkMode from "use-dark-mode";
 import { hex2a } from "../../utils/hextools";
-import { getAssetInfo } from "../Blockfrost/BlockfrostAsset";
 import { parseOgmiosUtxos } from "./UTXOtools";
 import { STLDialog } from "./STLDialog";
 

@@ -18,11 +18,12 @@ declare global {
 interface Props {
     fileUrl: string;
     fileName: string;
+    stlName: string;
     setLoading: any;
     color: string;
 };
 
-export const STLViewer: FC<Props> = ({fileUrl, fileName, setLoading, color }) => {
+export const STLViewer: FC<Props> = ({fileUrl, fileName, stlName, setLoading, color }) => {
   const [geometry, setGeometry] = useState<BufferGeometry>() 
   const [ipfsLoadProgress, setIpfsLoadProgress ]: any = useState();
   const [itemColor, setItemColor ] = useState(color);
@@ -32,7 +33,7 @@ export const STLViewer: FC<Props> = ({fileUrl, fileName, setLoading, color }) =>
     const ref: any = useRef();
     useFrame(() => ref.current.update());// eslint-disable-next-line
     useEffect(() => void ref.current.addEventListener('change', invalidate), []);
-    return <orbitControls ref={ref} enableDamping enableZoom autoRotate args={[camera, gl.domElement]} />
+    return <orbitControls ref={ref} enableDamping enableZoom args={[camera, gl.domElement]} />
   };
 
   useEffect(() => {
@@ -58,11 +59,14 @@ export const STLViewer: FC<Props> = ({fileUrl, fileName, setLoading, color }) =>
       {
         geometry ?
         <div style={{textAlign: "center"}}>
-          <div >
-            <Canvas style={{height: 570}} camera={{ position: [0, 0, 80], fov: 50 }}>
+          <div>
+            {stlName}
+          </div>
+          <div>
+            <Canvas style={{height: 570}} camera={{ position: [0, 0, 400], fov: 50 }}>
               <Controls />
               <ambientLight intensity={.5} />
-              <spotLight position={[0, 0, 80]} angle={0.45} penumbra={1} />
+              <spotLight position={[0, 0, 400]} angle={0.45} penumbra={1} />
               <pointLight position={[-10, -10, -10]} />
               <mesh geometry={geometry}>
                 <meshStandardMaterial color={itemColor}/>
@@ -72,15 +76,14 @@ export const STLViewer: FC<Props> = ({fileUrl, fileName, setLoading, color }) =>
           <div>
             <HexColorPicker color={itemColor} onChange={setItemColor} />
             <Button
-              href={fileUrl}
-              download={fileName+".stl"}
+              href={fileUrl+"?filename="+stlName+".stl"}
             >
               Download STL
             </Button>
           </div>
         </div>
         : 
-        <div>LOADING<br />{ipfsLoadProgress && ipfsLoadProgress } <br />Loading files from IPFS can sometimes take a moment.</div>
+        <div>LOADING: {stlName}<br />{ipfsLoadProgress && ipfsLoadProgress } <br />Loading files from IPFS can sometimes take a moment.</div>
       }
     </>
   )

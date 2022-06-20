@@ -1,4 +1,3 @@
-import { getAssetInfo } from "../Blockfrost/BlockfrostAsset";
 import { SpacePrinterAPI, SpacePrinterWSS, blockfrostApi } from "../../api/SpacePrinterApis";
 import { OgmiosWS } from "../../api/OgmiosApi";
 
@@ -26,7 +25,7 @@ export const parseOgmiosUtxos = async ( address: string ) => {
           // console.log(asset[0]);
           const policyID: string = asset[0].split(".")[0];
           const assetName: string = asset[0].split(".")[1];
-          utxos.push({ "meta": await getAssetInfo( policyID+assetName ),"asset": asset[0]+"."+utxo[0].txId+utxo[0].index, "assetAmount": asset[1], "TxId": utxo[0].txId, "txIndex":  utxo[0].index, "utxo": utxo });
+          utxos.push({ "meta": await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/assets/${policyID+assetName}`, "GET", ""),"asset": asset[0]+"."+utxo[0].txId+utxo[0].index, "assetAmount": asset[1], "TxId": utxo[0].txId, "txIndex":  utxo[0].index, "utxo": utxo });
         })
         // console.log(utxo[1].value.coins)
         utxos.push({ "TxId": utxo[0].txId, "txIndex":  utxo[0].index, "datum":  utxo[1].datum, "assets":utxo[1].value.assets, "loveLace": utxo[1].value.coins  });
@@ -61,14 +60,15 @@ export const ParseBlockfrostUtxos = async ( address: string ) => {
       asset.unit !== "lovelace" && (utxoAsset = { 
                         "assets": { ...utxoAsset.assets,
                           [`${asset.unit.slice(0,56)}.${asset.unit.slice(56)}`]: Number(asset.quantity)
-                        },
+                        }, 
                         "coins": utxo.amount[0].unit === "lovelace" && Number(utxo.amount[0].quantity)
                       }
                     );
       //row.utxo[1].value.assets
       asset.unit !== "lovelace" && utxoAssets.splice(0, 0, {});
       asset.unit !== "lovelace" && utxoAssets.splice(1, 0, { "value": utxoAsset });
-      asset.unit !== "lovelace" && utxos.push({ "meta": await getAssetInfo( asset.unit ), "asset": `${asset.unit.slice(0,56)}.${asset.unit.slice(56)}.${utxo.tx_hash}${utxo.tx_index}`, "assetAmount": Number(asset.quantity), "TxId": utxo.tx_hash, "txIndex": utxo.tx_index, "utxo": utxoAssets });
+      const metaData = asset.unit !== "lovelace" && await blockfrostApi(`https://cardano-testnet.blockfrost.io/api/v0/assets/${asset.unit}`, "GET", "");
+      asset.unit !== "lovelace" && utxos.push({ "meta": metaData, "asset": `${asset.unit.slice(0,56)}.${asset.unit.slice(56)}.${utxo.tx_hash}${utxo.tx_index}`, "assetAmount": Number(asset.quantity), "TxId": utxo.tx_hash, "txIndex": utxo.tx_index, "utxo": utxoAssets });
     });
     await utxo.amount.map( async ( asset: any ) => {
       // asset.unit !== "lovelace" && console.log(asset)
