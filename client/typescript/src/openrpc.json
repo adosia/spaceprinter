@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "spaceprinter",
-    "version": "1.0.0",
+    "version": "0.6.1-beta",
     "description": "Space Printer: dapp for raspberry to allow your 3D printer to access Adosia market place on cardano"
   },
   "methods": [
@@ -63,6 +63,65 @@
       "result": {
         "name": "resetUserRes",
         "description": "Returns query response",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "genCBWallet",
+      "description": "Creates cardanobox wallet",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/walletName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/seedPhrase"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/walletPassPhrase"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/walletType"
+        }
+      ],
+      "result": {
+        "name": "genCBWalletResult",
+        "description": "Returns wallet info and seed phrase if one was generated",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "genCBWalletAccount",
+      "description": "Creates a new account on same seed and creates a new address for it.",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/walletID"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/accountName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/walletPassPhrase"
+        }
+      ],
+      "result": {
+        "name": "genCBWalletAccountResult",
+        "description": "Returns generated address",
         "schema": {
           "type": "string"
         }
