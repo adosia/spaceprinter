@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "spaceprinter",
-    "version": "0.6.1-beta",
+    "version": "0.7.0-beta",
     "description": "Space Printer: dapp for raspberry to allow your 3D printer to access Adosia market place on cardano"
   },
   "methods": [
@@ -901,7 +901,7 @@
         "required": true,
         "schema": {
           "title": "carrierIDs",
-          "type": "string"
+          "type": "array"
         }
       },
       "weightUnits": {
