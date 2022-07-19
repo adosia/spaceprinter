@@ -422,6 +422,49 @@
           "type": "string"
         }
       }
+    },
+    {
+      "name": "estimateShipping",
+      "description": "Useshipping Engine to estimate shipping",
+      "params": [
+        {
+          "$ref": "#/components/contentDescriptors/jwToken"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/userName"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/shipengineAPI"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/carrierIDs"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/fromCountryCode"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/fromPostalCode"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/toCountryCode"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/toPostalCode"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/weightUnits"
+        },
+        {
+          "$ref": "#/components/contentDescriptors/weightAmount"
+        }
+      ],
+      "result": {
+        "name": "estimateShippingResult",
+        "description": "returns estimate shipping.",
+        "schema": {
+          "type": "string"
+        }
+      }
     }
   ],
   "components": {
@@ -813,6 +856,78 @@
         "required": true,
         "schema": {
           "title": "sslOrg",
+          "type": "string"
+        }
+      },
+      "fromCountryCode": {
+        "name": "fromCountryCode",
+        "description": "Two letter ISO from shipping from Country",
+        "required": true,
+        "schema": {
+          "title": "fromCountryCode",
+          "type": "string"
+        }
+      },
+      "fromPostalCode": {
+        "name": "fromPostalCode",
+        "description": "",
+        "required": true,
+        "schema": {
+          "title": "fromPostalCode",
+          "type": "string"
+        }
+      },
+      "toCountryCode": {
+        "name": "toCountryCode",
+        "description": "",
+        "required": true,
+        "schema": {
+          "title": "toCountryCode",
+          "type": "string"
+        }
+      },
+      "toPostalCode": {
+        "name": "toPostalCode",
+        "description": "",
+        "required": true,
+        "schema": {
+          "title": "toPostalCode",
+          "type": "string"
+        }
+      },
+      "carrierIDs": {
+        "name": "carrierIDs",
+        "description": "",
+        "required": true,
+        "schema": {
+          "title": "carrierIDs",
+          "type": "string"
+        }
+      },
+      "weightUnits": {
+        "name": "weightUnits",
+        "description": "",
+        "required": true,
+        "schema": {
+          "title": "weightUnits",
+          "type": "string"
+        }
+      },
+      "weightAmount": {
+        "name": "weightAmount",
+        "description": "",
+        "required": true,
+        "schema": {
+          "title": "weightAmount",
+          "type": "string"
+        }
+      },
+      "shipengineAPI": {
+        "name": "shipengineAPI",
+        "description": "",
+        "required": true,
+        "schema": {
+          "title": "shipengineAPI",
           "type": "string"
         }
       }
